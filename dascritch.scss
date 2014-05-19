@@ -1,0 +1,598 @@
+#lightbox, #lightbox-overlay {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom:auto;
+	right:auto;
+	
+	z-index:100;
+	width:100%;
+	height:auto;
+	
+	text-align:center;
+	color:#333333;
+	
+	margin:0px;
+	padding:0px;
+	border:none;
+	outline:none;
+	line-height:0;
+	
+	text-decoration:none;
+	background:none;
+	word-spacing:normal;
+	letter-spacing:normal;
+	float:none;
+	clear:none;
+	display:block;
+}
+
+#lightbox a, #lightbox a:link, #lightbox a:visited, #lightbox a:hover {
+	text-decoration:underline;
+	color:#999999;
+}
+
+#lightbox-overlay {
+	z-index: 90;
+	background-color:#000000;
+	height: 100%;
+	position:fixed;
+}
+#lightbox-overlay-text {
+	text-align: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	color: white;
+	font-size: 12px;
+	cursor: default;
+	line-height:normal;
+}
+#lightbox-overlay-text a, #lightbox-overlay-text a:hover, #lightbox-overlay-text a:visited, #lightbox-overlay-text a:link {
+	color:white;
+}
+#lightbox-overlay-text span {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#lightbox img, #lightbox a img, #lightbox a { border:none; outline:none; }
+
+#lightbox-imageBox {
+	position:relative;
+	border:1px solid black;;
+	background-color:white;
+	width:400px;
+	height:400px;
+	margin:0 auto;
+}
+
+#lightbox-imageContainer {
+	padding:1px;
+}
+
+#lightbox-loading {
+	position:absolute;
+	top:40%;
+	left:0%;
+	height:25%;
+	width:100%;
+	text-align:center;
+	line-height:0;
+}
+
+#lightbox-nav {
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index:10;
+}
+
+
+#lightbox-nav-btnPrev, #lightbox-nav-btnNext {
+	display:block;
+	width:49%;
+	height: 100%;
+	background:transparent url("/dastyle/nul.png") no-repeat;			
+	zoom:1 ;		
+	padding:0px;
+	margin:0px;
+}
+#lightbox-nav-btnPrev { 
+	left:0;
+	right:auto;
+	float:left;
+}
+#lightbox-nav-btnNext { 
+	left:auto;
+	right:0;
+	float:right;
+}
+
+#lightbox-infoBox {
+	font-size:10px;
+	background-color:#FFFFFF;
+	margin:0 auto;
+	padding:0px;
+	
+	}
+
+#lightbox-infoContainer {
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	color:#666;
+	
+	line-height:normal;
+	}
+#lightbox-infoHeader {
+	width:100%;
+	text-align:center; 
+}
+#lightbox-caption {
+	text-align:justify;
+}
+#lightbox-caption-title {
+	font-weight:bold;
+}
+#lightbox-caption-description {
+	font-weight:normal;
+}
+
+#lightbox-infoFooter {
+	margin-top:3px;
+	color:#999999;
+}
+#lightbox-currentNumber {
+	display:block;
+	width:49%;
+	float:left;
+	text-align:left;
+}
+#lightbox-close {
+	display:block;
+	width:45%;
+	float:right;
+	text-align:right;
+}
+#lightbox-close-button{
+	padding-left:30%;
+}
+#lightbox-close-button:hover {
+	color:#666666;
+}
+
+#lightbox-infoContainer-clear {
+	clear:both; 
+	visibility:hidden;
+}
+
+
+/*****************************************************************************/
+
+a[rel*=lightbox] {
+	cursor : pointer;
+	cursor : zoom-in;
+}
+
+
+
+img	{
+	border: none;
+}
+
+q, cite, quote, blockquote {
+	quotes : "\201c" "\201d" "\00ab\00a0" "\00a0\00bb";
+	}
+
+abbr, accronym, .aide { 	
+	cursor : help;
+	border-bottom : thin dashed #333 ;	border-color : #ff0000;
+	}
+
+kbd {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #CCCCCC #AAAAAA #888888 #BBBBBB;
+    border-style: solid;
+    border-width: 2px 3px 3px 2px;
+    padding : 0 2px;
+    color: #000000;
+    display: inline-block;
+    font-family: $police;
+    min-width: 15px;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    white-space: nowrap;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.serif {
+	font-family : serif;
+}
+
+code, tt, pre {overflow:auto;}
+.cl	{
+	clear: both;
+}
+
+.l	{
+	float: left;
+	margin: 0.5em 0.5em 0.5em 0;
+	display: inline;
+}
+
+.r	{
+	float: right;
+	margin: 0.5em 0 0.5em 0.5em;
+	display: inline;
+}
+
+.c	{
+	display:block;
+	margin:0 auto;
+	text-align:center;
+}
+
+.c a img {
+	vertical-align:middle
+}
+
+sup, .up	{
+vertical-align:80%;
+
+	font-size:xx-small;
+   }
+
+.demi	{
+	width:48%
+}
+
+.icone	{
+	border:0;
+	float:left;
+	margin-right:0.4em;
+}
+.masqueur, #sidebar dt.masqueur {
+	background : transparent url(/nav/masquable.gif) no-repeat right top;
+	padding-right:32px;
+	cursor : row-resize;
+}
+.masqueur:hover, #sidebar dt.masqueur:hover,.masqueur:focus, #sidebar dt.masqueur:focus {
+	background: black url(/nav/masquable.gif) no-repeat right bottom;
+	color : white;
+	cursor : zoom-in;
+	cursor : -moz-context-menu;
+}
+img.dumicon {
+	width:12px;
+	height:12px;
+	border-width:2px;
+	border-style:solid;
+	content:url(/dastyle/nul.png);
+	vertical-align:middle;
+	margin-right:0.4em;
+}
+img.favicon {
+	width:16px;
+	height:16px;
+	vertical-align:middle;
+	border:0;
+	margin-right:0.4em
+}
+
+.masquable, .masquee {
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+
+dl.mail	{
+	background:transparent url(/nav/quote.png) no-repeat 0% 0%; 
+	margin:0; 
+	border-left:8px solid #6096BF; 
+	border-right:8px solid #6096BF
+}
+dl.mail dt{
+	border-top:8px  solid #6096BF; 
+	padding:1em 0.4em 1em; 
+	margin-left:50px; 
+	background:#e6f4ff
+}
+dl.mail dd{
+	padding:0 0 0 55px;
+	margin:0; 
+	border-bottom:8px solid #6096BF
+}
+  
+.post-excerpt { 
+    background:rgb(238, 238, 255);
+    padding : 4px 0;
+    border: 1px solid rgb(221, 221, 255);
+}
+
+
+/** Header **/
+
+#header { 
+	overflow : hidden;
+	position:relative;
+}
+	
+#top a:hover {background : none; }
+h1 { text-align: left;  }
+
+.entete {
+	width : 120% ;
+	position : absolute ;
+	z-index : -1;
+	height : auto;
+	transition:opacity 0.2s, left 0.2s;
+	}
+.top0 #entete1 , .top1 #entete2 {
+	opacity : 1;
+	left : 0;
+}
+.top1 #entete1 ,.top0 #entete2  {
+	opacity : 0;
+	left : -5%;
+}
+
+
+/*** des billest de code ***/
+
+ol.listserif { list-style-type: upper-roman }
+ol.listserif li:before { font-family : serif }
+
+code { text-align : left !important; font-family : sans-serif ; word-break: break-all}
+code .element { }
+code .blsg , .article code strong { font-weight: bold;color: #000000; }
+code .var , .article code em { color: #800000; }
+code .url { color: #008000; }
+h1 a img { vertical-align : top }
+h1 a { display : block; }
+
+#breadcrumb { display : none; }
+#minisom { text-align : right ; }
+
+/*** media queries ***/
+
+
+@media only screen and (max-width:560px) {
+  .l,.r	{
+	float: none;
+	display: block;
+	margin:0 auto;
+	text-align:center;
+  }
+
+  iframe {
+        max-width : 90%
+  }
+
+  .post-info-co {
+	display: none;
+  }
+}
+@media only screen and (max-width:892px) {
+	.supranav li a span , .li3 , .li4 {
+		display : none !important;
+	}
+	h1 {
+	 	text-align : left;
+	}
+}
+
+@media only screen and (min-width:481px) and (max-width:640px) {
+
+	#stickers {
+		position: absolute;
+		top: 0;
+		right: -4px;
+		font-size: .75em;
+	}
+	#stickers li {
+		text-align: center;
+		width: 40px;
+		height: 30px;
+		padding: 0;
+	}
+	#stickers img {
+		top: -2px;
+		clip: rect(4, 32px, 32px, 0);
+	}
+	#stickers a:hover, #stickers a:focus {
+		background : none !important;
+	}
+	#stickers a span {
+		display : none;
+	}
+		
+	#stickers a:hover span, #stickers a:focus span {
+		display : block;
+		color: #686867;
+		text-align: right;
+		position : relative;
+		right : 60px;
+		top : -50px;
+		width : 50px;
+		background: #fff !important;
+		z-index : 10;
+		padding : 4px;
+	}
+}
+@media only screen and (min-width:640px) {
+	#stickers {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding-right: 3%;
+		font-size: .75em;
+		}
+	#stickers li {
+		display: block;
+		float: left;
+		text-align: center;
+		width: 60px;
+		padding: 0;
+		}
+	#stickers span {
+		display: block;
+		text-align: center;
+		position: absolute;
+		top: -500px;
+		}
+	#stickers a:hover, #stickers a:focus {
+		background: #fff !important;
+		}
+	#stickers a:hover span, #stickers a:focus span {
+		color: #686867;
+		position: static;
+		top: 0;
+		}
+}
+.post-tags a { 
+	white-space: nowrap; 
+}
+.post-social {
+    font-size: 0.875em;
+	margin : 0;
+	padding: 0;
+}
+@media only screen and (max-width:1279px) { .post-social { float : right } }
+.post-social li {
+    display : inline;
+    list-style-type : none;
+}
+.post-social li a img {
+    vertical-align : bottom;
+}
+
+/** reset sur les règles déjà placées **/
+
+.field input:focus, .field textarea:focus { /* because compressed l272 */
+	background : none;
+}
+
+/** code "réel" sur la section #comment-form **/
+
+.field label { 
+	/* Par défaut, cache le label et le révèlera si l'input se rempli */
+	position: absolute;  
+	top:0.8em;
+	opacity : 0; 	
+	transition-property: opacity top;
+	transition-duration: 0.4s;  
+}
+.field.notEmpty label {
+	/* révèle le label si on commence à remplir l'entrée */
+	/* pour le .notEmpty, je suis obligé de passer par du JS, il n'y a pas de pseudo-classes en CSS pour faire ce que je cherche */
+	top : 0;
+	opacity : 1 ;
+}
+
+.field.notEmpty :active + label , .field.notEmpty :focus + label {
+	color : blue;
+	}
+
+.field input, .field textarea, .field :focus  {
+	margin  : 0;
+	outline : none;
+	width: 95%;
+	background : transparent;
+	border : none;
+	border-radius: 0px;
+	font-family: $police;
+}
+
+.field :invalid {
+	/* reset */
+	border : none;
+	box-shadow : none;
+}
+
+.modified .field :invalid {
+	background-image: linear-gradient(			top, #EEF 0%, #FFF 30%);
+	background-image: -o-linear-gradient(		top, #EEF 0%, #FFF 30%);
+	background-image: -moz-linear-gradient(		top, #EEF 0%, #FFF 30%);
+	background-image: -webkit-linear-gradient(	top, #EEF 0%, #FFF 30%);
+	background-image: -ms-linear-gradient(		top, #EEF 0%, #FFF 30%);
+}
+
+#comment-form p {
+	position: relative;  
+	margin : 0;
+	padding : 1em 0 0;
+	border-top : 1px solid #cce ;
+}
+
+#comment-1stline p  {
+	border : none;
+}
+
+#comment-1stline #g_site {
+	border-left : 1px solid #cce ;
+}
+
+@media only screen and (min-width:480px) {
+	/* sur les largeurs qui ont de la place, je mets les champs pseudo et url sur la même ligne */
+	#comment-1stline .field {
+		float : left;
+		width : 49%;
+	}
+}
+@media only screen and (max-width:479px) {
+	/* sur les largeurs restreinte, on reste sur deux lignes */
+	#comment-1stline #g_site {
+		border-top : 1px solid #cce ;
+		border-left : none;
+	}		
+}
+
+#comment-4thline , .modified:invalid #comment-4thline {
+	/* par défaut, la ligne du bouton de validation est cachée... */
+	opacity : 0;
+	transition-property : opacity;
+	transition-duration : 0.4s; 
+}
+
+.modified #comment-4thline , .modified:valid #comment-4thline {
+	/* il est révélé soit si le commentaire est valide (si le navigateur le supporte), soit si le formulaire a été touché */
+	opacity : 1;
+}
+
+#form-help {
+	/* l'info technique sur le champ de texte n'est révélé que si le textarea a le focus */
+	display : block;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.4s;  
+}
+
+textarea:focus ~ #form-help {
+	opacity: 1;
+}
+
+#comment-form button {
+	padding : 0.33em 0.66em;
+	border: 1px solid rgb(104, 104, 103);
+	color : rgb(238, 238, 238);
+	font-family: $police;
+	font-size : 0.875em;
+	text-transform : capitalize;
+	font-weight : bold;
+	text-align : center;
+	text-shadow : 0px 1px 1px rgba(0, 0, 0, 0.3);
+	box-shadow : 0px 1px 2px rgba(0, 0, 0, 0.2);
+	background-image : linear-gradient(			top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
+	background-image : -o-linear-gradient(		top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
+	background-image : -moz-linear-gradient(	top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
+	background-image : -webkit-linear-gradient(	top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
+	background-image : -ms-linear-gradient(		top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet title="XSL formatting" type="text/xsl" href="{{tpl:BlogURL}}feed/rss2/xslt" ?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+	<title>{{tpl:BlogName encode_xml="1"}}{{tpl:SysFeedSubtitle encode_xml="1"}}</title>
+	<link>http://dascritch.net/</link>
+	<description>{{tpl:BlogDescription encode_xml="1"}}</description>
+	<language>{{tpl:BlogLanguage}}</language>
+	<pubDate>{{tpl:BlogUpdateDate rfc822="1"}}</pubDate>
+	<copyright>{{tpl:BlogCopyrightNotice encode_xml="1"}}</copyright>
+	<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+	<generator>Dotclear</generator>
+
+	<sy:updatePeriod>daily</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<sy:updateBase>{{tpl:BlogUpdateDate iso8601="1"}}</sy:updateBase>
+
+	<tpl:Entries>
+
+	<item>
+		<title>{{tpl:EntryTitle encode_xml="1"}}</title>
+		<link>{{tpl:EntryURL}}</link>
+		<guid isPermaLink="false">{{tpl:EntryFeedID}}</guid>
+		<dc:date>{{tpl:EntryDate iso8601="1"}}</dc:date>
+
+    <dc:creator>{{tpl:EntryAuthorCommonName encode_xml="1"}}</dc:creator>
+    <tpl:EntryIf has_category="1">
+    <dc:subject>{{tpl:EntryCategory encode_html="1"}}</dc:subject>
+    </tpl:EntryIf>
+    
+    <description>{{tpl:EntryExcerpt absolute_urls="1" encode_xml="1"}}
+		&lt;span class="tags"&gt;&lt;br /&gt;<tpl:EntryIf has_category="1">&lt;a href="{{tpl:EntryCategoryURL}}"&gt;<!-- <?php echo '&lt;img alt="cat&amp;eacute;gorie" title="cat&amp;eacute;gorie"  src="http://dascritch.net'.blogcaturlicon(html::escapeHTML(context::global_filter($_ctx->posts->cat_title,1,0,0,0,0)),16).'" /&gt;';?>-->{{tpl:EntryCategory encode_html="1"}}&lt;/a&gt; </tpl:EntryIf><tpl:EntryMetaData><tpl:MetaDataHeader>&lt;img src="http://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>&lt;a href="{{tpl:MetaURL}}"&gt;{{tpl:MetaID}}&lt;/a&gt; </tpl:EntryMetaData>&lt;/span&gt;
+	</description>
+    <content:encoded>
+		&lt;p&gt;{{tpl:EntryExcerpt absolute_urls="1" encode_xml="1"}}&lt;span class="tags"&gt;&lt;br /&gt;
+		<tpl:EntryIf has_category="1">&lt;a href="{{tpl:EntryCategoryURL}}"&gt;
+			<!-- # <?php echo '&lt;img alt="cat&amp;eacute;gorie" title="cat&amp;eacute;gorie"  src="http://dascritch.net'.blogcaturlicon(html::escapeHTML(context::global_filter($_ctx->posts->cat_title,1,0,0,0,0)),16).'" /&gt;';?>-->
+			{{tpl:EntryCategory encode_html="1"}}&lt;/a&gt;
+		</tpl:EntryIf>
+		<tpl:EntryMetaData>
+			<tpl:MetaDataHeader>&lt;img src="http://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>
+			&lt;a href="{{tpl:MetaURL}}"&gt;{{tpl:MetaID}}&lt;/a&gt;
+		</tpl:EntryMetaData>&lt;/span&gt;
+		&lt;/p&gt;
+		{{tpl:EntryContent absolute_urls="1" encode_xml="1"}}</content:encoded>
+    
+    <tpl:Attachments>
+      <enclosure url="{{tpl:AttachmentURL}}"
+      length="{{tpl:AttachmentSize full="1"}}" type="{{tpl:AttachmentMimeType}}" />
+    </tpl:Attachments>
+    
+    <tpl:EntryIf comments_active="1">
+      <comments>{{tpl:EntryURL}}#comment-form</comments>
+      <wfw:comment>{{tpl:EntryURL}}#comment-form</wfw:comment>
+      <wfw:commentRss>{{tpl:BlogFeedURL}}/comments/{{tpl:EntryID}}</wfw:commentRss>
+    </tpl:EntryIf>
+  </item>
+  </tpl:Entries>
+  
+</channel>
+</rss>

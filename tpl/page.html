@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{tpl:BlogLanguage}}">
+<head>
+	<meta charset="utf-8" />
+	<meta name="ROBOTS" content="{{tpl:BlogMetaRobots}}" />
+	
+	<title>{{tpl:EntryTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}</title>
+	<meta name="description" lang="{{tpl:EntryLang}}" content="{{tpl:EntryContent full="1" encode_html="1" remove_html="1" cut_string="180"}}" />
+	<meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+	<meta name="author" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
+	<meta name="date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
+	
+	<!-- #
+	<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="dc.title" content="{{tpl:EntryTitle encode_html="1"}}" />
+	<meta name="dc.description" lang="{{tpl:EntryLang}}" content="{{tpl:EntryContent full="1" encode_html="1" remove_html="1" cut_string="180"}}" />
+	<meta name="dc.creator" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
+	<meta name="dc.language" content="{{tpl:EntryLang}}" />
+	<meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
+	<meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+	<meta name="dc.date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
+	<meta name="dc.type" content="text" />
+	<meta name="dc.format" content="text/html" />
+	-->
+	
+	<link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
+	<link rel='canonical' href='{{tpl:EntryURL}}' />
+	<link rel='shortlink' href='{{tpl:BlogURL}}m/{{tpl:EntryID}}' />
+	
+	{{tpl:include src="_head.html"}}
+	
+	<script type="text/javascript" src="{{tpl:BlogThemeURL}}/../default/js/post.js"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		var post_remember_str = '{{tpl:lang Remember me on this blog}}';
+		//]]>
+	</script>
+</head>
+<body class="dc-page">
+  
+<ul id="breadcrumb">
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}" itemprop="url"><span itemprop="title">da scritch</span></a></li>
+	<li>›</li>
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
+	<li>›</li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:EntryURL}}" itemprop="url"><strong itemprop="title">{{tpl:EntryTitle encode_html="1"}}</strong></a></li>
+</ul>
+  
+
+	<div id="page">
+		{{tpl:EntryPingData}}
+		
+		{{tpl:include src="_top.html"}}
+		
+		<div id="wrapper">
+			
+			<div id="main">
+				<div id="content">
+					
+					{{tpl:include src="_simple-entry.html"}}
+					
+				</div>
+			</div> <!-- End #main -->
+			
+			{{tpl:include src="_sidebar.html"}}
+			
+		</div> <!-- End #wrapper -->
+		
+		{{tpl:include src="_footer.html"}}
+	</div> <!-- End #page -->
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{tpl:BlogLanguage}}">
+<head>
+	<meta charset="utf-8" />
+	<meta name="ROBOTS" content="{{tpl:BlogMetaRobots robots="NOINDEX,NOARCHIVE"}}" />
+	
+	<title>{{tpl:lang Document not found}} - {{tpl:BlogName encode_html="1"}}</title>
+	<meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+	<meta name="author" content="{{tpl:BlogEditor encode_html="1"}}" />
+	
+	<!-- #
+	<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="dc.title" lang="{{tpl:BlogLanguage}}" content="{{tpl:lang Document not found}} - {{tpl:BlogName encode_html="1"}}" />
+	<meta name="dc.language" content="{{tpl:BlogLanguage}}" />
+	<meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
+	<meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
+	<meta name="dc.type" content="text" />
+	<meta name="dc.format" content="text/html" />
+	-->
+	
+	<link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
+	<link rel="contents" title="{{tpl:lang Archives}}" href="{{tpl:BlogArchiveURL}}" />
+
+	{{tpl:include src="_head.html"}}
+    <style>
+      .dc-404 #content-info {
+            background  : none;
+            padding: 0;
+      }
+      .dc-404 #content {
+          background: url('/nav/oops.png') no-repeat scroll right top transparent;
+			padding-right: 235px;
+      } 
+	.dc-404 .content-inner ul {
+    	list-style-type: circle;
+	}
+  </style>
+</head>
+<body class="dc-404">
+	<div id="page">
+		{{tpl:include src="_top.html"}}
+		
+		<div id="wrapper">
+			
+			<div id="main">
+				<div id="content">
+					
+					<div id="content-info">
+						<h2>{{tpl:lang Document not found}}</h2>
+						<p>{{tpl:lang URL you've tried has typos, or the page has been deleted or moved.}}</p>
+					</div>
+					
+					<div class="content-inner">
+						<h3>{{tpl:lang Suggestions:}}</h3>
+                        <p>Six raisons probables :</p>
+						<ul>
+                          <li><a href="/">Revenir à l'accueil</a></li>
+							<li><a href="#search">{{tpl:lang Use search form}}</a></li>
+                            <li><form id="viagoogle" action="http://www.google.com/cse">
+<input type="hidden" name="cref" value="http%3A%2F%2Fdascritch.net%2Fggcse.xml"/>
+<label for="q">ou sinon, faites une recherche </label>
+<input value="" name="q" type="search" />                                         
+                                                                                  
+                              <button type="submit">via Google</button>                                        
+                          </form></li>
+							<li><a href="{{tpl:BlogURL}}archive">{{tpl:lang Explore archives}}</a></li>
+                          <li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:<form name="reurl" action="javascript:top.location=do
+cument.reurl.url.value;"><input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" /><button type="submit">Essayez autre chose</button></form></li>
+<li>Vous vouliez accéder directement à une page avec un signet de votre navigateur, mais celle-ci n'existe plus. <a hr="/">Revenez au sommaire</a>, et mettez à jour votre signet.</li>
+<li>Vous avez été envoyé ici par un autre site, qui pointe sur une adresse erronée ou une page qui n'existe plus. Signalez-le au <a href="javascript:history.back(-1);">responsable dudit site</a> pour qu'il corrige son lien défectueux.</li>
+                          <li>Une erreur de notre part. <a title="Errare humanum est" href="mailto:xav.com@.gmail-iermd+fromweb?subject=y'a%20une%20erreur%20de%20lien%20sur%20votre%20blog">Écrivez-nous</a> pour nous indiquer dans quelles circonstances vous avez rencontré cette erreur.</li>
+<li>Vous avez cru pouvoir pirater ce site. <a href="http://2130706433">Prenez des cours</a>.</li>
+						</ul>
+					</div> <!-- End #content-inner -->
+					
+				</div> <!-- End #content -->
+			</div> <!-- End #main -->
+			
+			{{tpl:include src="_sidebar.html"}}
+			
+		</div> <!-- End #wrapper -->
+		
+		{{tpl:include src="_footer.html"}}
+	</div> <!-- End #page -->
+</body>
+</html>
