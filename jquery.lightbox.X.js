@@ -18,15 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with jQuery Lightbox (balupton edition).  If not, see <http://www.gnu.org/licenses/>.
  *
- * @name jquery_lightbox: jquery.lightbox.js
- * @package jQuery Lightbox Plugin (balupton edition)
- * @version 1.3.0-rc1
- * @date August 24, 2008
- * @category jQuery plugin
- * @author Benjamin "balupton" Lupton {@link http://www.balupton.com}
- * @copyright (c) 2008 Benjamin Arthur Lupton {@link http://www.balupton.com}
- * @license GNU Affero General Public License - {@link http://www.gnu.org/licenses/agpl.html}
- * @example Visit {@link http://jquery.com/plugins/project/jquerylightbox_bal} for more information.
+ * name jquery_lightbox: jquery.lightbox.js
+ * package jQuery Lightbox Plugin (balupton edition)
+ * version 1.3.0-rc1
+ * date August 24, 2008
+ * category jQuery plugin
+ * author Benjamin "balupton" Lupton {@link http://www.balupton.com}
+ * copyright (c) 2008 Benjamin Arthur Lupton {@link http://www.balupton.com}
+ * license GNU Affero General Public License - {@link http://www.gnu.org/licenses/agpl.html}
+ * example Visit {@link http://jquery.com/plugins/project/jquerylightbox_bal} for more information.
  */
 
 // Start of our jQuery Plugin

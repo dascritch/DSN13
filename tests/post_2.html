@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/Blog">
+<head>
+	<meta charset="utf-8" />
+	<meta name="ROBOTS" content="INDEX, FOLLOW" />
+	
+	<title>Bricolages en ‹img /› - da scritch net works</title>
+	<meta name="description" lang="fr" content="Où l'on apprendra comment les images sont gérées par les serveur web, et comment les navigateurs utilisent le document et ses méta-données header http. Avec une très belle astuce" />
+	<meta name="author" content="Da Scritch" />
+
+  
+	<link rel="contents" href="http://dascritch.net/archive" title="Archives" />
+	<link rel="next" href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables" title="Pourquoi nous collons des stickers sur nos portables" />
+	<link rel="prev" href="http://dascritch.net/post/2014/05/11/Mariage-pirate" title="Mariage pirate !" />
+	<link rel='canonical' href='Bricolages-en-img' />
+	<link rel='shortlink' href='http://dascritch.net/m/2230' />
+
+	<!-- 
+	Merci de vous intéresser au code source généré. 
+	Mais peut-être est-il intéressant aussi de regarder le code source ?
+	Ou plus simplement, de discuter vos points de vues ?
+	Prenez contact avec moi, n'hésitez pas !
+-->
+
+<!-- media queries -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- compat media queries -->
+<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<link rel="stylesheet" type="text/css" href="/themes/DSN13/ie.css" media="screen" />
+<![endif]-->
+
+<!--
+<link rel="stylesheet" type="text/css" href="http://dascritch.net/themes/DSN13/compressed.css?032014" />
+-->
+<link rel="stylesheet" type="text/css" href="../compressed.css" />
+
+<!--
+<script type="text/javascript" src="http://dascritch.net/themes/DSN13/jquery.js"></script>
+<script type="text/javascript" src="http://dascritch.net/themes/DSN13/jquery.lightbox.X.js"></script>
+<script type="text/javascript" src="http://dascritch.net/themes/default/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://dascritch.net/themes/DSN13/ductile.js?032014"></script>
+-->
+<script type="text/javascript" src="../compressed.js" async="async"></script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="http://dascritch.net/nav/favicon/dasmile.png" />
+<link rel="search" type="application/opensearchdescription+xml" title="Da Scritch blog" href="http://dascritch.net/blogfind.xml" />
+<link rel="search" href="http://dascritch.net/search.php" title="google search sur tout le site" />
+
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://dascritch.net/dotclear/rss.php" />
+
+<link rel="contents" href="http://dascritch.com/" title="Com Works" />
+<link type="text/plain" rel="author" href="http://dascritch.net/humans.txt" />
+
+<meta name="twitter:site" content="@dascritch">
+<meta property="og:title" content="Bricolages en ‹img /›" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://dascritch.net/post/2014/05/12/Bricolages-en-img" />
+<meta property="og:image" content="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-iconograp_ie.png" />
+<meta property="og:description" content="Où l'on apprendra comment les images sont gérées par les serveur web, et comment les navigateurs utilisent le document et ses méta-données header http. Avec une très belle astuce" />
+<meta property="article:published_time" content="2014-05-12T10:15:00+02:00" />
+<meta property="article:section" content="webdev" /><meta property="article:tag" content="apache, css, design, dom, html, regex, svg, xml, " />
+<!-- Google +1 -->
+<meta itemprop="name" content="Bricolages en ‹img /›" />
+<meta itemprop="description" content="Où l'on apprendra comment les images sont gérées par les serveur web, et comment les navigateurs utilisent le document et ses méta-données header http. Avec une très belle astuce" />
+<meta itemprop="image" content="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-iconograp_ie.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="http://dascritch.net/post/2014/05/12/Bricolages-en-img" />
+<meta name="twitter:title" content="Bricolages en ‹img /›" />
+<meta name="twitter:description" content="Où l'on apprendra comment les images sont gérées par les serveur web, et comment les navigateurs utilisent le document et ses méta-données header http. Avec une très belle astuce" />
+<meta name="twitter:image:src" content="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-iconograp_ie.png"/>
+<meta name="twitter:site" content="@dascritch" />
+<meta name="twitter:creator" content="@dascritch" />
+
+</head>
+<body class="dc-post">
+
+<ul id="breadcrumb">
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/" itemprop="url"><span itemprop="title">da scritch</span></a></li>
+	<li>›</li>
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
+	<li>›</li>
+  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/category/Webdev" itemprop="url"><span itemprop="title">webdev</span></a></li>
+	<li>›</li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="Bricolages-en-img" itemprop="url"><strong itemprop="title">Bricolages en ‹img /›</strong></a></li>
+</ul>
+
+	<div id="page">
+
+		
+		<header id="header">
+
+	<div id="top">
+
+
+		<h1><a href="http://dascritch.net/"><span><img src="http://dascritch.net/dastyle/entete1.png" alt="da scritch net works" /></span></a></h1>
+		<p id="blogdesc" class="nosmall">Ma vie et tous ses ridicules petits à-côtés : les bd que je lis et mes émissions “Supplément Week-End” sur Radio FMR</p>
+	</div>
+	
+	<ul id="prelude">
+		<li class="nosmall"><a href="Bricolages-en-img#main">Aller au contenu</a></li>
+		<li><a href="Bricolages-en-img#blognav">Aller au menu</a></li>
+		<li><a href="Bricolages-en-img#search">Aller à la recherche</a></li>
+	</ul>
+
+	
+	
+	
+	<ul id="sn-top" class="simple-menu supranav nosmall">
+		<li class="li3">
+			<a title="curriculum vitæ" href="https://www.linkedin.com/in/dascritch" class="nobackground"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-multimedia-performance-semantics-storage.png" alt="curriculum vitæ" style="width:130px;height:32px"></a>
+		</li>
+		<li class="li2">
+			<a title="DaScritch.com" href="http://dascritch.com" class="nobackground"><img src="http://dascritch.net/statiques/cv-dascritchcom.png" alt="DaScritch.com"></a>
+		</li>
+		<li class="li1 li-first">
+			<a title="Le Supplément Week-End, sur radio FMR" href="http://supplementweekend.fr" class="nobackground"><img src="http://dascritch.net/statiques/swe-saison5-small.png" alt="Le Supplément Week-End, sur radio FMR"></a>
+		</li>
+		<li class="li4">
+			<a href="http://dascritch.net/archive">Archives</a>
+		</li>
+      <li>
+        <a title="Me donner un flattr" href="https://flattr.com/submit/auto?user_id=dascritch&amp;url=http%3A%2F%2Fdascritch.net" target="_blank"><img src="http://dascritch.net/themes/DSN13/img/flattr-badge-large.png" alt="Flattr this" /></a>
+      </li>
+
+	</ul>
+
+</header>		
+		<div id="wrapper">
+			
+			<main id="main">
+				<div id="content">
+					
+					<p class="navlinks topnl">
+						<a href="http://dascritch.com/">Note : Si tu cherches un développeur web sur Toulouse, je suis disponible</a>
+					</p>
+					
+					<article id="p2230" class="post simple article" role="article">
+	<h2 class="post-title">Bricolages en ‹img /›</h2>
+	
+	<div class="post-attr">
+	    <ul class="post-social">
+          <li><a target="social" rel="nofollow" title="Partager sur Twitter" href="https://twitter.com/share?text=Bricolages+en+%E2%80%B9img+%2F%E2%80%BA&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F12%2FBricolages-en-img&amp;via=dascritch"><img src="http://dascritch.net/themes/DSN13/img/twitter_icon.png" alt="Partager sur Twitter" /></a></li> 
+          <li><a target="social" rel="nofollow" title="Partager sur Facebook" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F12%2FBricolages-en-img&amp;t=Bricolages+en+%E2%80%B9img+%2F%E2%80%BA"><img src="http://dascritch.net/themes/DSN13/img/facebook_icon.png" alt="Partager sur Facebook" /></a></li>
+          <li><a target="social" rel="nofollow" title="Partager sur Google Plus" href="https://plus.google.com/share?url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F12%2FBricolages-en-img"><img src="http://dascritch.net/themes/DSN13/img/gplus_icon.png" alt="Partager sur Google Plus" /></a></li>
+          <li><a target="social" rel="nofollow" title="Partager sur LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F12%2FBricolages-en-img&amp;title=Bricolages+en+%E2%80%B9img+%2F%E2%80%BA"><img src="http://dascritch.net/themes/DSN13/img/linkedin_icon.png" alt="Partager sur LinkedIn" /></a></li>
+          <li><a rel="nofollow" title="Envoyer par e-mail" href="mailto:?subject=Bricolages+en+%E2%80%B9img+%2F%E2%80%BA&amp;body=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F12%2FBricolages-en-img"><img src="http://dascritch.net/themes/DSN13/img/email_icon.png" alt="Envoyer par e-mail" /></a></li>
+        </ul>
+      
+		<p class="post-info">
+						<span class="post-date"><a href="http://dascritch.net/blog.php/archive/2014/05">le lundi 12 mai 2014</a> à 10:15.</span>
+
+							<span class="post-cat"><a 
+				href="http://dascritch.net/category/Webdev">Webdev</a></span>
+					</p>
+		
+									<ul class="post-tags">
+							<li><a href="http://dascritch.net/tag/apache">apache</a></li> 
+												<li><a href="http://dascritch.net/tag/css">css</a></li> 
+												<li><a href="http://dascritch.net/tag/design">design</a></li> 
+												<li><a href="http://dascritch.net/tag/dom">dom</a></li> 
+												<li><a href="http://dascritch.net/tag/html">html</a></li> 
+												<li><a href="http://dascritch.net/tag/regex">regex</a></li> 
+												<li><a href="http://dascritch.net/tag/svg">svg</a></li> 
+												<li><a href="http://dascritch.net/tag/xml">xml</a></li> 
+							</ul>
+					      
+	</div>
+
+	
+	  <div class="post-excerpt">
+    	Où l'on apprendra comment les images sont gérées par les serveur web, et comment les navigateurs utilisent le document et ses méta-données header http. Avec une très belle astuce pour les CMS.
+
+
+  </div>
+	
+	
+	<div class="post-content"><p>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-iconograp_ie.png" alt="Placer iconographie du dossier ici" class="r" />
+Ce billet fait partie de la série <strong>en &lt;img /&gt;</strong>&nbsp;: 
+<ol>
+<li><a href="http://dascritch.net/post/2014/03/25/Histoires-en-img">Histoires en &lt;img /&gt;</a></li>
+<li><a href="http://dascritch.net/post/2014/04/09/Manuel-en-img">Manuel en &lt;img /&gt;</a></li>
+<li><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img">Ressources en &lt;img /&gt;</a></li>
+<li><strong>Bricolages en &lt;img /&gt;</strong></li>
+</ol>
+</p>
+<style>
+.avecfond {
+background : url(http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-background.png);
+}
+.avecfond img {
+margin : auto;
+}
+.post-content td img { border : none; vertical-align : bottom}
+@media only screen and (max-width:700px) {
+#tests thead th:nth-child(2), #tests thead th:nth-child(5), #tests thead th:nth-child(6), 
+#tests td:nth-child(2), #tests td:nth-child(5), #tests td:nth-child(6) { display:none }
+}
+</style>
+<script>
+$(function() {
+  $('#tests img').on('error',function(){
+    // oui, bizarrement, l'événement 'error' ne bulle pas vers les parents :( j'avais prévenu que cette méthode manquait de sens
+    $(this).replaceWith($('<a>',{'href':this.src}).html('non'));
+  });
+});
+</script>
+
+<p>
+Maintenant que nous avons défini la méthode d'appel dans <a href="http://dascritch.net/tag/html">la syntaxe html</a> et que nous connaissons les formats d'images actuellement supportés, intéressons-nous sur la manière dont les navigateurs web travaillent, avec en prime un petit hack amusant.
+</p>
+<h3>Reverse engineering : comment les navigateurs gèrent &lt;img&nbsp;/&gt;</h3>
+<p>
+Le plus important à savoir est que pour les clients web <strong>l'extension du nom de fichier n'a aucune influence</strong>.<br />
+Croire qu'il faut un <code>.gif</code> en fin de nom de fichier pour mettre votre truc animé, c'est un peu la même croyance que croire mordicus que <code>.html</code> en fin d'url aide précieusement votre référencement. Le W3C, l'IETF et toutes <a href="http://boingboing.net/2010/07/16/mad-mustachioed-dad.html">les cyberpolices</a> qui définissent internet se foutent de chaque charlatan qui professe le contraire. Ces derniers sont des SEO-LOL qui travaillent exclusivement sous Windows et qui ne connaissent rien au web, ni à internet, ni à l'informatique. 
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1405-Img-seoclown.jpg" alt="" />
+<figcaption>
+Un spécialiste SEO diplômé Sup-De-LOL avec son appeau à <em>crawlers</em>.<br />
+<a href="https://www.flickr.com/photos/fotosdelrupert/205108754">Photo CC de Rodrigo Álvarez avec Oscar Zimmerman</a>
+</figcaption>
+</figure>
+<p>
+Parce que cela n'a <strong>jamais</strong> été le cas&nbsp;: Il n'est pas rare dans la vie d'un <em>crawler</em> de moteur de recherche de tomber sur du texte ou des images générés dynamiquement et servis par des URL se terminant en <code>.pl</code>, <code>.php</code> ou <code>.aspx</code>. <strong>Une extension de nom de fichier n'est jamais une information fiable</strong> pour identifier un type de document.<br />
+Dans le protocole HTTP, si un logiciel client, qu'il soit navigateur web ou <em>crawler</em>, doit identifier le type de document (si c'est une image ou une page de texte) autrement que par son contenu, il doit se référer <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">au type-mime indiqué dans l'entête <code>Content-type:</code> par le serveur</a>. Si cette information ne semble pas fiable, on passe alors à <a href="http://www.delafond.org/traducmanfr/man/man1/file.1.html">une analyse divinatoire du type de document, familièrement appelée <q>magic</q></a>.
+</p>
+<p>
+<strong>Le format réel de la ressource image est devinée par la bibliothèque de décodage graphique embarquée par le navigateur</strong>. GIF&nbsp;? JFIF&nbsp;? PNG&nbsp;? Pas de souci&nbsp;: ces bibliothèques procèdent à une divination <em>magic</em> optimisée, testant les formats de documents qu'elle supportent. Elles sauront très bien se dépatouiller avec l'image.
+</p>
+
+<p>
+Mais je vais être honnête&nbsp;: Dans les faits, quand il faut construire l'header d'une ressource à servir, les serveurs web en production correctement paramétrés ne se basent pas sur les définitions <em>magic</em> des fichiers, mais… sur l'extension de leur nom. Nettement plus rapide qu'analyser le contenu du document et le confronter à plusieurs milliers de règles regex.<br />
+Arrêtez de pouffer dans le fond, nous verrons <a href="Bricolages-en-img#letstest">plus bas</a> que son utilité est toute relative pour <code>&lt;<strong>img</strong>&nbsp;/&gt;</code>.
+</p>
+<h3 id="trou">C'est l'histoire d'un trou de fort beau gabarit</h3>
+<p>
+Et puisqu'on parle de cela, il que je vous conte l'histoire d'un trou de sécurité qui resta très longtemps béant.<br />
+Il était une fois <a href="http://dascritch.net/post/2006/10/13/562-la-seconde-guerre-du-web-n-aura-pas-lieu">un navigateur qui avait gagné une guerre</a>, et qui fut le plus populaire des navigateurs de son temps&nbsp;: MSIE (MSIE&nbsp;6 inclus jusqu'à la XP SP1).
+</p>
+<p>
+En ce temps-là, le navigateur fourni d'office par Microsoft était tellement imbriqué dans Ms-Windows qu'il demandait aux procédures standards de l'OS de deviner à sa place les fichiers images. Jusqu'ici rien d'anormal&nbsp;: les équipes de développement Microsoft utilisaient <a href="http://pragprog.com/the-pragmatic-programmer">pragmatiquement sans le savoir</a> l'approche <abbr>DRY</abbr>. <q>Do not Repeat Yourself</q> (il est inutile de répéter les mêmes fonctions) est une très bonne pratique de développement de projet.
+</p>
+<p>
+MSIE n'étant disponible que dans l'OS de Microsoft (l'équipe de la version Mac mourrait d'inanition), la IETeam n'allait pas s'embêter à ré-inventer la roue et se baser sur la gestion des types de documents propre à Ms-Windows.<br />
+Du coup, si le système hôte supporte un nouveau type de document qui est un format d'image, le gestionnaire de document tout comme le navigateur imbriqué vont aussi le gérer, comme tout logiciel de cet éditeur. Ce mode de conception se retrouve dans d'autres OS et navigateurs&nbsp;: <a href="http://rekonq.kde.org/">Rekonq se base sur les bibliothèques Qt</a> de <a href="http://kde.org/">l'environnement KDE</a>, et Safari se reposait en défaut sur <a href="https://developer.apple.com/quicktime/">Quicktime</a> pour les ressources qu'il ne comprenait pas.<br />
+On y retrouve d'ailleurs le même manque fonctionnel par construction&nbsp;: l'affichage durant le chargement du <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_gif">gif 89a entrelacé</a> et du <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_jpeg">jpeg progressif</a> n'est pas possible, toute image n'est affichée qu'une fois complètement décodée.
+</p>
+<p>
+Sauf que <strong>dans l'écosystème de Microsoft, cette procédure était trop permissive</strong>&nbsp;: Gestion par extension de fichier plus oubli de limite de périmètre fonctionnel. Les documents “images” appelés via <code>&lt;<strong>img</strong>&nbsp;/&gt;</code> se finissant en <code>.exe</code> ou <code>.dll</code> étaient… <strong>exécutés… avec le plus haut niveau de privilège possible…</strong>
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1405-DoubleFacepalm.jpg" alt="" />
+<figcaption>
+Double facepalm, quand un seul ne suffit pas.
+</figcaption>
+</figure>
+<p>
+Si je vous dis qu'il était à l'époque “courant” de piéger des pages web qui changaient par ce biais le numéro d'appel du modem pour accéder à Internet en un 08 99… soigneusement surfacturé. Oui, Monsieur le Président, je plaide la complicité.
+</p>
+<p>
+Ce fut la dernière fois qu'un navigateur se basait sur une extension de nom de fichier pour gérer les éléments d'une page web au lieu de vérifier son contenu effectif. Et depuis, MSIE fait comme tout le monde et utilise une bibliothèque compartimenté pour le décodage et l'affichage des images.
+</p>
+<p>
+D'ailleurs, c'est suite au comblement de cette faille qu'on a commencé à voir arriver <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_ico">des favicons</a> animées. La recette est simple&nbsp;: renommer une animation gif de taille 16×16 en <code>favicon.ico</code> et le mettre à la racine du site. <a href="https://www.youtube.com/watch?v=I_hMTRRH0hM">Encore une fois</a> terriblement efficace.
+</p>
+<p>
+C'est cette astuce qui allait me donner l'idée d'un hack…
+</p>
+
+<p>
+(teasing)
+</p>
+<h3 id="classique">Classique des CMS : Image source et sous-formats</h3>
+<p>
+<strong>Quand vous construisez un CMS</strong> ou n'importe quel service qui doit servir des images fournies par des utilisateurs dans un contexte formaté, <strong>l'exercice de style archi-classique est la gestion des sous-formats d'images</strong>.
+</p>
+<p>
+Tout outil de blogging ou d'e-commerce doit forcément gérer le fait qu'un contenu texte ou qu'un item soit enrichi d'une image. Il est dans les faits extrêmement rare que l'utilisateur qui crée le contenu envoie au serveur une image aux dimensions exactes préconisées par le designer.
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1405-Img-media-mockup.png" alt="mockup" />
+<figcaption>
+Mock-up d'un design d'article magazine. Flottant à gauche, un espace <strong>contraint</strong> est prévu pour des images.<br />
+<a href="http://web.communications.uci.edu/2012/02/23/news-uci-edu-first-draft-of-final-page-level/">Source : Étude de redesign du site news.uci.edu</a>
+</figcaption>
+</figure>
+<p>
+Et il est probable que cette image d'illustration soit reprise dans d'autres contextes, par exemple <a href="http://dascritch.net/">une page de une</a>, de <a href="http://dascritch.net/category/Webdev">sommaire</a> ou de <a href="http://dascritch.net/?q=img">recherche</a> mais dans d'autres dimensions contraintes. Cette image doit donc être réduite ou/et coupée par l'interface d'édition afin de tenir dans un ou plusieurs certain canevas. Une opération <a href="http://dascritch.net/post/2014/04/09/Manuel-en-img#attr_dimensions">plus cohérente et largement meilleure que de faire de la sur/sous-résolution</a>.
+</p>
+<p>
+Le CMS crée à partir de cette image source (ou <q>master</q>) des sous-images qu'on a conformé aux dimensions du design graphique du site. Ces sous-formats sont parfois optimisé pour le transfert en jouant sur les paramètres de compression, en suppression des métadonnées embarquées, etc…
+</p>
+
+<h3 id="ecueil">L'écueil du nommage des sous-formats</h3>
+<p>
+«&nbsp;<em>Qui amat bene, castigat bene.</em>&nbsp;» (maxime latine qui explique qu'au rugby, on aime beaucoup ses adversaires).<br />
+Pour l'avoir beaucoup trituré dans tous les sens, je vais parler du <a href="http://dascritch.net/post/2013/08/13/Ma-plus-belle-histoire-avec-Dotclear">moteur de blog qui motorise mon site depuis 10 ans. Dotclear</a>, dans sa version 1 n'avait qu'un seul format de sous-images. Si j'envoyai <code>capture.jpg</code>, le script créait <code>capture.TN__.jpg</code>. Ce qui posait un souci de lisibilité dans les répertoires, puisque les entrées étaient doublées dans les gestionnaires de transfert.
+</p>
+<p>
+<a href="http://fr.dotclear.org/documentation/2.0/usage/blog-parameters#medias-et-images">Dotclear 2 propose une gestion paramétrables de multiples sous-formats</a>. Cette fois-ci, <a href="http://neokraft.net/">Dieu</a> décida de cacher le sous-formats d'images en préfixant par un point le nom de fichier (le standard Unix pour cacher un document, dans l'univers MS-DOS, c'est un bit d'état dans les métadonnées). Ainsi, on passait d'une structure&nbsp;:
+<ul>
+<li>capture.png</li>
+<li>capture.__TN.jpg</li>
+</ul>
+à
+<ul>
+<li>capture.png</li>
+<li>.capture_m.jpg</li>
+<li>.capture_s.jpg</li>
+<li>.capture_sq.jpg</li>
+<li>.capture_t.jpg</li>
+</ul>
+La génération de certains sous-formats ne se fait pas si l'image <em>master</em> est en-dessous des tailles maximales du canevas de ce format.
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1405-Img-arborescence.jpg" alt="" />
+<figcaption>
+Extrait d'une vue de l'arborescence des illustrations de ce dossier. À droite, les documents originaux que j'ai envoyé, à gauche, les sous-formats générés par Dotclear. Ces derniers sont en sous-opacité car ils sont “cachés”.
+<figcaption>
+</figure>
+<p>
+Mais il reste un souci : jusqu'à la version 2.5, les sous-formats générés par le moteur de blog sont forcément des jpeg. Imaginez que vous envoyiez <code>exemple.jpg</code> et <code>exemple.jpeg</code>, si les masters sont bien différenciés, vous aurez forcément <strong>une collision parce que le nom du document hors extension est le même</strong>.
+</p>
+<p>
+Pour moi, cette imprécision n'était pas acceptable car j'ai régulièrement eu des utilisateurs qui se plantaient à l'extension. Et je ne vais pas les en blâmer&nbsp;: mes clients humains étaient des chefs d'entreprises dont le métier n'est pas l'informatique, je devais donc m'adapter, ou <a href="http://dascritch.net/post/2013/12/10/I-love-bug-reports">en suer à gérer le “bug” par téléphone.</a>
+</p>
+<h3 id="forcement">Forcément, quand j'ai créé le mien…</h3>
+<p>
+Pour mon service dAgence, je souhaitais avoir la plus grande plasticité possible pour générer les sous-formats à partir d'une image originale. Comme nous (<a href="http://nicolas-guilhou.com/">Nicolas “Xylpho” Guilhou</a> au design et moi au code) construisions une solution B2B destinée à des <em>freelances</em> et des agences web, il fallait avoir un service générique, exhaustif capable de répondre à leurs demandes en étant le plus souple possible.
+</p>
+<p>
+Le problème de collision de nom de document hors extension était, croyez-moi, le moins pire de nos soucis&nbsp;:
+Vous ne pouvez pas imaginer de quoi est capable un client, surtout s'il est <strong>conseillé par un <q>spécialiste design</q> qui n'a jamais fait de css de sa vie.</strong>
+</p>
+<p>
+Pour illustrer, voici les paramétrages de sous-formats d'images utilisés pour <a href="http://dascritch.com">mon site corporate dascritch.com</a>, actuellement toujours hébergé sur dAgence.
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-ExempleFormatsDagence.png" alt="" />
+<figcaption>
+Capture du backoffice béta, sur la liste des sous-formats d'images générées
+</figcaption>
+</figure>
+
+<p>
+En clair, si j'envoie un <code>capture.png</code>, j'aurais forcément pour les besoins du backoffice, un sous-format <q>favicon</q> (qui tronque en 16×16 et exporte en png) et <q>icone</q> (qui réduit en 128×128, en jpeg). Sur cette portion capturée, on ne le voit pas très bien mais ces formats ne sont pas modifiables.
+</p>
+<p>
+En frontal (le site accessible à tous, quoi), je crée et paramètre autant de sous-formats que je le souhaite. Ainsi, sur mon site, j'ai le <q>dsn</q> (qui ne modifie pas la taille, mais transcode jpeg à 80%, sans métas) et <q>realisat</q>, générée à partir des paramétrages suivants&nbsp;:
+</p>
+<figure class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1403-Img-ExempleFormatEditDagence.png" alt="capture du backoffice sur le sous-format d'image “realisat”" />
+</figure>
+<p>
+Comme le laisse deviner le titre de la dernière section que je n'ai pas inclus, on peut aussi y surimposer une image en filigrane ou en tampon.
+</p>
+<p>
+Ce qui me rappelle un projet magnifique&nbsp;: Un client avait prévu que son site web soit disponible en au moins 7 langues, et que les images aient des versions avec un tampon <q>nouveau&nbsp;!</q>, un avec <q>promo&nbsp;!</q> dans chacune des versions linguistiques. 14 filigranes, plus l'original multiplié par les 4 formats minimum designés, ça faisait un joli paquet.<br />
+Oui, le client voulait absolument que toutes ses images soient filigranées, au cas où un concurrent parse son catalogue pour remplir le sien, comme lui-même a dû le faire pendant des années.<br />
+Petit coquinou.
+</p>
+
+<h3 id="alorsjemesuisgratte">Alors je me suis gratté la tête</h3>
+<p>
+Donc, quand j'en étais à créer un gestionnaire de média, j'ai dû faire un choix sur la stratégie de nommage des sous-formats d'images. J'avais écarté l'idée de créer dans chaque répertoire un sous-répertoire par sous-formats, car c'était reculer pour mieux se planter. Je voulais rester dans l'idée de sous-formats dans le même répertoire que le document original. Il fallait trouver une solution en jouant sur les standards et pratiques courantes.<br />
+Et je me suis dit que malgré toutes les bêtises que mes clients humains aient pu faire, je n'avais jamais vu un élément sans extension se terminer par une virgule puis un mot.
+</p>
+<p>
+Bingo. 
+</p>
+<p>
+Pour m'assurer que les navigateurs un peu problématiques de l'époque ne soient pas perdus (de mémoire, des navigateurs pour <em>feature-phones</em> comme Open-Wave), je leur envoie un type-mime d'image universellement supporté, mais sans support de chargement progressif. Donc forcément un png. Je demande donc au serveur http du service de fournir les documents avec le type-mime <code>image/png</code> sans se baser sur le contenu interne du document servi mais sur le nom de fichier (ce qu'il fait quand même… eh oui).
+</p>
+<p>
+Paramétrages pour un serveur Apache&nbsp;:<br />
+<code>
+&lt;<strong>FilesMatch</strong> <em>,[A-Za-z0-9_\-]+$</em>&gt;<br />
+ &nbsp;  &nbsp; ForceType <em>image/png</em><br />
+&lt;/<strong>FilesMatch</strong>&gt;
+</code>
+<br />
+Pour un serveur nginx&nbsp;:<br />
+<code>
+<strong>location</strong>  <em>,[A-Za-z0-9_\-]+$</em> {<br />
+ &nbsp; &nbsp; <i>default_type</i>  <em>image/png</em>;<br />
+}
+</code>
+</p>
+<p>
+<em>Et voilà</em> *.<br />
+Peu importe le type d'image généré, que cela soit un gif, png ou jpeg, votre serveur web déclarera dans les headers http un <code>Content-Type: <em>image/png</em></code>, les navigateurs clients qui le récupèrent comme ressource <code>&lt;<strong>img</strong>&nbsp;/&gt;</code> ou composante css laissent à leur bibliothèque de gestion des images le soin de se dépatouiller avec. Et tous les navigateurs l'ont très bien supporté, même MSIE6.
+<br />
+<small>(* En Français dans le texte)</small>
+</p>
+<p>
+Avant de tester ce dernier fait, petits rappels : <ul>
+<li>les directives apache ou nginx, moins il y en a, mieux c'est&nbsp;;</li>
+<li>les directives avec des <a href="http://dascritch.net/tag/regex">expressions régulières dedans</a>, c'est une chute de performance annoncée. Mais comme les méthodes <em>magic</em> en sont farcies, ici, au contraire, on peut faire gagner du temps au serveur&nbsp;;</li>
+<li>sur <a href="http://dascritch.net/tag/apache">serveur apache</a>, évitez autant que possible de mettre des directives en <code>.htaccess</code>&nbsp;: si elles ne sont pas destinées à bouger sans un redémarrage serveur, préférez les mettre dans votre arborescence <code>/etc/apache2/</code>…</li>
+</ul>
+</p>
+
+<p>
+Ainsi, si j'envoie dans le backoffice de mon site pro, une image appelée <code>capture.png</code>, mon serveur va construire dans un répertoire les documents&nbsp;:
+<ul>
+<li>capture.png</li>
+<li>capture.png,demo</li>
+<li>capture.png,dsn</li>
+<li>capture.png,favicon</li>
+<li>capture.png,icone</li>
+<li>capture.png,realisat</li>
+</ul>
+</p>
+<h3 id="letstest">Let's test !</h3>
+<p>
+Il s'agit du même test dynamique que <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img">pour le chapitre précédent</a>&nbsp;: Si l'image “oui” s'affiche, c'est que le navigateur le supporte.
+</p>
+
+<table class="cl" id="tests">
+<thead>
+<tr>
+<th scope="col">Format</th><th scope="col">Type/mime standard</th><th scope="col">support</th><th scope="col">forcé en<br /><em>image/png</em></th><th scope="col"><em>text/xml</em></th><th scope="col"><em>application/binary</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_xbm">xbm</a></th><td>image/x-xbitmap
+</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xbm" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xbm,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xbm,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xbm,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_xbm">xpm</a></th><td>image/x-pixmap</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xpm" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xpm,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xpm,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.xpm,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_xbm">pbm</a></th><td>image/x-portable-bitmap</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pbm" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pbm,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pbm,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pbm,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_xbm">pgm</a></th><td>image/x-portable-graymap</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pgm" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pgm,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pgm,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.pgm,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_xbm">ppm</a></th><td>image/x-portable-pixmap</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ppm" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ppm,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ppm,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ppm,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_bmp">bmp</a></th><td>image/x-ms-bmp</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.bmp" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.bmp,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.bmp,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.bmp,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_gif">gif</a></th><td>image/gif</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.gif" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.gif,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.gif,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.gif,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_ico">ico</a></th><td>image/vnd.microsoft.icon</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ico" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ico,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ico,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.ico,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_jpeg">jpeg/jfif</a></th><td>image/jpeg</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jpg" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jpg,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jpg,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jpg,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_jpeg">jpeg2000</a></th><td>image/jp2</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jp2" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jp2,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jp2,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.jp2,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_jpeg">jpeg XR</a></th><td>image/vnd.ms-photo</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.exr" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.exr,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.exr,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.exr,app" alt="non" /></td></tr>
+<tr><th scope="row"><na href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_tga">tga</na></th><td>image/x-targa</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.tga" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.tga,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.tga,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.tga,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_png">png</a></th><td>image/png</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.png,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.png,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.png,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_png">mng/jng</a></th><td>video/x-mng</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.mng" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.mng,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.mng,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.mng,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_png">apng</a></th><td>image/png</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.apng" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.apng,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.apng,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.apng,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_svg">svg</a></th><td>image/svg+xml</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.svg" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.svg,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.svg,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.svg,app" alt="non" /></td></tr>
+<tr><th scope="row"><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_webp">webp</a></th><td>image/x-webp</td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.webp" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.webp,png" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.webp,xml" alt="non" /></td><td><img src="http://dascritch.net/vrac/.blog2/webdev/1403-Img/1404-Img-oui.webp,app" alt="non" /></td></tr>
+</tbody>
+</table>
+<p>
+Quels que soient les navigateurs web, pour que la ressource d'une <code>&lt;<strong>img</strong>&nbsp;/&gt;</code> soit parfaitement interprétée, le seul besoin impérieux est que le fichier doit être correct. <strong>La seule exception où nous avons besoin d'un type-mime exact concerne <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_svg">le format svg</a></strong>.
+<br />
+La raison est évidente&nbsp;: la nature vectorielle du svg le fait passer par le moteur de rendu “normal” du navigateur, donc <a href="http://dascritch.net/tag/dom">un arbre dom</a>. À l'usage, une image svg n'a pas <a href="http://dascritch.net/post/2014/02/25/Le-retour-des-boutons-de-partage#ilyadeuxtypes">une consommation mémoire aussi indécente qu'une <code>&lt;<strong>iframe</strong>&gt;&lt;/&gt;</code></a>, puisque les navigateurs très récents ne chargent pas un interpréteur complet.
+<br />
+Pas fous.
+</p>
+<p>
+Ceci dit, même si <a href="http://dascritch.net/post/2014/04/29/Ressources-en-img#format_svg">le format svg</a> est celui dont la gestion des éléments est le plus aléatoire dans les navigateurs, les corrections avancent. Je ne serais pas surpris que le tableau fasse mentir le paragraphe qui le suit dans les mois qui viennent.
+</p>
+<h3 id="retours">Vos retours sur le hack</h3>
+<p>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1303-DirtyHacky/.1303-DirtyHacky_s.jpg" class="r" />
+Est-ce que mon hack est propre ou dégueulasse&nbsp;? Survivra-t-il à l'épreuve du temps et de l'élégance&nbsp;? Est-ce que <a href="http://dascritch.net/post/2013/03/26/Dirty-Hacky-%3A-je-parse-en-HTML-.357-SW">l'Inspecteur Dirty Hacky doit dégainer et flinguer</a>&nbsp;?
+</p>
+<p>
+Je serais curieux d'avoir votre retour. Positif, négatif, analyses… On pourrait peut-être en parler IRL à la prochaine <a href="http://dascritch.net/post/2014/03/19/HTML-sur-table">soirée <q>HTML Sur &lt;Table&gt;</a></q>
+</p>
+<p class="cl">
+Dans le prochain épisode, l'épineux problème du chargement progressif et celui des différentes résolutions d'écran.
+</p></div>
+
+	</article>
+
+	
+    
+		
+		
+	
+	<form action="Bricolages-en-img#pr" method="post" id="comment-form">
+
+						
+		<h3>Ajouter un commentaire</h3>
+
+		
+		<fieldset id="comment-1stline">
+			<p class="field">
+				<input name="c_name" id="c_name" maxlength="255" required="required" type="text" placeholder="Nom ou pseudo&nbsp;:" value="" />
+				<label for="c_name">Nom ou pseudo&nbsp;:</label>
+			</p>
+			
+			<p class="field" id="g_site">
+				<input name="c_site" id="c_site" maxlength="255" type="url" placeholder="Site web (facultatif)&nbsp;:" value="" />
+				<label for="c_site">Site web (facultatif)&nbsp;:</label>
+			</p>
+		</fieldset>
+
+		<fieldset id="comment-2ndline">
+			<p class="field">
+				<input name="c_mail" id="c_mail" maxlength="255" required="required" type="email" placeholder="Adresse email&nbsp;:" value=""  />
+				<label for="c_mail">Adresse email&nbsp;:</label>
+			</p>
+			
+			<p style="display:none">
+				<input name="f_mail" maxlength="255" type="text" placeholder="Adresse e-mail&nbsp;:" />
+			</p>
+		</fieldset>
+
+		<fieldset id="comment-3rdline">
+			<p class="field">
+				<textarea name="c_content" id="c_content" rows="7" required="required" placeholder="Commentaire&nbsp;:"></textarea>
+				<label for="c_content">Commentaire&nbsp;:</label>
+				<span class="form-help" id="form-help">Le code HTML est affiché comme du texte et les adresses web sont automatiquement transformées.</span>
+			</p>
+		</fieldset>
+
+				
+		<fieldset id="comment-4thline">
+			<p class="remember" data-remember="Se souvenir de moi sur ce blog">
+
+					<button class="preview" id="preview" type="submit" name="preview" value="prévisualiser" data-reel="envoyer">prévisualiser</button>
+
+				<label class="form-help" for="preview">(votre texte sera publié après validation)</label>
+			</p>
+		</fieldset>
+	</form>
+  
+					
+					<p class="navlinks">
+						<a href="http://dascritch.net/post/2014/05/11/Mariage-pirate"
+						 title="Mariage pirate !" class="prev">← Mariage pirate !</a> 
+						 <span>|</span> <a href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables"
+						 title="Pourquoi nous collons des stickers sur nos portables" class="next">Pourquoi nous collons des stickers sur nos →</a>
+					</p>
+					
+				</div>
+			</main> 
+			
+			<aside id="sidebar">
+	<nav id="blognav">
+
+		<div id="search"><h2><label for="q">Recherche</label></h2><form action="http://dascritch.net/" method="get"><fieldset><p><input type="text" size="10" maxlength="255" id="q" name="q" value="" /> <input type="submit" class="submit" value="ok" /></p></fieldset></form></div><div class="categories"><h2>Catégories</h2><ul><li><a href="http://dascritch.net/category/General">General</a></li><li><a href="http://dascritch.net/category/Vide-grenier">Vide-Grenier</a></li><li><a href="http://dascritch.net/category/Radio">Radio</a></li><li><a href="http://dascritch.net/category/Lu">Lu</a></li><li><a href="http://dascritch.net/category/Vu">Vu</a></li><li><a href="http://dascritch.net/category/Entendu">Entendu</a></li><li><a href="http://dascritch.net/category/Ma-vie-est-une-sitcom">Ma vie est une sitcom</a></li><li><a href="http://dascritch.net/category/Deuxcents-dhumour">2 ¢ d'humour</a></li><li><a href="http://dascritch.net/category/Gizmo">Gizmo</a></li><li class="category-current"><a href="http://dascritch.net/category/Webdev">Webdev</a></li><li><a href="http://dascritch.net/category/Sortons">Sortons</a></li></ul></div>	</nav> <!-- End #blognav -->
+	
+	<div id="blogextra">
+		<div>
+			<h2>Me contacter</h2>
+			<ul>
+              <li><a href="mailto:xav.com@.gmail-iermd+fromweb?subject=j'ai%20lu%20votre%20blog"><img src="http://dascritch.net/nav/gmail.png" alt="" /></a><br />
+                <small><a href="http://weusepgp.info/fr">Clé PGP : 0x226659C0</a></small></li>
+              <li><a href="https://twitter.com/dascritch">Twitter @dascritch</a></li>
+              <li><a href="https://plus.google.com/104202051000932810138?rel=author">Google+</a></li>
+              <li><a href="https://www.linkedin.com/in/dascritch">LinkedIn</a></li>
+			</ul>
+        </div>
+
+		<div class="lastposts"><h2>Derniers billets</h2><ul><li><a href="http://dascritch.net/post/2014/05/20/Un-Sud-Web-en-hauteur">Un Sud Web en hauteur</a></li><li><a href="http://dascritch.net/post/2014/05/14/Pourquoi-je-porte-un-treillis-customise">Pourquoi je porte un treillis customisé</a></li><li><a href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables">Pourquoi nous collons des stickers sur nos portables</a></li><li><a href="Bricolages-en-img">Bricolages en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/05/11/Mariage-pirate">Mariage pirate !</a></li><li><a href="http://dascritch.net/post/2014/05/07/Je-suis-un-Bagger">Je suis un Bagger. M'inviteras-tu à Brown Bag Luncher ?</a></li><li><a href="http://dascritch.net/post/2014/05/06/Apr%C3%A8s-la-Crypto-Party-d-Avril">Après la Crypto Party d'Avril</a></li><li><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img">Ressources en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/04/28/%C2%AB-Rock-Stone-1/2-%C2%BB">« Rock &amp; Stone #1/2 »</a></li><li><a href="http://dascritch.net/post/2014/04/26/Suppl%C3%A9ment-Week-End%2C-samedi-26-Avril-2014">Supplément Week-End, samedi 26 Avril 2014</a></li></ul></div>		
+		<div id="aussi">
+			<h2 id="feeds">Abonne-toi ! (c'est gratuit)</h2>
+			<ul>
+				<li><a href="http://dascritch.net/dotclear/rss.php" type="application/rss+xml" title="Fil RSS Podcast de ce site" class="feed line">Clique ici, et, magie du <b>RSS</b></a>, tu recevras automatiquement mes derniers billets, nos dernières émissions (en podcast et mp3&nbsp;!).</li>
+			</ul>
+		</div>
+		
+	</div> <!-- End #blogextra -->
+
+</aside>          
+			
+		</div> 
+		
+		<ul id="gotop" class="supranav nobig"><li><a href="Bricolages-en-img#top">Haut de page</a></li></ul>
+
+<ul id="sn-bottom" class="simple-menu supranav nobig">
+<li class="li1 li-first li-last"><a href="http://dascritch.net/archive">Archives</a></li>
+</ul><footer id="footer">
+	<div id="blogcustom">
+			</div> <!-- End #custom widgets -->
+	<ul id="stickers">
+<li id="sticker1">
+<a href="http://dascritch.net/dotclear/rss.php">
+<img alt="" src="http://dascritch.net/themes/DSN13/img/sticker-feed.png" />
+<span>S'abonner</span>
+</a>
+</li>
+<li id="sticker2">
+<a href="http://dascritch.net/post/2011/05/25/Comment-se-retrouver-dans-mon-blog">
+<img alt="" src="http://dascritch.net/themes/DSN13/img/sticker-about.png" />
+<span>J'ai rien compris</span>
+</a>
+</li>
+<li id="sticker3" class="last">
+<a href="mailto:xav.com@.gmail-iermd+fromweb?subject=j'ai%20lu%20votre%20blog">
+<img alt="" src="http://dascritch.net/themes/DSN13/img/sticker-contact.png" />
+<span>M'écrire</span>
+</a>
+</li>
+</ul>
+
+			<p class="c"><a href="http://dascritch.net/pages/Licence" accesskey="8"><img class="respect" title="" alt="licence Creative Commons" src="http://dascritch.net/nav/respect/cc_by_nc_micro.png">
+					1997-2014 dascritch networks pour les textes, certains droits réservés</a> / 
+					Blog architecturé sur un <a href="http://dotclear.net"><img class="respect" title="dotclear" alt="licence Creative Commons" src="http://dascritch.net/nav/respect/dotclear.png"></a>
+			</p>
+</footer>
+
+<!--/Creative Commons License-->
+<!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><Work rdf:about=""><license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/deed.fr" /><dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" /></Work><License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/deed.fr"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->	</div> 
+</body>
+</html>
