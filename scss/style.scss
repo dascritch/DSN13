@@ -529,40 +529,7 @@ clear:none !important;
 .field textarea:focus {
 	background: #fff;
 	}
-	/*
-#comment-form input[type=submit], 
-#comment-form input[type=reset] {
-	color: #eee;
-	font-size: .875em;
-	display: inline-block;
-	text-transform: capitalize;
-	font-weight: bold;
-	text-align: center;
-	padding: .33em .66em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	background: rgb(119,119,119);
-	border: solid 1px #686867;
-	border-radius: 5px;
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(119,119,119,1)), color-stop(100%, rgba(85,85,85,1)));
-	background: -webkit-linear-gradient(top, rgba(119,119,119,1) 0%,rgba(85,85,85,1) 100%);
-	background: -moz-linear-gradient(top, rgba(119,119,119,1) 0%,rgba(85,85,85,1) 100%);
-	background: -o-linear-gradient(top, rgba(119,119,119,1) 0%,rgba(85,85,85,1) 100%);
-	background: -ms-linear-gradient(top, rgba(119,119,119,1) 0%,rgba(85,85,85,1) 100%);
-	background: linear-gradient(top, rgba(119,119,119,1) 0%,rgba(85,85,85,1) 100%);
-	}
-#comment-form input[type=submit]:hover, #comment-form input[type=submit]:focus,
-#comment-form input[type=reset]:hover, #comment-form input[type=reset]:focus {
-	background: rgb(85,85,85);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(85,85,85,1)), color-stop(100%, rgba(119,119,119,1)));
-	background: -webkit-linear-gradient(top, rgba(85,85,85,1) 0%,rgba(119,119,119,1) 100%);
-	background: -moz-linear-gradient(top, rgba(85,85,85,1) 0%,rgba(119,119,119,1) 100%);
-	background: -o-linear-gradient(top, rgba(85,85,85,1) 0%,rgba(119,119,119,1) 100%);
-	background: -ms-linear-gradient(top, rgba(85,85,85,1) 0%,rgba(119,119,119,1) 100%);
-	background: linear-gradient(top, rgba(85,85,85,1) 0%,rgba(119,119,119,1) 100%);
-	text-decoration: none;
-	}
-	*/
+
 #c_content {
 	width: 95%;
 	padding: 4px;
@@ -590,7 +557,6 @@ clear:none !important;
 	font-size: 1.1em;
 	margin: 0;
 	font-weight: normal;
-/*	font-family: "Franklin gothic medium","arial narrow","DejaVu Sans Condensed","helvetica neue",helvetica,sans-serif;*/
 	color: #333;
 	}
 #sidebar h2.toggle {
@@ -607,7 +573,6 @@ clear:none !important;
 	font-size: 1em;
 	margin-bottom: 0;
 	font-weight: normal;
-/*	font-family: "Franklin gothic medium","arial narrow","DejaVu Sans Condensed","helvetica neue",helvetica,sans-serif;*/
 	color: #333;
 	}
 #sidebar ul {
@@ -943,6 +908,7 @@ hr.hidden {
 #by-cat ul li:last-child {
 	background-image: url(img/last-hline.png);
 	}
+	/*
 #by-tag {
 	width: 18em;
 	}
@@ -994,6 +960,7 @@ hr.hidden {
 	color: #000;
 	font-size: 110%;
 	}
+	*/
 .dc-archive #search {
 	padding: 4px 8px;
 	}
@@ -1056,5 +1023,3 @@ hr.hidden {
 .post:after {
 	clear:both;
 	}
-	
-/*@import url(dascritch.css);*/

@@ -34,45 +34,42 @@
       
 	</div>
 	
-	<!-- # --BEHAVIOR-- publicEntryBeforeContent -->
+	<!-- # - -BEHAVIOR- - publicEntryBeforeContent -->
 	{{tpl:SysBehavior behavior="publicEntryBeforeContent"}}
 	
 	<!-- # Entry with an excerpt -->
 	<tpl:EntryIf extended="1">
-  <div class="post-excerpt">
-    	{{tpl:EntryExcerpt}}
-    
-    <!-- # Attachments -->
-<tpl:Attachments>
-	<tpl:AttachmentsHeader>
-		<aside id="attachments">
-			<ul>
-	</tpl:AttachmentsHeader>
-				<li class="{{tpl:AttachmentType}}">
-					<tpl:AttachmentIf is_mp3="1">
-						{{tpl:include src="_mp3_player.html"}}
-					</tpl:AttachmentIf>
-					<tpl:AttachmentIf is_flv="1">
-						{{tpl:include src="_flv_player.html"}}
-					</tpl:AttachmentIf>
-					<tpl:AttachmentIf is_flv="0"  is_mp3="0">
-						<a href="{{tpl:AttachmentURL}}"
-						 title="{{tpl:AttachmentFileName}} ({{tpl:AttachmentSize}})">{{tpl:AttachmentTitle}}</a>
-					</tpl:AttachmentIf>
-				</li>
-	<tpl:AttachmentsFooter>
-			</ul>
-		</aside>
-	</tpl:AttachmentsFooter>
-</tpl:Attachments>
+		<div class="post-excerpt">
+	    	{{tpl:EntryExcerpt}}
+	    
+		    <!-- # Attachments -->
+			<tpl:Attachments>
+				<tpl:AttachmentsHeader>
+					<aside id="attachments">
+						<ul>
+				</tpl:AttachmentsHeader>
+							<li class="{{tpl:AttachmentType}}">
+								<tpl:AttachmentIf is_mp3="1">
+									{{tpl:include src="_mp3_player.html"}}
+								</tpl:AttachmentIf>
+								<tpl:AttachmentIf is_flv="1">
+									{{tpl:include src="_flv_player.html"}}
+								</tpl:AttachmentIf>
+								<tpl:AttachmentIf is_flv="0"  is_mp3="0">
+									<a href="{{tpl:AttachmentURL}}"
+									 title="{{tpl:AttachmentFileName}} ({{tpl:AttachmentSize}})">{{tpl:AttachmentTitle}}</a>
+								</tpl:AttachmentIf>
+							</li>
+				<tpl:AttachmentsFooter>
+						</ul>
+					</aside>
+				</tpl:AttachmentsFooter>
+			</tpl:Attachments>
 
-  </div>
+		</div>
 	</tpl:EntryIf>
-
-	
 	<div class="post-content">{{tpl:EntryContent}}</div>
-	
-	<!-- # --BEHAVIOR-- publicEntryAfterContent -->
+	<!-- # - -BEHAVIOR- - publicEntryAfterContent -->
 	{{tpl:SysBehavior behavior="publicEntryAfterContent"}}
 </article>
 
@@ -95,12 +92,12 @@
 							{{tpl:lang From}} {{tpl:CommentAuthorLink}} - {{tpl:CommentDate format="%d"}}/{{tpl:CommentDate format="%m"}}/{{tpl:CommentDate format="%Y"}}, {{tpl:CommentTime}}
 						</p>
 						<div class="comment-content">
-							<!-- # --BEHAVIOR-- publicCommentBeforeContent -->
+							<!-- # - -BEHAVIOR- - publicCommentBeforeContent -->
 							{{tpl:SysBehavior behavior="publicCommentBeforeContent"}}
 							
 							{{tpl:CommentContent}}
 							
-							<!-- # --BEHAVIOR-- publicCommentAfterContent -->
+							<!-- # - -BEHAVIOR- - publicCommentAfterContent -->
 							{{tpl:SysBehavior behavior="publicCommentAfterContent"}}
 						</div>
 					</li>

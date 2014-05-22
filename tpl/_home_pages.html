@@ -1,14 +1,11 @@
 {{tpl:ductileNbEntryPerPage nb="8"}}
 <tpl:Entries>
-	
-	<!-- Next pages -->
+	<!-- # Next pages -->
 	<tpl:SysIf current_mode="!default">
 		{{tpl:ductileEntriesList default="short"}}
 	</tpl:SysIf>  	
-	
-	<!-- Pagination -->
+	<!-- # Pagination -->
 	<tpl:EntriesFooter>
 		{{tpl:include src="_pagination.html"}}
 	</tpl:EntriesFooter>
-	
 </tpl:Entries>
