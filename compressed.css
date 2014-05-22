@@ -846,6 +846,12 @@ h1 a img { vertical-align: top; }
 
 h1 a { display: block; }
 
+figure { display: block; margin: 0px auto; text-align: center; border: 1px solid #CCC; }
+
+.post-content figure img { border: none; }
+
+figcaption { padding: 0px 4px; }
+
 #breadcrumb { display: none; }
 
 #minisom { text-align: right; }
