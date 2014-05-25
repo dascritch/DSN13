@@ -34,17 +34,19 @@
 	<!-- # Entry with an excerpt -->
 	<tpl:EntryIf extended="1">
 		<div class="post-content">
-			{{tpl:EntryFirstImage size="t" class="post-icon"}}
-			{{tpl:EntryExcerpt}}
+			<a href="{{tpl:EntryURL}}" class="post-summary">
+				{{tpl:EntryFirstImage size="t" class="post-icon"}}
+				<p>
+					{{tpl:EntryExcerpt}}
+				</p>
+			</a>
 		</div>
-		<p class="read-it"><a href="{{tpl:EntryURL}}"
-		 title="{{tpl:lang Continue reading}} {{tpl:EntryTitle encode_html="1"}}">{{tpl:lang Continue reading}}</a>
-		</p>
 	</tpl:EntryIf>
 	
-	<!-- # Entry without excerpt -->
+	<!-- # Entry without excerpt - ->
 	<tpl:EntryIf extended="0">
 		<div class="post-content">
+			<a href="{{tpl:EntryURL}}" class="post-summary">
 			{{tpl:EntryFirstImage size="t" class="post-icon"}}
 			<p>
 				{{tpl:EntryContent encode_html="1" remove_html="1" cut_string="300"}}
@@ -52,12 +54,10 @@
 				&nbsp;[…]
 				</tpl:EntryIfContentIsCut>
 			</p>
+			</a>
 		</div>
-		<tpl:EntryIfContentIsCut encode_html="1" remove_html="1" cut_string="300">
-			<p class="read-it"><a href="{{tpl:EntryURL}}"
-			 title="{{tpl:lang Continue reading}} {{tpl:EntryTitle encode_html="1"}}">{{tpl:lang Continue reading}}</a></p>
-		</tpl:EntryIfContentIsCut>
 	</tpl:EntryIf>
+	-->
 	
 	<!-- # --BEHAVIOR-- publicEntryAfterContent -->
 	{{tpl:SysBehavior behavior="publicEntryAfterContent"}}
