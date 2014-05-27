@@ -9,5 +9,10 @@ cp concatenated.js compressed.js
 java -jar /usr/share/java/closure-compiler.jar --language_in ECMASCRIPT5 --compilation_level SIMPLE_OPTIMIZATIONS  --js concatenated.js --js_output_file compressed.js
 
 git add compressed.css concatenated.js compressed.js
-# todo : enregistrer la date pour le numéro de version à servir en public
-TIMESTAMP=`date +%d%m%y`
+
+# enregistrer la date à inclure dans l'appel des assets pour prévenir les navigateurs d'un changement de version
+BUILDDATE=`date +%d%m%Y`
+sed -i "s/^\(<\!-- # BUILDDATE -->.*?\)\([0-9]\{8\}\)/\1${BUILDDATE}/Mg" tpl/_head.html
+
+
+

@@ -823,10 +823,6 @@ h1 { text-align: left; }
 
 .post-summary { display: block; color: inherit; text-decoration: none; }
 
-.post-summary:hover { background: inherit; }
-
-.post-summary:hover p, .post-summary:focus p { background: #EBEBEE; }
-
 /*** des billest de code ***/
 ol.listserif { list-style-type: upper-roman; }
 
