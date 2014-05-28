@@ -1770,13 +1770,12 @@
 				return s;
 			}
 
-	      // c'est crade mais c'est contre le confiturage de commentaires
-	      $('#preview').removeAttr('name').removeProp('name').
+			var $latestp = $('button[name="preview"]',$commentform).closest('p');
+	    	// c'est crade mais c'est contre le confiturage de commentaires
+	    	$('#preview').removeAttr('name').removeProp('name').
 	      	removeAttr('value').removeProp('value').
 	      	html($('#preview').data('reel'));
 	     
-	      
-			var $latestp = $('button[name="preview"]',$commentform).closest('p');
 			var post_remember_str = $latestp.data('remember');
 			$latestp.append('<input type="checkbox" id="c_remember" name="c_remember" /> '+'<label for="c_remember">'+post_remember_str+'</label>');
 			var remember = document.getElementById('c_remember');
@@ -1798,7 +1797,7 @@
 			}
 			);
 			$commentform.on('change',c_s,function(){
-				if (remember.checked) {
+				if (remember && remember.checked) {
 					setCookie();
 				}
 			});
