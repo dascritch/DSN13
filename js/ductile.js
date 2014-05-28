@@ -1,4 +1,4 @@
-(function($){
+(function($,document){
 
 	function create_name(text) {
 		// Convert text to lower case.
@@ -218,7 +218,7 @@
 		/*  ré-écriture du post.js système remember de dotclear */
 
 		var $commentform = $('#comment-form');
-		if ($commentform) {
+		if ($commentform.length !== 0) {
 			var c_name = document.getElementById('c_name');
 			var c_mail = document.getElementById('c_mail');
 			var c_site = document.getElementById('c_site');
@@ -283,4 +283,4 @@
 
 	});
 
-})(jQuery);
+})(jQuery,document);
