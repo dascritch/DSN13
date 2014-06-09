@@ -1,4 +1,9 @@
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-81365-1']);
+_gaq.push(['_trackPageview']);
+
 (function($,document){
+	"use strict";
 
 	function create_name(text) {
 		// Convert text to lower case.
@@ -72,12 +77,7 @@
 		top.location = self.location.href;
 	} //naaaaaaaaaaaaan mais !
 
-
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-81365-1']);
-	_gaq.push(['_trackPageview']);
 	insererlibjs('http://google-analytics.com/ga.js');
-
 
 	var lastsize ;
 
