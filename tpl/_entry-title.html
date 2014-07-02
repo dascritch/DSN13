@@ -1,7 +1,7 @@
 <article id="p{{tpl:EntryID}}" class="post {{tpl:EntryIfOdd}} {{tpl:EntryIfFirst}} title" lang="{{tpl:EntryLang}}" xml:lang="{{tpl:EntryLang}}">
 
 	<!-- # New day date -->
-	<tpl:DateHeader><p class="day-date">{{tpl:EntryDate}}</p></tpl:DateHeader>
+	<tpl:DateHeader><p class="day-date"><time datetime="{{tpl:EntryDate iso8601="1"}}">{{tpl:EntryDate}}<</time>/p></tpl:DateHeader>
 
 	<h2 class="post-title"><a href="{{tpl:EntryURL}}">{{tpl:EntryTitle encode_html="1"}}</a></h2>
 	
