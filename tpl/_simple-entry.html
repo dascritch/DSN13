@@ -12,7 +12,7 @@
       
 		<p class="post-info">
 			<tpl:AuthorNotXavier><span class="post-author">par {{tpl:EntryAuthorLink}}, </span></tpl:AuthorNotXavier>
-			<span class="post-date"><a href="{{tpl:UrlDate quand="mois"}}">{{tpl:EntryDateHumaine}}</a> à {{tpl:EntryTime}}.</span>
+			<time class="post-date" datetime="{{tpl:EntryDate rfc822="1"}}"><a href="{{tpl:UrlDate quand="mois"}}">{{tpl:EntryDateHumaine}}</a> à {{tpl:EntryTime}}.</time>
           
 			<!-- # span class="permalink"><a href="{{tpl:EntryURL}}">{{tpl:lang Permalink}}</a></span -->
 			<tpl:EntryIf has_category="1">

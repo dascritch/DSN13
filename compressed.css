@@ -902,7 +902,7 @@ figcaption { padding: 0px 4px; }
   #comment-1stline .field { float: left; width: 49%; } }
 @media only screen and (max-width: 479px) { /* sur les largeurs restreinte, on reste sur deux lignes */
   #comment-1stline #g_site { border-top: 1px solid #ccccee; border-left: none; } }
-#comment-4thline, .modified:invalid #comment-4thline { /* par défaut, la ligne du bouton de validation est cachée... */ opacity: 0; transition-property: opacity; transition-duration: 0.4s; }
+#comment-4thline, .modified:invalid #comment-4thline { /* par défaut, la ligne du bouton de validation est cachée... */ opacity: 0.5; transition-property: opacity; transition-duration: 0.4s; }
 
 .modified #comment-4thline, .modified:valid #comment-4thline { /* il est révélé soit si le commentaire est valide (si le navigateur le supporte), soit si le formulaire a été touché */ opacity: 1; }
 

@@ -94,17 +94,17 @@
 	display:block;
 	width:49%;
 	height: 100%;
-	background:transparent url("/dastyle/nul.png") no-repeat;			
-	zoom:1 ;		
+	background:transparent url("/dastyle/nul.png") no-repeat;
+	zoom:1 ;
 	padding:0px;
 	margin:0px;
 }
-#lightbox-nav-btnPrev { 
+#lightbox-nav-btnPrev {
 	left:0;
 	right:auto;
 	float:left;
 }
-#lightbox-nav-btnNext { 
+#lightbox-nav-btnNext {
 	left:auto;
 	right:0;
 	float:right;
@@ -115,8 +115,7 @@
 	background-color:#FFFFFF;
 	margin:0 auto;
 	padding:0px;
-	
-	}
+}
 
 #lightbox-infoContainer {
 	padding-left:10px;
@@ -124,9 +123,9 @@
 	padding-top:5px;
 	padding-bottom:5px;
 	color:#666;
-	
 	line-height:normal;
-	}
+}
+
 #lightbox-infoHeader {
 	width:100%;
 	text-align:center; 
@@ -294,24 +293,24 @@ img.favicon {
 }
 
 dl.mail	{
-	background:transparent url(/nav/quote.png) no-repeat 0% 0%; 
-	margin:0; 
-	border-left:8px solid #6096BF; 
+	background:transparent url(/nav/quote.png) no-repeat 0% 0%;
+	margin:0;
+	border-left:8px solid #6096BF;
 	border-right:8px solid #6096BF
 }
 dl.mail dt{
-	border-top:8px  solid #6096BF; 
-	padding:1em 0.4em 1em; 
-	margin-left:50px; 
+	border-top:8px  solid #6096BF;
+	padding:1em 0.4em 1em;
+	margin-left:50px;
 	background:#e6f4ff
 }
 dl.mail dd{
 	padding:0 0 0 55px;
-	margin:0; 
+	margin:0;
 	border-bottom:8px solid #6096BF
 }
-  
-.post-excerpt { 
+
+.post-excerpt {
     background:rgb(238, 238, 255);
     padding : 4px 0;
     border: 1px solid rgb(221, 221, 255);
@@ -320,11 +319,11 @@ dl.mail dd{
 
 /** Header **/
 
-#header { 
+#header {
 	overflow : hidden;
 	position:relative;
 }
-	
+
 #top a:hover {background : none; }
 h1 { text-align: left;  }
 
@@ -431,7 +430,7 @@ figcaption {
 	#stickers a span {
 		display : none;
 	}
-		
+
 	#stickers a:hover span, #stickers a:focus span {
 		display : block;
 		color: #686867;
@@ -475,8 +474,8 @@ figcaption {
 		top: 0;
 		}
 }
-.post-tags a { 
-	white-space: nowrap; 
+.post-tags a {
+	white-space: nowrap;
 }
 .post-social {
     font-size: 0.875em;
@@ -500,13 +499,13 @@ figcaption {
 
 /** code "réel" sur la section #comment-form **/
 
-.field label { 
+.field label {
 	/* Par défaut, cache le label et le révèlera si l'input se rempli */
-	position: absolute;  
+	position: absolute;
 	top:0.8em;
-	opacity : 0; 	
+	opacity : 0;
 	transition-property: opacity top;
-	transition-duration: 0.4s;  
+	transition-duration: 0.4s;
 }
 .field.notEmpty label {
 	/* révèle le label si on commence à remplir l'entrée */
@@ -544,7 +543,7 @@ figcaption {
 }
 
 #comment-form p {
-	position: relative;  
+	position: relative;
 	margin : 0;
 	padding : 1em 0 0;
 	border-top : 1px solid #cce ;
@@ -570,14 +569,14 @@ figcaption {
 	#comment-1stline #g_site {
 		border-top : 1px solid #cce ;
 		border-left : none;
-	}		
+	}
 }
 
 #comment-4thline , .modified:invalid #comment-4thline {
 	/* par défaut, la ligne du bouton de validation est cachée... */
-	opacity : 0;
+	opacity : 0.5;
 	transition-property : opacity;
-	transition-duration : 0.4s; 
+	transition-duration : 0.4s;
 }
 
 .modified #comment-4thline , .modified:valid #comment-4thline {
@@ -590,7 +589,7 @@ figcaption {
 	display : block;
 	opacity: 0;
 	transition-property: opacity;
-	transition-duration: 0.4s;  
+	transition-duration: 0.4s;
 }
 
 textarea:focus ~ #form-help {

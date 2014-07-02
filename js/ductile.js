@@ -231,10 +231,10 @@ _gaq.push(['_trackPageview']);
 				var cpath = $('link[rel="top"]').attr('href');
 				cpath = (!cpath) ? '/' : cpath.replace(/.*:\/\/[^\/]*([^?]*).*/g,"$1");
 				var rec = name+'\n'+mail+'\n'+site;
-				("localStorage" in window) ? : localStorage.setItem('comment_info',rec) ? $.cookie('comment_info',rec , {expires:60,path:cpath});
+				("localStorage" in window) ? localStorage.setItem('comment_info',rec) : $.cookie('comment_info',rec , {expires:60,path:cpath});
 			}
 			function dropCookie(){
-				("localStorage" in window) ? : localStorage.removeItem('comment_info') ? $.cookie('comment_info','',{expires:-30,path:'/'});
+				("localStorage" in window) ? localStorage.removeItem('comment_info') : $.cookie('comment_info','',{expires:-30,path:'/'});
 			}
 			function readCookie(c){
 				if (!c) {
@@ -258,7 +258,7 @@ _gaq.push(['_trackPageview']);
 			$latestp.append('<input type="checkbox" id="c_remember" name="c_remember" /> '+'<label for="c_remember">'+post_remember_str+'</label>');
 			var remember = document.getElementById('c_remember');
 
-			var cookie = readCookie(("localStorage" in window) ? : localStorage.getItem('comment_info') ? $.cookie('comment_info'));
+			var cookie = readCookie(("localStorage" in window) ? localStorage.getItem('comment_info') : $.cookie('comment_info'));
 			if (cookie !== false) {
 		    	c_name.value = cookie[0];
 		    	c_mail.value = cookie[1];
