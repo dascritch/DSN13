@@ -1595,13 +1595,13 @@ function TimecodeHash(hashcode) {
 	if ("onhashchange" in window) {
 		addEvent(window, 'hashchange', TimecodeHash);
 	}
-})(window,TimecodeHash);var _gaq = _gaq || [];
+})(window,TimecodeHash);"use strict";
+
+var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-81365-1']);
 _gaq.push(['_trackPageview']);
 
 (function($,document){
-	"use strict";
-
 	function create_name(text) {
 		// Convert text to lower case.
 		var name = text.toLowerCase();
@@ -1683,7 +1683,7 @@ _gaq.push(['_trackPageview']);
 
 			// Set toggle class to each #sidebar h2
 			$("#sidebar div div h2").addClass('toggle');
-			
+
 			// Hide all h2.toggle siblings
 			$('#sidebar div div h2').nextAll().hide();
 
@@ -1699,10 +1699,12 @@ _gaq.push(['_trackPageview']);
 		lastsize = $(window).width();
 	}
 
+var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+
 	$(function() {
 		window.resize = resize;
 		resize();
-		
+
 		 var Fx = {
 			header    : document.getElementById('header'),
 			trLeft    : 0.45,
@@ -1732,7 +1734,7 @@ _gaq.push(['_trackPageview']);
 			},
 			start    : null*/
 		};
-		
+
 		//Fx.start = window.setTimeout(Fx.onTimer,100);
 		if (window.addEventListener) {
 			window.addEventListener('mousemove', Fx.onPointer,false);
@@ -1745,37 +1747,41 @@ _gaq.push(['_trackPageview']);
 			var titres = document.getElementsByTagName('h3');
 			if (titres.length>3) {
 				liste = document.createElement('ul');
-				for (titre=0 ; titre<titres.length ; titre++) {
+				for (titre = 0 ; titre < titres.length ; titre++) {
 					var texte = titres[titre];
 					var id = titres[titre].id;
 					if (chainevide(id)) {
 						id = titres[titre].id = 'chap-'+titre;
 					}
-					var li=document.createElement('li');
+					var li = document.createElement('li');
 					liste.appendChild(li);
 					var li_a = document.createElement('a');
 					var node= document.all ? texte.innerText : texte.textContent;
 					if (!node) {
-						// ce regexp a été trouvé par coup de chance en rédigeant http://dascritch.net/post/2007/07/05/Javascript-comme-un-dialecte
 						node = texte.innerHTML.replace(/<[^<>]+>/g,"");
-					} 
+					}
 					li_a.appendChild(document.createTextNode(node));
 					li.appendChild(li_a);
 					li_a.href = '#'+id;
 				}
-				
-				var $dd= $('<dd>',{'id':'minisom_m','class':'masquee'}).append(liste);
-				$dt = $('<dt>',{'id':'minisom','class':'masqueur'}).html('Sommaire de ce billet');
+
+				var $dd= $('<dd>',{
+							'id' : 'minisom_m',
+							'class' : 'masquee'
+						}).append(liste);
+				$dt = $('<dt>',{
+							'id':'minisom',
+							'class':'masqueur'
+						}).html('Sommaire de ce billet');
 				$('<dl>').append($dt).append($dd).appendTo('.post-excerpt')
 			}
 		}
-		
-		
+
 		$(document).on('click','.masqueur',function() {
 			$('#'+(this.id)+'_m').toggle();
 		});
 
-		
+
 		$('.masqueur').each(function() {
 			this.title='cliquez pour afficher ou cacher::';
 			this.style.cursor='pointer'; // ou row-resize
@@ -1783,7 +1789,7 @@ _gaq.push(['_trackPageview']);
 				$('#'+(this.id)+'_m').hide();
 			};
 		});
-		
+
 		$('[href^="mailto:xav"]').each(function() {
 			this.href = this.href.replace(/^(\w+\:\w+)(\W+)(\w+)(\W+)(\w+)(\W+)(\w+)(\+.*)(\?.*)$/,'$1$7$8@$5.$3$9');
 		});
@@ -1811,7 +1817,7 @@ _gaq.push(['_trackPageview']);
 		}
 
 		$(tagIfModified).on('change input',tagIfEmpty+' :input',onFloatLabelChangeInput);
-	  
+
 		/*  ré-écriture du post.js système remember de dotclear */
 
 		var $commentform = $('#comment-form');
@@ -1828,11 +1834,17 @@ _gaq.push(['_trackPageview']);
 				var cpath = $('link[rel="top"]').attr('href');
 				cpath = (!cpath) ? '/' : cpath.replace(/.*:\/\/[^\/]*([^?]*).*/g,"$1");
 				var rec = name+'\n'+mail+'\n'+site;
-				("localStorage" in window) ? localStorage.setItem('comment_info',rec) : $.cookie('comment_info',rec , {expires:60,path:cpath});
+				("localStorage" in window)
+					? localStorage.setItem('comment_info',rec)
+					: $.cookie('comment_info',rec , {expires:60,path:cpath});
 			}
+
 			function dropCookie(){
-				("localStorage" in window) ? localStorage.removeItem('comment_info') : $.cookie('comment_info','',{expires:-30,path:'/'});
+				("localStorage" in window)
+					? localStorage.removeItem('comment_info')
+					: $.cookie('comment_info','',{expires:-30,path:'/'});
 			}
+
 			function readCookie(c){
 				if (!c) {
 					return false;
@@ -1850,12 +1862,19 @@ _gaq.push(['_trackPageview']);
 	    	$('#preview').removeAttr('name').removeProp('name').
 	      	removeAttr('value').removeProp('value').
 	      	html($('#preview').data('reel'));
-	     
+
 			var post_remember_str = $latestp.data('remember');
-			$latestp.append('<input type="checkbox" id="c_remember" name="c_remember" /> '+'<label for="c_remember">'+post_remember_str+'</label>');
+			$latestp.append('<input type="checkbox" id="c_remember" name="c_remember" /> '
+							+'<label for="c_remember">'
+								+post_remember_str
+							+'</label>');
 			var remember = document.getElementById('c_remember');
 
-			var cookie = readCookie(("localStorage" in window) ? localStorage.getItem('comment_info') : $.cookie('comment_info'));
+			var cookie = readCookie(
+							("localStorage" in window)
+							? localStorage.getItem('comment_info')
+							: $.cookie('comment_info')
+							);
 			if (cookie !== false) {
 		    	c_name.value = cookie[0];
 		    	c_mail.value = cookie[1];
@@ -1871,11 +1890,25 @@ _gaq.push(['_trackPageview']);
 				}
 			}
 			);
-			$commentform.on('change',c_s,function(){
+			$commentform.on('change',c_s,function() {
 				if (remember && remember.checked) {
 					setCookie();
 				}
 			});
+		}
+
+
+		$(document).on('keydown',function(e) {
+			// pour faire vite, http://css-tricks.com/snippets/jquery/konomi-code/
+			kkeys.push( e.keyCode );
+			if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+			// do something awesome
+				alert('Désolé, pas de Konami code');
+			}
+		});
+
+		if ($('#q')) {
+			// TODO on document hash "q" , focus
 		}
 
 	});
