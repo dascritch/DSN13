@@ -3,23 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="ROBOTS" content="{{tpl:BlogMetaRobots robots="NOINDEX,NOARCHIVE"}}" />
-	
 	<title>{{tpl:lang Search}} - {{tpl:SysSearchString encode_html="1"}} - {{tpl:BlogName encode_html="1"}}<tpl:PaginationIf start="0"> - {{tpl:lang page}} {{tpl:PaginationCurrent}}</tpl:PaginationIf></title>
 	<meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
 	<meta name="author" content="{{tpl:BlogEditor encode_html="1"}}" />
 	<meta name="date" scheme="W3CDTF" content="{{tpl:BlogUpdateDate iso8601="1"}}" />
-	
-	<!-- #
-	<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-	<meta name="dc.title" lang="{{tpl:BlogLanguage}}" content="{{tpl:lang Search}} - {{tpl:SysSearchString encode_html="1"}} - {{tpl:BlogName encode_html="1"}}<tpl:PaginationIf start="0"> - {{tpl:lang page}} {{tpl:PaginationCurrent}}</tpl:PaginationIf>" />
-	<meta name="dc.language" content="{{tpl:BlogLanguage}}" />
-	<meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
-	<meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-	<meta name="dc.date" scheme="W3CDTF" content="{{tpl:BlogUpdateDate iso8601="1"}}" />
-	<meta name="dc.type" content="text" />
-	<meta name="dc.format" content="text/html" />
-	-->
-	
+
 	<link rel="up" href="/" title="da scritch net works" />
 	<link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
 	{{tpl:ductileNbEntryPerPage}}
@@ -37,27 +25,26 @@
 		<link rel="chapter" href="{{tpl:EntryURL}}" title="{{tpl:EntryTitle encode_html="1"}}" />
 	</tpl:Entries>
 	<link rel="meta" type="application/xbel+xml" title="Blogroll" href="{{tpl:BlogrollXbelLink}}" />
-	
 	{{tpl:include src="_head.html"}}
 </head>
 <body class="dc-search">
-  
+
 <ul id="breadcrumb">
-  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}" itemprop="url"><span itemprop="title">da scritch</span></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}" itemprop="url"><span itemprop="title">da scritch</span></a></li>
 	<li>›</li>
-  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
 	<li>›</li>
 	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{tpl:SysSelfURI}}" itemprop="url"><strong itemprop="title">recherche par mots-clés</strong></a></li>
 </ul>
-  
+
 	<div id="page">
 		{{tpl:include src="_top.html"}}
-		
+
 		<div id="wrapper">
-			
+
 			<main id="main">
 				<div id="content">
-					
+
 					<div id="content-info">
 						<h2>{{tpl:lang Search}}</h2>
 						<tpl:SysIf search_count="==0">
@@ -70,13 +57,13 @@
 							<p>{{tpl:SysSearchString encode_html="1" string="Your search for <em>%1$s</em> returned <strong>%2$s</strong> results."}}</p>
 						</tpl:SysIf>
 					</div>
-					
+
 					<div class="content-inner">
 						{{tpl:ductileNbEntryPerPage}}
 						<tpl:Entries type="post,page">
-						
+
 							{{tpl:ductileEntriesList default="short"}}
-						
+
 							<tpl:EntriesFooter>
 								<tpl:Pagination>
 									<p class="pagination">
@@ -92,8 +79,8 @@
 							</tpl:EntriesFooter>
 						</tpl:Entries>
 					</div> <!-- End #content-inner -->
-					
-					<p class="c">
+
+					<!-- # p class="c">
 						Si vous n'êtes pas satisfait de la recherche sur le blog, cherchez sur l'ensemble du site
 					</p>
 					<form id="viagoogle" action="/search.php"><fieldset class="c">
@@ -101,16 +88,15 @@
 						<input name="cof" value="FORID:11" type="hidden">
 						<input style="text-align:center;width:300px" value="{{tpl:SysSearchString encode_xml="1"}}" name="q" type="text">
 						<button type="submit">chercher sur tout le site</button>
-					</fieldset></form>
+					</fieldset></form -->
 
-					
 				</div> <!-- End #content -->
-			</main> <!-- End #main -->
-			
+			</main>
+
 			{{tpl:include src="_sidebar.html"}}
-			
+
 		</div> <!-- End #wrapper -->
-		
+
 		{{tpl:include src="_footer.html"}}
 	</div> <!-- End #page -->
 </body>

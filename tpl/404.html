@@ -42,7 +42,7 @@
 		
 		<div id="wrapper">
 			
-			<div id="main">
+			<main id="main">
 				<div id="content">
 					
 					<div id="content-info">
@@ -56,13 +56,14 @@
 						<ul>
                           <li><a href="/">Revenir à l'accueil</a></li>
 							<li><a href="#search">{{tpl:lang Use search form}}</a></li>
-                            <li><form id="viagoogle" action="http://www.google.com/cse">
-<input type="hidden" name="cref" value="http%3A%2F%2Fdascritch.net%2Fggcse.xml"/>
-<label for="q">ou sinon, faites une recherche </label>
-<input value="" name="q" type="search" />                                         
-                                                                                  
-                              <button type="submit">via Google</button>                                        
-                          </form></li>
+                            <!-- # li>
+                            	<form id="viagoogle" action="http://www.google.com/cse">
+									<input type="hidden" name="cref" value="http%3A%2F%2Fdascritch.net%2Fggcse.xml"/>
+									<label for="q">ou sinon, faites une recherche </label>
+									<input value="" name="q" type="search" />
+	                              <button type="submit">via Google</button>
+                          	</form>
+                          </li -->
 							<li><a href="{{tpl:BlogURL}}archive">{{tpl:lang Explore archives}}</a></li>
                           <li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:<form name="reurl" action="javascript:top.location=do
 cument.reurl.url.value;"><input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" /><button type="submit">Essayez autre chose</button></form></li>
@@ -74,7 +75,7 @@ cument.reurl.url.value;"><input maxlength="255" size="40" name="url" value="{{tp
 					</div> <!-- End #content-inner -->
 					
 				</div> <!-- End #content -->
-			</div> <!-- End #main -->
+			</main>
 			
 			{{tpl:include src="_sidebar.html"}}
 			

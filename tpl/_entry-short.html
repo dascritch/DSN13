@@ -43,22 +43,6 @@
 		</div>
 	</tpl:EntryIf>
 	
-	<!-- # Entry without excerpt - ->
-	<tpl:EntryIf extended="0">
-		<div class="post-content">
-			<a href="{{tpl:EntryURL}}" class="post-summary">
-			{{tpl:EntryFirstImage size="t" class="post-icon"}}
-			<p>
-				{{tpl:EntryContent encode_html="1" remove_html="1" cut_string="300"}}
-				<tpl:EntryIfContentIsCut encode_html="1" remove_html="1" cut_string="300">
-				&nbsp;[…]
-				</tpl:EntryIfContentIsCut>
-			</p>
-			</a>
-		</div>
-	</tpl:EntryIf>
-	-->
-	
 	<!-- # --BEHAVIOR-- publicEntryAfterContent -->
 	{{tpl:SysBehavior behavior="publicEntryAfterContent"}}
 	
