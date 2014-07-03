@@ -3,45 +3,32 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="ROBOTS" content="{{tpl:BlogMetaRobots robots="NOINDEX,NOARCHIVE"}}" />
-	
 	<title>{{tpl:lang Document not found}} - {{tpl:BlogName encode_html="1"}}</title>
 	<meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
 	<meta name="author" content="{{tpl:BlogEditor encode_html="1"}}" />
-	
-	<!-- #
-	<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-	<meta name="dc.title" lang="{{tpl:BlogLanguage}}" content="{{tpl:lang Document not found}} - {{tpl:BlogName encode_html="1"}}" />
-	<meta name="dc.language" content="{{tpl:BlogLanguage}}" />
-	<meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
-	<meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-	<meta name="dc.type" content="text" />
-	<meta name="dc.format" content="text/html" />
-	-->
-	
+
 	<link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
 	<link rel="contents" title="{{tpl:lang Archives}}" href="{{tpl:BlogArchiveURL}}" />
 
 	{{tpl:include src="_head.html"}}
     <style>
-      .dc-404 #content-info {
-            background  : none;
-            padding: 0;
-      }
-      .dc-404 #content {
-          background: url('/nav/oops.png') no-repeat scroll right top transparent;
+		.dc-404 #content-info {
+			background  : none;
+			padding: 0;
+		}
+		.dc-404 #content {
+			background: url('/nav/oops.png') no-repeat scroll right top transparent;
 			padding-right: 235px;
-      } 
-	.dc-404 .content-inner ul {
-    	list-style-type: circle;
-	}
+		} 
+		.dc-404 .content-inner ul {
+			list-style-type: circle;
+		}
   </style>
 </head>
 <body class="dc-404">
 	<div id="page">
 		{{tpl:include src="_top.html"}}
-		
 		<div id="wrapper">
-			
 			<main id="main">
 				<div id="content">
 
@@ -57,7 +44,7 @@
                           	<li><a href="/">Revenir à l'accueil</a></li>
 							<li><a href="#search">{{tpl:lang Use search form}}</a></li>
 
-							<li>{{tpl:lang Explore archives}} <a href="{{tpl:BlogURL}}archive#by-cat">par catégories de billets</a>,  <a href="{{tpl:BlogURL}}archive#by-tag">par thèmes arbordés</a> ou <a href="{{tpl:BlogURL}}archive">par date de publication</a></li>
+							<li>{{tpl:lang Explore archives}} <a href="{{tpl:BlogURL}}archive#by-cat">par catégories de billets</a>,  <a href="{{tpl:BlogURL}}tags">par thèmes arbordés</a> ou <a href="{{tpl:BlogURL}}archive">par date de publication</a></li>
                           	<li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:
                           		<form name="reurl" action="javascript:top.location=document.reurl.url.value;">
                           			<input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" />
@@ -70,14 +57,12 @@
 							<li>Vous avez cru pouvoir pirater ce site. <a href="http://2130706433">Prenez des cours</a>.</li>
 						</ul>
 					</div> <!-- End #content-inner -->
-					
+
 				</div> <!-- End #content -->
 			</main>
-			
 			{{tpl:include src="_sidebar.html"}}
-			
+
 		</div> <!-- End #wrapper -->
-		
 		{{tpl:include src="_footer.html"}}
 	</div> <!-- End #page -->
 </body>
