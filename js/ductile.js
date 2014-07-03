@@ -312,7 +312,9 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 
 		if ($('#q')) {
 			$(window).on('hashchange',function(){
-				$('#q').focus();
+				if ( (location.hash === '#search') || (location.hash === '#q')) {
+					$('#q').focus();
+				}
 			});
 		}
 
