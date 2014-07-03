@@ -57,13 +57,7 @@
                           	<li><a href="/">Revenir à l'accueil</a></li>
 							<li><a href="#search">{{tpl:lang Use search form}}</a></li>
 
-							<li>{{tpl:lang Explore archives}} :
-								<ul>
-									<li><a href="{{tpl:BlogURL}}archive#by-cat">par catégories de billets</a></li>
-									<li><a href="{{tpl:BlogURL}}archive#by-tag">par thèmes arbordés</a></li>
-									<li><a href="{{tpl:BlogURL}}archive">par date</a></li>
-								</ul>
-							</li>
+							<li>{{tpl:lang Explore archives}} <a href="{{tpl:BlogURL}}archive#by-cat">par catégories de billets</a>,  <a href="{{tpl:BlogURL}}archive#by-tag">par thèmes arbordés</a> ou <a href="{{tpl:BlogURL}}archive">par date de publication</a></li>
                           	<li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:
                           		<form name="reurl" action="javascript:top.location=document.reurl.url.value;">
                           			<input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" />
