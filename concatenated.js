@@ -1595,13 +1595,12 @@ function TimecodeHash(hashcode) {
 	if ("onhashchange" in window) {
 		addEvent(window, 'hashchange', TimecodeHash);
 	}
-})(window,TimecodeHash);"use strict";
-
-var _gaq = _gaq || [];
+})(window,TimecodeHash);var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-81365-1']);
 _gaq.push(['_trackPageview']);
 
 (function($,document){
+	"use strict";
 	function create_name(text) {
 		// Convert text to lower case.
 		var name = text.toLowerCase();
@@ -1904,11 +1903,14 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			if ( kkeys.toString().indexOf( konami ) >= 0 ) {
 			// do something awesome
 				alert('Désolé, pas de Konami code');
+				kkeys = [];
 			}
 		});
 
 		if ($('#q')) {
-			// TODO on document hash "q" , focus
+			$(window).on('hashchange',function(){
+				$('#q').focus();
+			});
 		}
 
 	});
