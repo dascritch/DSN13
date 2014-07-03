@@ -44,33 +44,36 @@
 			
 			<main id="main">
 				<div id="content">
-					
+
 					<div id="content-info">
 						<h2>{{tpl:lang Document not found}}</h2>
 						<p>{{tpl:lang URL you've tried has typos, or the page has been deleted or moved.}}</p>
 					</div>
-					
+
 					<div class="content-inner">
 						<h3>{{tpl:lang Suggestions:}}</h3>
                         <p>Six raisons probables :</p>
 						<ul>
-                          <li><a href="/">Revenir à l'accueil</a></li>
+                          	<li><a href="/">Revenir à l'accueil</a></li>
 							<li><a href="#search">{{tpl:lang Use search form}}</a></li>
-                            <!-- # li>
-                            	<form id="viagoogle" action="http://www.google.com/cse">
-									<input type="hidden" name="cref" value="http%3A%2F%2Fdascritch.net%2Fggcse.xml"/>
-									<label for="q">ou sinon, faites une recherche </label>
-									<input value="" name="q" type="search" />
-	                              <button type="submit">via Google</button>
-                          	</form>
-                          </li -->
-							<li><a href="{{tpl:BlogURL}}archive">{{tpl:lang Explore archives}}</a></li>
-                          <li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:<form name="reurl" action="javascript:top.location=do
-cument.reurl.url.value;"><input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" /><button type="submit">Essayez autre chose</button></form></li>
-<li>Vous vouliez accéder directement à une page avec un signet de votre navigateur, mais celle-ci n'existe plus. <a hr="/">Revenez au sommaire</a>, et mettez à jour votre signet.</li>
-<li>Vous avez été envoyé ici par un autre site, qui pointe sur une adresse erronée ou une page qui n'existe plus. Signalez-le au <a href="javascript:history.back(-1);">responsable dudit site</a> pour qu'il corrige son lien défectueux.</li>
-                          <li>Une erreur de notre part. <a title="Errare humanum est" href="mailto:xav.com@.gmail-iermd+fromweb?subject=y'a%20une%20erreur%20de%20lien%20sur%20votre%20blog">Écrivez-nous</a> pour nous indiquer dans quelles circonstances vous avez rencontré cette erreur.</li>
-<li>Vous avez cru pouvoir pirater ce site. <a href="http://2130706433">Prenez des cours</a>.</li>
+
+							<li>{{tpl:lang Explore archives}} :
+								<ul>
+									<li><a href="{{tpl:BlogURL}}archive#by-cat">par catégories de billets</a></li>
+									<li><a href="{{tpl:BlogURL}}archive#by-tag">par thèmes arbordés</a></li>
+									<li><a href="{{tpl:BlogURL}}archive">par date</a></li>
+								</ul>
+							</li>
+                          	<li>Vous avez tenté d'accéder directement à une page en tapant son on adresse, mais vous avez mal orthographié son <abbr>URL</abbr>&nbsp;:
+                          		<form name="reurl" action="javascript:top.location=document.reurl.url.value;">
+                          			<input maxlength="255" size="40" name="url" value="{{tpl:SysSelfURI encode_xml="1"}}" type="url" />
+                          			<button type="submit">Essayez autre chose</button>
+                          		</form>
+                          	</li>
+							<li>Vous vouliez accéder directement à une page avec un signet de votre navigateur, mais celle-ci n'existe plus. <a hr="/">Revenez au sommaire</a>, et mettez à jour votre signet.</li>
+							<li>Vous avez été envoyé ici par un autre site, qui pointe sur une adresse erronée ou une page qui n'existe plus. Signalez-le au <a href="javascript:history.back(-1);">responsable dudit site</a> pour qu'il corrige son lien défectueux.</li>
+                          	<li>Une erreur de notre part. <a title="Errare humanum est" href="mailto:xav.com@.gmail-iermd+fromweb?subject=y'a%20une%20erreur%20de%20lien%20sur%20votre%20blog">Écrivez-nous</a> pour nous indiquer dans quelles circonstances vous avez rencontré cette erreur.</li>
+							<li>Vous avez cru pouvoir pirater ce site. <a href="http://2130706433">Prenez des cours</a>.</li>
 						</ul>
 					</div> <!-- End #content-inner -->
 					
