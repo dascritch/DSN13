@@ -298,7 +298,7 @@
 		}
 }
 
-/* ------------------------------------------------------ 
+/* ------------------------------------------------------
 	au-delà de 1280px on décale le post-info à gauche
 ------------------------------------------------------- */
 @media only screen and (min-width: 1280px) {
@@ -308,9 +308,9 @@
 	/*.full .post-attr,
 	.simple */.post-attr  {
 		margin-left: -220px;
-		margin-top: 0; 
-		float: left; 
-		width: 180px; 
+		margin-top: 0;
+		float: left;
+		width: 180px;
 		text-align: right;
 		}
 	.post-attr a, .post-info, .post-tags {
@@ -322,9 +322,9 @@
 	.dc-archive #content-info {
 		margin-left: 0 !important;
 		}
-	#content-info a.feed { 
+	#content-info a.feed {
 		white-space: nowrap;
-		}	
+		}
 }
 
 /* ------------------------------------------------------ au-delà de 1600px */
@@ -335,4 +335,28 @@
 	#stickers {
 		padding-right: 10%;
 		}
+}
+
+/* --------------------------------------------------------- écrans high dpi */
+
+h1 img {
+	display : none;
+}
+h1 span {
+	display : inline-block;
+	width : 431px;
+	height : 114px;
+	background-image: url(./img/entete1.png);
+}
+
+@media print , (min-resolution: 1.01dppx) {
+	h1 img {
+		display : inline-block;
+		width : 431px;
+		height : 114px;
+	}
+	h1 span {
+		background : none;
+	}
+
 }

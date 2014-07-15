@@ -694,7 +694,7 @@ background: linear-gradient(top,  #f4f4f5,  #d7d7dC);
   #sidebar div#search:first-child h2 { font-size: 1em; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); vertical-align: top; color: #666; }
   #sidebar div#search:first-child p { margin: .33em 0; }
   .dc-archive #content { margin: 0 17em 0 0; } }
-/* ------------------------------------------------------ 
+/* ------------------------------------------------------
 	au-delà de 1280px on décale le post-info à gauche
 ------------------------------------------------------- */
 @media only screen and (min-width: 1280px) { #content { margin: 0 20em 0 220px; }
@@ -707,6 +707,13 @@ background: linear-gradient(top,  #f4f4f5,  #d7d7dC);
 /* ------------------------------------------------------ au-delà de 1600px */
 @media only screen and (min-width: 1600px) { #wrapper { padding: 0 10%; }
   #stickers { padding-right: 10%; } }
+/* --------------------------------------------------------- écrans high dpi */
+h1 img { display: none; }
+
+h1 span { display: inline-block; width: 431px; height: 114px; background-image: url(./img/entete1.png); }
+
+@media print, (min-resolution: 1.01dppx) { h1 img { display: inline-block; width: 431px; height: 114px; }
+  h1 span { background: none; } }
 #lightbox, #lightbox-overlay { position: absolute; top: 0px; left: 0px; bottom: auto; right: auto; z-index: 100; width: 100%; height: auto; text-align: center; color: #333333; margin: 0px; padding: 0px; border: none; outline: none; line-height: 0; text-decoration: none; background: none; word-spacing: normal; letter-spacing: normal; float: none; clear: none; display: block; }
 
 #lightbox a, #lightbox a:link, #lightbox a:visited, #lightbox a:hover { text-decoration: underline; color: #999999; }
