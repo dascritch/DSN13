@@ -339,7 +339,7 @@
 
 /* --------------------------------------------------------- écrans high dpi */
 
-h1 img {
+h1 img , #dascritchtcom img {
 	display : none;
 }
 h1 span {
@@ -349,13 +349,27 @@ h1 span {
 	background-image: url(./img/entete1.png);
 }
 
+#dascritchtcom a {
+	display : inline-block;
+	width : 128px;
+	height : 34px;
+	background-image: url(./img/cv-dascritchcom.png);
+	background-position: 20px 4px, center;
+	background-repeat:no-repeat;
+}
+
 @media print , (min-resolution: 1.01dppx) {
 	h1 img {
 		display : inline-block;
 		width : 431px;
 		height : 114px;
 	}
-	h1 span {
+	#dascritchtcom img {
+		display : inline-block;
+		width : 128px;
+		height : 34px;
+	}
+	h1 span , #dascritchtcom a {
 		background : none;
 	}
 
