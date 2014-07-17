@@ -367,12 +367,19 @@ h1 span {
 	background-repeat:no-repeat;
 }
 
+#html5badges img {
+	width : 130px;
+	height : 32px;
+}
 
 @media print , (min-resolution: 1.01dppx) {
+	h1 span {
+		display : inherit;
+		width : auto;
+		height : auto;
+	}
 	h1 img {
-		display : inline-block;
-		width : 431px;
-		height : 114px;
+		display : inherit;
 	}
 	#dascritchtcom img {
 		display : inline-block;

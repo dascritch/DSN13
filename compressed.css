@@ -716,7 +716,13 @@ h1 span { display: inline-block; width: 431px; height: 114px; background-image: 
 
 #supplementweekend a { display: inline-block; width: 128px; height: 39px; background-image: url(./img/banniereswe.png); background-position: 20px 4px, center; background-repeat: no-repeat; }
 
-@media print, (min-resolution: 1.01dppx) { h1 img { display: inline-block; width: 431px; height: 114px; }
+#html5badges img { width: 130px; height: 32px; }
+
+@media print, (min-resolution: 1.01dppx) { h1 span { display: inherit; width: auto; height: auto; }
+  h1 img { display: inherit; /*
+max-width : 431px;
+max-height : 114px;
+*/ }
   #dascritchtcom img { display: inline-block; width: 128px; height: 34px; }
   #supplementweekend img { display: inline-block; width: 128px; height: 39px; }
   h1 span, #dascritchtcom a, #supplementweekend a { background: none; } }
