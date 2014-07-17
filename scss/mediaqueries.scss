@@ -339,7 +339,7 @@
 
 /* --------------------------------------------------------- écrans high dpi */
 
-h1 img , #dascritchtcom img {
+h1 img , #dascritchtcom img , #supplementweekend img {
 	display : none;
 }
 h1 span {
@@ -358,6 +358,16 @@ h1 span {
 	background-repeat:no-repeat;
 }
 
+#supplementweekend a {
+	display : inline-block;
+	width : 128px;
+	height : 39px;
+	background-image: url(./img/banniereswe.png);
+	background-position: 20px 4px, center;
+	background-repeat:no-repeat;
+}
+
+
 @media print , (min-resolution: 1.01dppx) {
 	h1 img {
 		display : inline-block;
@@ -369,7 +379,12 @@ h1 span {
 		width : 128px;
 		height : 34px;
 	}
-	h1 span , #dascritchtcom a {
+	#supplementweekend img {
+		display : inline-block;
+		width : 128px;
+		height : 39px;
+	}
+	h1 span , #dascritchtcom a, #supplementweekend a {
 		background : none;
 	}
 
