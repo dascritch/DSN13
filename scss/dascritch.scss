@@ -477,19 +477,88 @@ figcaption {
 .post-tags a {
 	white-space: nowrap;
 }
+
+
+/** boutons "sociaux" **/
+
 .post-social {
     font-size: 0.875em;
 	margin : 0;
 	padding: 0;
 }
-@media only screen and (max-width:1279px) { .post-social { float : right } }
+
+
 .post-social li {
     display : inline;
     list-style-type : none;
 }
-.post-social li a img {
-    vertical-align : bottom;
+
+
+.post-social a {
+	position : relative;
+	display : inline-block;
+	width : 32px;
+	height : 32px;
+	background-image : url(/themes/DNS13/img/social.png);
+	background-repeat : no-repeat;
 }
+.post-social span {
+	display:none;
+}
+.post-social a:hover span {
+	background-color : inherit;
+	position : absolute;
+	display : block;
+	bottom : 32px;
+	padding : 4px 8px;
+	color : white;
+	white-space : pre;
+}
+
+.social-twitter {
+	background-color: #4DB5F4 !important;
+	background-position: -64px 0;
+}
+.social-facebook {
+	background-color: #5974CC !important;
+	background-position: -32px 0;
+}
+.social-googleplus {
+	background-color: #E15646 !important;
+	background-position: -96px 0;
+}
+.social-linkedin {
+	background-color: #3280C2 !important;
+	background-position: 0 0;
+}
+.social-email {
+	background-color: #1DCE9A !important;
+	background-position: -128px 0;
+}
+.social-flattr {
+	background-color: #91BC5D !important;
+	background-position: -160px 0;
+}
+.social-github {
+	background-color: #91BC5D !important;
+	background-position: -192px 0;
+}
+@media print , (min-resolution: 1.01dppx) {
+	.post-social a {
+		background-image : url(/themes/DNS13/img/social.svg);
+	}
+}
+
+@media only screen and (max-width:1279px) {
+	.post-social {
+		float : right;
+	}
+	.post-social a:hover span {
+		right : 0;
+	}
+}
+
+
 
 /** reset sur les règles déjà placées **/
 
