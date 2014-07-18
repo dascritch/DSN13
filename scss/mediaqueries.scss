@@ -346,6 +346,7 @@ h1 span {
 	display : inline-block;
 	width : 431px;
 	height : 114px;
+	max-width : 100%;
 	background-image: url(./img/entete1.png);
 }
 
@@ -372,15 +373,19 @@ h1 span {
 	height : 32px;
 }
 
-@media print , (min-resolution: 1.01dppx) {
+@media print , (min-resolution: 0.01dppx) {
+	/* No way, elsewhere no adaptative logo to width with dppx at 1 */
 	h1 span {
 		display : inherit;
 		width : auto;
 		height : auto;
+		background : none;
 	}
 	h1 img {
 		display : inherit;
 	}
+}
+@media print , (min-resolution: 1.01dppx) {
 	#dascritchtcom img {
 		display : inline-block;
 		width : 128px;
@@ -391,7 +396,7 @@ h1 span {
 		width : 128px;
 		height : 39px;
 	}
-	h1 span , #dascritchtcom a, #supplementweekend a {
+	#dascritchtcom a, #supplementweekend a {
 		background : none;
 	}
 
