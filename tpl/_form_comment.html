@@ -15,7 +15,7 @@
 
 	<tpl:IfCommentPreview>
 		<div id="pr">
-			<h3 id="commenter-cette-page">{{tpl:lang Your comment}}</h3>
+			<h3 id="votre-commentaire">{{tpl:lang Your comment}}</h3>
 			<div class="comment-preview">{{tpl:CommentPreviewContent}}</div>
 			<p class="buttons remember" data-remember="{{tpl:lang Remember me on this blog}}">
 				<button class="preview" name="preview" id="preview" type="submit">{{tpl:lang send}}</button>
@@ -24,7 +24,7 @@
 		</div>
 	</tpl:IfCommentPreview>
 
-	<h3>{{tpl:lang Add a comment}}</h3>
+	<h3 id="ajouter-un-commentaire">{{tpl:lang Add a comment}}</h3>
 
 	{{tpl:SysBehavior behavior="publicCommentFormBeforeContent"}}
 
