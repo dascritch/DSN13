@@ -1,48 +1,47 @@
 <article id="p{{tpl:EntryID}}" class="post simple article" role="article">
+
 	<h2 class="post-title">{{tpl:EntryTitle encode_html="1"}}</h2>
-	
 	<div class="post-attr">
 	    <ul class="post-social">
-          <li><a target="social" rel="nofollow" class="social-twitter"  href="https://twitter.com/share?text={{tpl:TEMPEntryTitle encode_url="1"}}&amp;url={{tpl:TEMPEntryURL encode_url="1"}}&amp;via=dascritch"><span>Partager sur Twitter</span></a></li> 
+          <li><a target="social" rel="nofollow" class="social-twitter"  href="https://twitter.com/share?text={{tpl:TEMPEntryTitle encode_url="1"}}&amp;url={{tpl:TEMPEntryURL encode_url="1"}}&amp;via=dascritch"><span>Partager sur Twitter</span></a></li>
           <li><a target="social" rel="nofollow" class="social-facebook" href="https://www.facebook.com/sharer.php?u={{tpl:TEMPEntryURL encode_url="1"}}&amp;t={{tpl:TEMPEntryTitle encode_url="1"}}"><span>Partager sur Facebook</span></a></li>
           <li><a target="social" rel="nofollow" class="social-googleplus" href="https://plus.google.com/share?url={{tpl:TEMPEntryURL encode_url="1"}}"><span>Partager sur Google+</span></a></li>
           <li><a target="social" rel="nofollow" class="social-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{tpl:TEMPEntryURL encode_url="1"}}&amp;title={{tpl:TEMPEntryTitle encode_url="1"}}"><span>Partager sur LinkedIn</span></a></li>
-          <li><a rel="nofollow" class="social-email"  href="mailto:?subject={{tpl:TEMPEntryTitle encode_url="1"}}&amp;body={{tpl:TEMPEntryURL encode_url="1"}}"><span>Enovyer par e-mail</span></a></li>
+          <li><a rel="nofollow" class="social-email"  href="mailto:?subject={{tpl:TEMPEntryTitle encode_url="1"}}&amp;body={{tpl:TEMPEntryURL encode_url="1"}}"><span>Envoyer par e-mail</span></a></li>
           <li><a target="social" rel="nofollow" class="social-flattr" href="https://flattr.com/submit/auto?user_id=dascritch&amp;url={{tpl:TEMPEntryURL encode_url="1"}}&amp;title={{tpl:TEMPEntryTitle encode_url="1"}}"><span>Soutenir avec un Flattr</span></a></li>
         </ul>
-      
+
 		<p class="post-info">
 			<tpl:AuthorNotXavier><span class="post-author">par {{tpl:EntryAuthorLink}}, </span></tpl:AuthorNotXavier>
 			<time class="post-date" datetime="{{tpl:EntryDate iso8601="1"}}"><a href="{{tpl:UrlDate quand="mois"}}">{{tpl:EntryDateHumaine}}</a> à {{tpl:EntryTime}}.</time>
-          
+
 			<!-- # span class="permalink"><a href="{{tpl:EntryURL}}">{{tpl:lang Permalink}}</a></span -->
 			<tpl:EntryIf has_category="1">
-				<span class="post-cat"><tpl:EntryCategoriesBreadcrumb><a 
-				href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a> › </tpl:EntryCategoriesBreadcrumb><a 
+				<span class="post-cat"><tpl:EntryCategoriesBreadcrumb><a
+				href="{{tpl:CategoryURL}}">{{tpl:CategoryTitle encode_html="1"}}</a> › </tpl:EntryCategoriesBreadcrumb><a
 				href="{{tpl:EntryCategoryURL}}">{{tpl:EntryCategory encode_html="1"}}</a></span>
 			</tpl:EntryIf>
 		</p>
-		
+
 		<tpl:EntryTags>
 			<tpl:TagsHeader>
 				<ul class="post-tags">
 			</tpl:TagsHeader>
-				<li><a href="{{tpl:TagURL}}">{{tpl:TagID}}</a></li> 
+				<li><a href="{{tpl:TagURL}}">{{tpl:TagID}}</a></li>
 			<tpl:TagsFooter>
 				</ul>
 			</tpl:TagsFooter>
 		</tpl:EntryTags>
-      
+
 	</div>
-	
+
 	<!-- # - -BEHAVIOR- - publicEntryBeforeContent -->
 	{{tpl:SysBehavior behavior="publicEntryBeforeContent"}}
-	
 	<!-- # Entry with an excerpt -->
 	<tpl:EntryIf extended="1">
 		<div class="post-excerpt">
 	    	{{tpl:EntryExcerpt}}
-	    
+
 		    <!-- # Attachments -->
 			<tpl:Attachments>
 				<tpl:AttachmentsHeader>
@@ -95,9 +94,9 @@
 						<div class="comment-content">
 							<!-- # - -BEHAVIOR- - publicCommentBeforeContent -->
 							{{tpl:SysBehavior behavior="publicCommentBeforeContent"}}
-							
+
 							{{tpl:CommentContent}}
-							
+
 							<!-- # - -BEHAVIOR- - publicCommentAfterContent -->
 							{{tpl:SysBehavior behavior="publicCommentAfterContent"}}
 						</div>
@@ -109,10 +108,10 @@
 	</tpl:Comments>
 </tpl:EntryIf>
 
-<tpl:EntryIf comments_active="1">    
+<tpl:EntryIf comments_active="1">
 	{{tpl:include src="_form_comment.html"}}
 </tpl:EntryIf>
-  
+
 <tpl:EntryIf pings_active="1">
 	<div id="ping-url">
 		<h3>{{tpl:lang Add ping}}</h3>
