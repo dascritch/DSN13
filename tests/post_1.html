@@ -3,20 +3,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="ROBOTS" content="INDEX, FOLLOW" />
-	
-	<title>Pourquoi je porte un treillis customisé - da scritch net works</title>
-	<meta name="description" lang="fr" content="Quel sens a ce costume que j'arbore aux conférences sur le web, ce que signifient les badges et décorations et surtout… est-ce ridicule ou aide-t-il à porter un message ? Je vous" />
+
+	<title>Sniffeur d'ancre - da scritch net works</title>
+	<meta name="description" lang="fr" content="Un petit utilitaire qui va plaire à plein de rédacteurs techniques. Dispo en javascript vanilla, ou sinon en add-on pour Firefox*. J'aime bien écrire des articles techniques. Sur" />
 	<meta name="author" content="Da Scritch" />
 
-  
 	<link rel="contents" href="http://dascritch.net/archive" title="Archives" />
-	
-	<link rel="prev" href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables" title="Pourquoi nous collons des stickers sur nos portables" />
-	<link rel='canonical' href='Pourquoi-je-porte-un-treillis-customise' />
-	<link rel='shortlink' href='http://dascritch.net/m/2233' />
+	<link rel="next" href="http://dascritch.net/post/2014/06/26/%C3%80-l-heure-Californienne-IO14" title="À l'heure Californienne : Google I/O 14" />
+	<link rel="prev" href="http://dascritch.net/post/2014/06/18/Proposals-about-img" title="Proposals about ‹img /›" />
+	<link rel='canonical' href='http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre' />
+	<link rel='shortlink' href='http://dascritch.net/m/2247' />
 
-	<!-- 
-	Merci de vous intéresser au code source généré. 
+	<!--
+	Merci de vous intéresser au code source généré.
 	Mais peut-être est-il intéressant aussi de regarder le code source ?
 	Ou plus simplement, de discuter vos points de vues ?
 	Prenez contact avec moi, n'hésitez pas !
@@ -28,12 +27,8 @@
 <!-- compat media queries -->
 <!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-	<link rel="stylesheet" type="text/css" href="/themes/DSN13/ie.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="http://dascritch.net/themes/DSN13/ie.css" media="screen" />
 <![endif]-->
-
-<!--
-<link rel="stylesheet" type="text/css" href="http://dascritch.net/themes/DSN13/compressed.css?032014" />
--->
 <link rel="stylesheet" type="text/css" href="../compressed.css" />
 
 <!--
@@ -44,439 +39,356 @@
 -->
 <script type="text/javascript" src="../compressed.js"></script>
 
-
 <link rel="shortcut icon" type="image/x-icon" href="http://dascritch.net/nav/favicon/dasmile.png" />
 <link rel="search" type="application/opensearchdescription+xml" title="Da Scritch blog" href="http://dascritch.net/blogfind.xml" />
-<link rel="search" href="http://dascritch.net/search.php" title="google search sur tout le site" />
 
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://dascritch.net/dotclear/rss.php" />
 
 <link rel="contents" href="http://dascritch.com/" title="Com Works" />
 <link type="text/plain" rel="author" href="http://dascritch.net/humans.txt" />
-
-<meta name="twitter:site" content="@dascritch">
-<meta property="og:title" content="Pourquoi je porte un treillis customisé" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://dascritch.net/post/2014/05/14/Pourquoi-je-porte-un-treillis-customise" />
-<meta property="og:image" content="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-closeup-badges_s.jpg" />
-<meta property="og:description" content="Quel sens a ce costume que j'arbore aux conférences sur le web, ce que signifient les badges et décorations et surtout… est-ce ridicule ou aide-t-il à porter un message ? Je vous" />
-<meta property="article:published_time" content="2014-05-14T10:29:00+02:00" />
-<meta property="article:section" content="gizmo" /><meta property="article:tag" content="avatardisme, communauté, design, dotclear, dresscode, drm, en costume, libre, ordinateur, photo, politique, privacy, self-business, " />
-<!-- Google +1 -->
-<meta itemprop="name" content="Pourquoi je porte un treillis customisé" />
-<meta itemprop="description" content="Quel sens a ce costume que j'arbore aux conférences sur le web, ce que signifient les badges et décorations et surtout… est-ce ridicule ou aide-t-il à porter un message ? Je vous" />
-<meta itemprop="image" content="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-closeup-badges_s.jpg" />
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="http://dascritch.net/post/2014/05/14/Pourquoi-je-porte-un-treillis-customise" />
-<meta name="twitter:title" content="Pourquoi je porte un treillis customisé" />
-<meta name="twitter:description" content="Quel sens a ce costume que j'arbore aux conférences sur le web, ce que signifient les badges et décorations et surtout… est-ce ridicule ou aide-t-il à porter un message ? Je vous" />
-<meta name="twitter:image:src" content="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-closeup-badges_s.jpg"/>
 <meta name="twitter:site" content="@dascritch" />
-<meta name="twitter:creator" content="@dascritch" />
+	<meta property="og:title" content="Sniffeur d'ancre" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre" />
+	<meta property="og:image" content="http://dascritch.net/vrac/.blog2/webdev/.1406-AnchorsReveal-minisom_s.jpg" />
+	<meta property="og:description" content="Un petit utilitaire qui va plaire à plein de rédacteurs techniques. Dispo en javascript vanilla, ou sinon en add-on pour Firefox*. J'aime bien écrire des articles techniques. Sur" />
+	<meta property="article:published_time" content="2014-06-24T15:40:00+02:00" />
+	<meta property="article:section" content="webdev" />	<meta property="article:tag" content="css, html, javascript, libre, xml, " />
+	<!-- Google +1 -->
+	<meta itemprop="name" content="Sniffeur d'ancre" />
+	<meta itemprop="description" content="Un petit utilitaire qui va plaire à plein de rédacteurs techniques. Dispo en javascript vanilla, ou sinon en add-on pour Firefox*. J'aime bien écrire des articles techniques. Sur" />
+	<meta itemprop="image" content="http://dascritch.net/vrac/.blog2/webdev/.1406-AnchorsReveal-minisom_s.jpg" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:url" content="http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre" />
+	<meta name="twitter:title" content="Sniffeur d'ancre" />
+	<meta name="twitter:description" content="Un petit utilitaire qui va plaire à plein de rédacteurs techniques. Dispo en javascript vanilla, ou sinon en add-on pour Firefox*. J'aime bien écrire des articles techniques. Sur" />
+	<meta name="twitter:image:src" content="http://dascritch.net/vrac/.blog2/webdev/.1406-AnchorsReveal-minisom_s.jpg"/>
+	<meta name="twitter:site" content="@dascritch" />
+	<meta name="twitter:creator" content="@dascritch" />
 
 </head>
 <body class="dc-post">
 
 <ul id="breadcrumb">
-  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/" itemprop="url"><span itemprop="title">da scritch</span></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/" itemprop="url"><span itemprop="title">da scritch</span></a></li>
 	<li>›</li>
-  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/page/1" itemprop="url"><span itemprop="title">blog zone</span></a></li>
 	<li>›</li>
-  <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/category/Gizmo" itemprop="url"><span itemprop="title">gizmo</span></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/category/Webdev" itemprop="url"><span itemprop="title">webdev</span></a></li>
 	<li>›</li>
-	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="Pourquoi-je-porte-un-treillis-customise" itemprop="url"><strong itemprop="title">Pourquoi je porte un treillis customisé</strong></a></li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre" itemprop="url"><strong itemprop="title">Sniffeur d'ancre</strong></a></li>
 </ul>
 
 	<div id="page">
 
-		
+
 		<header id="header">
 
 	<div id="top">
-
-
-		<h1><a href="http://dascritch.net/"><span><img src="http://dascritch.net/dastyle/entete1.png" alt="da scritch net works" /></span></a></h1>
+		<h1><a href="http://dascritch.net/"><span><img src="http://dascritch.net/themes/DSN13/img/entete1.svg" alt="da scritch net works" /></span></a></h1>
 		<p id="blogdesc" class="nosmall">Ma vie et tous ses ridicules petits à-côtés : les bd que je lis et mes émissions “Supplément Week-End” sur Radio FMR</p>
 	</div>
-	
+
 	<ul id="prelude">
-		<li class="nosmall"><a href="Pourquoi-je-porte-un-treillis-customise#main">Aller au contenu</a></li>
-		<li><a href="Pourquoi-je-porte-un-treillis-customise#blognav">Aller au menu</a></li>
-		<li><a href="Pourquoi-je-porte-un-treillis-customise#search">Aller à la recherche</a></li>
+		<li class="nosmall"><a href="#main">Aller au contenu</a></li>
+		<li><a href="#blognav">Aller au menu</a></li>
+		<li><a href="#search">Aller à la recherche</a></li>
 	</ul>
 
 	
 	
-	
+
 	<ul id="sn-top" class="simple-menu supranav nosmall">
-		<li class="li3">
-			<a title="curriculum vitæ" href="https://www.linkedin.com/in/dascritch" class="nobackground"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-multimedia-performance-semantics-storage.png" alt="curriculum vitæ" style="width:130px;height:32px"></a>
+		<li class="li3" id="html5badges">
+			<a title="curriculum vitæ" href="https://www.linkedin.com/in/dascritch" class="nobackground"><img src="http://dascritch.net/themes/DSN13/img/html5-badge-h-css3-multimedia-performance-semantics-storage.png" alt="curriculum vitæ"></a>
 		</li>
-		<li class="li2">
-			<a title="DaScritch.com" href="http://dascritch.com" class="nobackground"><img src="http://dascritch.net/statiques/cv-dascritchcom.png" alt="DaScritch.com"></a>
+		<li class="li2" id="dascritchtcom">
+			<a title="DaScritch.com" href="http://dascritch.com" class="nobackground"><img src="http://dascritch.net/themes/DSN13/img/entete1.svg#com" alt="DaScritch.com"></a>
 		</li>
-		<li class="li1 li-first">
-			<a title="Le Supplément Week-End, sur radio FMR" href="http://supplementweekend.fr" class="nobackground"><img src="http://dascritch.net/statiques/swe-saison5-small.png" alt="Le Supplément Week-End, sur radio FMR"></a>
+		<li class="li1 li-first" id="supplementweekend">
+			<a title="Le Supplément Week-End, sur radio FMR" href="http://supplementweekend.fr" class="nobackground"><img src="http://dascritch.net/themes/DSN13/img/banniereswe-hd.png" alt="Le Supplément Week-End, sur radio FMR"></a>
 		</li>
 		<li class="li4">
 			<a href="http://dascritch.net/archive">Archives</a>
 		</li>
-      <li>
-        <a title="Me donner un flattr" href="https://flattr.com/submit/auto?user_id=dascritch&amp;url=http%3A%2F%2Fdascritch.net" target="_blank"><img src="http://dascritch.net/themes/DSN13/img/flattr-badge-large.png" alt="Flattr this" /></a>
-      </li>
-
 	</ul>
 
 </header>
 		<div id="wrapper">
-			
+
 			<main id="main">
 				<div id="content">
-					
+
 					<p class="navlinks topnl">
 						<a href="http://dascritch.com/">Note : Si tu cherches un développeur web sur Toulouse, je suis disponible</a>
 					</p>
-					
-					<article id="p2233" class="post simple article" role="article">
-	<h2 class="post-title">Pourquoi je porte un treillis customisé</h2>
-	
+
+					<article id="p2247" class="post simple article" role="article">
+
+	<h2 class="post-title">Sniffeur d'ancre</h2>
 	<div class="post-attr">
+	    <ul class="post-social">
+          <li><a target="social" rel="nofollow" class="social-twitter"  href="https://twitter.com/share?text=Sniffeur+d%27ancre&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre&amp;via=dascritch"><span>Partager sur Twitter</span></a></li>
+          <li><a target="social" rel="nofollow" class="social-facebook" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre&amp;t=Sniffeur+d%27ancre"><span>Partager sur Facebook</span></a></li>
+          <li><a target="social" rel="nofollow" class="social-googleplus" href="https://plus.google.com/share?url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre"><span>Partager sur Google+</span></a></li>
+          <li><a target="social" rel="nofollow" class="social-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre&amp;title=Sniffeur+d%27ancre"><span>Partager sur LinkedIn</span></a></li>
+          <li><a rel="nofollow" class="social-email"  href="mailto:?subject=Sniffeur+d%27ancre&amp;body=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre"><span>Envoyer par e-mail</span></a></li>
+          <li><a target="social" rel="nofollow" class="social-flattr" href="https://flattr.com/submit/auto?user_id=dascritch&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F06%2F24%2FSniffeur-d-ancre&amp;title=Sniffeur+d%27ancre"><span>Soutenir avec un Flattr</span></a></li>
+        </ul>
 
-<style>
-.post-social a {
-	position : relative;
-	display : inline-block;
-	width : 32px;
-	height : 32px;
-	background-image : url(../img/social.png);
-	background-repeat : no-repeat;
-}
-.post-social span {
-	display:none;
-}
-.post-social a:hover span {
-	background-color : inherit;
-	position : absolute;
-	display : block;
-	bottom : 32px;
-	padding : 4px 8px;
-	color : white;
-	white-space : pre;
-}
-
-.social-twitter {
-	background-color: #4DB5F4 !important;
-	background-position: -64px 0;
-}
-.social-facebook {
-	background-color: #5974CC !important;
-	background-position: -32px 0;
-}
-.social-googleplus {
-	background-color: #E15646 !important;
-	background-position: -96px 0;
-}
-.social-linkedin {
-	background-color: #3280C2 !important;
-	background-position: 0 0;
-}
-.social-email {
-	background-color: #1DCE9A !important;
-	background-position: -128px 0;
-}
-.social-flattr {
-	background-color: #91BC5D !important;
-	background-position: -160px 0;
-}
-.social-github {
-	background-color: #91BC5D !important;
-	background-position: -192px 0;
-}
-@media print , (min-resolution: 1.01dppx) {
-	.post-social a {
-		background-image : url(../img/social.svg);
-	}
-}
-@media (max-width: 1279px) {
-	.post-social a:hover span {
-		right : 0;
-	}
-}
-
-</style>
-
-<ul class="post-social">
-  <li><a target="social" class="social-twitter" rel="nofollow" href="https://twitter.com/share?text=Pourquoi+je+porte+un+treillis+customis%C3%A9&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise&amp;via=dascritch"><span>Partager sur Twitter</span></a></li> 
-  <li><a target="social" class="social-facebook" rel="nofollow" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise&amp;t=Pourquoi+je+porte+un+treillis+customis%C3%A9"><span>Partager sur Facebook</span></a></li>
-  <li><a target="social" class="social-googleplus" rel="nofollow" href="https://plus.google.com/share?url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise"><span>Partager sur Google+</span></a></li>
-  <li><a target="social" class="social-linkedin" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise&amp;title=Pourquoi+je+porte+un+treillis+customis%C3%A9"><span>Partager sur LinkedIn</span></a></li>
-  <li><a rel="nofollow" class="social-email" href="mailto:?subject=Pourquoi+je+porte+un+treillis+customis%C3%A9&amp;body=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise"><span>Envoyer par e-mail</span></a></li>
-   <li><a rel="nofollow" class="social-flattr" href="mailto:?subject=Pourquoi+je+porte+un+treillis+customis%C3%A9&amp;body=http%3A%2F%2Fdascritch.net%2Fpost%2F2014%2F05%2F14%2FPourquoi-je-porte-un-treillis-customise"><span>Soutenir avec un Flattr</span></a></li>
-</ul>
-
-      
 		<p class="post-info">
-						<span class="post-date"><a href="http://dascritch.net/blog.php/archive/2014/05"><abbr title="14 mai">mercredi dernier</abbr></a> à 10:29.</span>
+						<time class="post-date" datetime="2014-06-24T15:40:00+02:00"><a href="http://dascritch.net/blog.php/archive/2014/06">le mardi 24 juin 2014</a> à 15:40.</time>
 
-							<span class="post-cat"><a 
-				href="http://dascritch.net/category/Gizmo">Gizmo</a></span>
+							<span class="post-cat"><a
+				href="http://dascritch.net/category/Webdev">Webdev</a></span>
 					</p>
-		
+
 									<ul class="post-tags">
-							<li><a href="http://dascritch.net/tag/avatardisme">avatardisme</a></li> 
-												<li><a href="http://dascritch.net/tag/communaut%C3%A9">communauté</a></li> 
-												<li><a href="http://dascritch.net/tag/design">design</a></li> 
-												<li><a href="http://dascritch.net/tag/dotclear">dotclear</a></li> 
-												<li><a href="http://dascritch.net/tag/dresscode">dresscode</a></li> 
-												<li><a href="http://dascritch.net/tag/drm">drm</a></li> 
-												<li><a href="http://dascritch.net/tag/en%20costume">en costume</a></li> 
-												<li><a href="http://dascritch.net/tag/libre">libre</a></li> 
-												<li><a href="http://dascritch.net/tag/ordinateur">ordinateur</a></li> 
-												<li><a href="http://dascritch.net/tag/photo">photo</a></li> 
-												<li><a href="http://dascritch.net/tag/politique">politique</a></li> 
-												<li><a href="http://dascritch.net/tag/privacy">privacy</a></li> 
-												<li><a href="http://dascritch.net/tag/self-business">self-business</a></li> 
+							<li><a href="http://dascritch.net/tag/css">css</a></li>
+												<li><a href="http://dascritch.net/tag/html">html</a></li>
+												<li><a href="http://dascritch.net/tag/javascript">javascript</a></li>
+												<li><a href="http://dascritch.net/tag/libre">libre</a></li>
+												<li><a href="http://dascritch.net/tag/xml">xml</a></li>
 							</ul>
-					      
+					
 	</div>
 
 	
-	  <div class="post-excerpt">
-    	Quel sens a ce costume que j'arbore aux conférences sur le web, ce que signifient les badges et décorations et surtout… est-ce ridicule ou aide-t-il à porter un message ?
+			<div class="post-excerpt">
+	    	Un petit utilitaire qui va plaire à plein de rédacteurs techniques. Dispo en javascript vanilla, ou sinon en add-on pour Firefox*.
+			
 
-
-  </div>
-	
-	
-	<div class="post-content"><p>
-<a href="Pourquoi-je-porte-un-treillis-customise#remerciements"><img class="r" src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-closeup-badges_s.jpg" alt="" /></a>
-Je vous parlais <a href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables">hier de la puissance des autocollants sur les capots d'ordinateurs portables</a>.<br />
-Reprenez cet article, remplacez <q>sticker</q> par <q>badge</q> et <q>ordinateur</q> par <q>vêtement</q>. Vous verrez, ça marche presque pareil&nbsp;! La différence, c'est que vous pouvez ne pas les arborer en permanence, et donc correspondre plus à un contexte. Eh ben <a href="http://dascritch.net/post/2013/06/05/Oh-mince%2C-Paris-Web-m-invite...">au dernier Paris Web, j'ai voulu aller plus loin</a>&nbsp;: à la fois <strong>support de conférence, performance scénique et expression de compétences et de valeurs</strong>.<br />
-Et comme j'ai toujours été attiré par <a href="http://dascritch.net/?q=v%C3%AAtir">le concept de <q>vêtement intelligent</q></a>.
+		</div>
+		<div class="post-content"><p>
+<strong>J'aime bien écrire des articles techniques</strong>. Sur <a href="http://dascritch.net/post/2014/03/25/Histoires-en-img">les images</a>, <a href="http://dascritch.net/post/2012/03/06/Des-emojis-dans-l-Unicode-1">les emoji</a>, <a href="http://dascritch.net/post/2008/10/21/Psychanalyse-du-clavier-la-premiere-consultation">le clavier</a> et autres <a href="http://dascritch.net/post/2011/05/16/Sony%2C-Playstation-Network-%3A-N%C3%A9gligence-caract%C3%A9ris%C3%A9e-%281/3%29">analyses peu pertinentes</a>…
 </p>
 <p>
-Aujourd'hui, je vous explique pourquoi <a href="http://sudweb.fr/2014/">j'assisterai à ce Sud Web</a> en veste militaire “arrangée”.
-</p>
-
-<h3 id="cyberwarfare">Internet est en guerre</h3>
-<p>
-Contre <a href="http://www.theguardian.com/world/2010/may/23/us-appoints-cyber-warfare-general"> des super-puissances militaires</a>, contre <a href="http://www.theguardian.com/media-network/partner-zone-infosecurity/what-is-the-syrian-electronic-army">des groupes terroristes</a>, contre de <a href="http://www.newyorker.com/online/blogs/elements/2014/04/the-end-of-net-neutrality.html">très grandes entreprises</a>, contre <a href="http://www.rtl.fr/actualites/info/politique/article/europeennes-2014-jean-vincent-place-veut-une-loi-contre-les-injures-sur-les-reseaux-sociaux-7771893002">des partis politiques</a>, contre <a href="http://www.sacd.fr/La-SACD-se-rejouit-de-la-mobilisation-reussie-lors-du-Forum-de-Chaillot-les-4-et-5-avril-qui-a-permis-de-definir-une-strategie-offensive-pour-construi.3800.0.html">des corporatismes inquiétants</a>, contre <a href="http://www.cracked.com/funny-2033-russian-business-network/">des organisations mafieuses</a>.
-</p>
-<p>
-Je dois rappeler à mes confrères que nous sommes des victimes collatérales. Pourtant, nous avons la puissance de nous défendre. C'était l'idée que je voulais passer dans <a href="http://dascritch.net/post/2013/12/19/Vers-l-engagement-politique-%C3%A0-Paris-Web">ma conférence au dernier Paris Web</a>.
-</p>
-<p>
-Or, je me disais que présenter <a href="http://korben.info/interview-de-jeremie-zimmermann.html">une tête de zapatiste comme Jérémie Zimmermann</a> ou des <a href="http://www.fdn.fr/Interview-a-l-ARCEP.html">cravates de vendeur de caravane comme Benjamin Bayart</a> soit raccord avec l'image que je souhaitais laisser, <a href="https://twitter.com/marshallhonorof/status/386109946976567296">Je me voyais encore plus mal dans un <em>cosplay</em> <em>mash-up</em> des deux</a>. En fait, je voulais plus répondre au concept de <strong><em>cyber warfare</em> (guerre numérique)</strong>, à <a href="http://www.reuters.com/article/2014/05/12/us-cyber-summit-nsa-rogers-idUSBREA4B0XU20140512">CE genre de photo</a>&nbsp;:
-</p>
-<figure class="c">
-<a href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-AmiralRogers.jpg" rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-AmiralRogers_s.jpg" alt="" /></a>
-<figcaption>
-L'Amiral Michael S. Rogers, directeur de la NSA.<br />
-<small><a href="http://www.nsa.gov/about/leadership/bio_rogers.shtml">Source : la NSA elle-même, image libre de droit</a></small>
-</figcaption>
-</figure>
-
-<p>
-J'ai donc eu l'idée de confectionner ce support de conférence bien particulier.<br />
-J'en avais <a href="http://dascritch.net/post/2013/10/09/Making-of-d-un-orateur-%C3%A0-Paris-Web#costume">fait le buzz</a>, mais je n'étais pas très sûr de son impact, à savoir s'il allait bouffer mon discours, ou le ridiculiser. Mais il fallait le faire <a href="http://dascritch.net/post/2013/10/11/Pour-la-France">pour la France</a><br />
-Si j'étais encore intimidé de le porter dans le Très Saint Palais Brongniart, mes doutes se sont dissipés quand j'ai enfin croisé IRL <a href="http://www.glazman.org/weblog/">Daniel Glazman</a>&nbsp;: «&nbsp;<em>Ah Xavier&nbsp;! Enfin je te… Oh woah, <strong>tu claques&nbsp;!</strong></em>&nbsp;»
-</p>
-<p>
-<em><a href="https://www.flickr.com/photos/franck-paul/10357472815/in/set-72157636709367005/">Touché !</a> *</em>
-</p>
-<p>
-<small>* en Français dans le texte</small>
-</p>
-<h3 id="pistes">Les pistes</h3>
-<p>
-Un t-shirt, c'est bien beau, mais la place est limitée.
-</p>
-<figure class="c">
-<a href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-LegalizeTable.jpg"  rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-LegalizeTable_s.jpg" alt="Legalize &lt;table&gt; and spacer.gif too" /></a>
-<figcaption>
-Anonyme arborant un t-shirt fortement revendicatif. À Paris Web, le fou.
-</figcaption>
-</figure>
-<p>
-En pratique, on ne voit qu'un seul t-shirt à la fois. On peut évidemment jouer sur la durée et le changement régulier de t-shirts, mais les personnes qui ne vous voient que rarement, et en général en hiver, auront moins d'informations sur vous par ce biais.
-</p>
-<p>
-<a rel="lightbox[badges]" class="l" href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-OncleTom.jpg"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-OncleTom_s.jpg" alt="" /></a>
-Le très élégant <a href="https://oncletom.io/">Thomas Parisot</a> a une solution intelligente, mais dont je n'ai pas pensé à immortaliser&nbsp;: Notre très swinging londonien met ses badges sur la lanière de ses sacs. Ici, une photo issue du premier Sud Web où il arborait déjà sa bretelle à épinglettes.
-</p>
-<p><a class="r" href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-EcussonFirefox.jpg" rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-EcussonFirefox_s.jpg" alt="" /></a>
-J'ai un blouson Celio Sport en nylon, très léger qui avait la propriété de bien isoler de la pluie, de laisser passer la transpiration. Il se plie très bien dans un sac et se déplie sans être froissé . Il a un très chouette design et de faire encore plus cosmonaute quand j'ai collé un magnifique patch Firefox. Mais à force de le porter, il s'est usé. Je l'ai donc “retiré de la circulation”. Et le tissu (polyamide pour l'extérieur, coton pour la doublure) se marque très vite en portant des badges et des pin's. Malheureusement, il n'a jamais été ré-édité.
-</p>
-<p>
-D'ailleurs, si quelqu'un a ce genre de patch Firefox ou autre, je suis preneur, sinon, il faudra que je le <kbd>^</kbd>+<kbd>X</kbd> , <kbd>^</kbd>+<kbd>V</kbd> en découpant et recousant. Pas génial.
-</p>
-<h3 class="cl" id="inspirations">Mes inspirations</h3>
-<o>
-Les romans cyberpunks de William Gibson, les <a href="http://www.supermandolini.com/#/accessories/pins/">médailles de vétéran de jeux vidéos</a>, les uniformes des cyber-militaires du Pentagone et bien évidemment celles des haut-gradés de n'importe quelle dictature fascistes ou/et communistes.
-</p>
-<figure class="c">
-<a href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-CoreeDuNord.jpg"  rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-CoreeDuNord_m.jpg" alt="" /></a>
-<figcaption>
-Les palmes académiques revenant à <a href="http://www.uksaabs.co.uk/UKS/download/file.php?id=51716&amp;mode=view">ces hiérarques de la République Démocratique de Corée</a>, dont les batailles gagnées vont jusqu'aux genoux.
-</figcaption>
-</figure>
-<p>
-À ce sujet, savez-vous ce qui peut vous <a href="http://www.editions-delcourt.fr/catalogue/bd/la_faute_une_vie_en_coree_du_nord">coûter de ne pas porter un badge en Corée du Nord</a>&nbsp;?
-</p>
-
-<h3 id="ingredients">Ingrédients</h3>
-<p>
-Pour ce qui est des matières premières, ce fut facile&nbsp;: j'avais depuis un bail ce treillis urban/hiver acheté dans un surplus militaire à vil prix. Costaud, épais, en coton, il est aussi <strong>juste assez rigide pour porter le poids des badges</strong>, et un peu chaud. Je le mets surtout pour rappeler à <a href="http://www.radio-fmr.net">cette immonde radio de gauchos</a> que je suis leur caution de droite.
-<figure class="c">
-<a rel="lightbox[badges]" href="http://dascritch.net/vrac/.blog1/radio/ReuAvril06/PICT0111.JPG"><img src="http://dascritch.net/vrac/.blog1/radio/ReuAvril06/.PICT0111_m.jpg" alt="" /></a>
-<figcaption>
-Ici, avec le <a href="http://dascritch.net/post/2006/04/06/365-fmr-a-l-il">Präesident Diktator Generalovitch de Radio FMR, son Fondatorissime Philippe Frézières</a> en 2006.
-</figcaption>
-</figure>
-
-<p>
-J'ai démonté deux <a href="http://dascritch.net/post/2008/10/21/Psychanalyse-du-clavier-la-premiere-consultation">claviers après les avoir violemment psychanalysés</a>. Je comptais utiliser les touches comme médailles amovibles et mettre des messages rigolos. Mais vu le travail pour tout monter, j'ai préférer abandonner.
-</p>
-<p>
-<a class="l" href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-ColleEpaulettes.jpg"  rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-ColleEpaulettes_s.jpg" alt="" /></a>
-
-En farfouillant dans mon fourbi de pièces détachées à gauche après la caisse du chat, j'ai trouvé de la nappe IDE et de la barrette de RAM.<br />
-Une barrette de RAM par épaule risquait de faire trop long, et surtout, je n'avais qu'une seule barrette. On l'a coupé à la sauvage au Tetalab. Une barrette standard est composée de 8 puces. 8÷2&nbsp;=&nbsp;4, cela donne <strong>le grade de Commandant</strong>. Je les ai monté sur des nappes IDE, dont je montre le connecteur, la partie coupée est caché sous le col de la veste et ça tombe bien car la nappe a tendance à rester courbé si on l'a plié.
-</p>
-<p>
-La plaque nominative est en fait une bête plaque de portier sérigraphiée chez le cordonnier. C'est propre, exactement aux dimensions de celles des généraux américains et le verso est autocollant.
-</p>
-<p>
-<a class="r" rel="lightbox[badges]" href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-skull.jpg" title=""><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-skull_s.jpg" alt="" /></a>
-Évidemment, les magnifiques skull-badges <a href="http://snootlab.com/">conçus par Snootlab</a> pour <a href="http://thsf.tetalab.org/2012/">l'édition 2012 du THSF</a> devaient avoir une place de choix&nbsp;: la place des écussons sur les avant-bras. À mon grand malheur, j'ai malencontreusement grillé la programmation des puces, ce qui fait qu'il n'y a aucun effet dessus, ni le zombie tag-game, ni le mode démo. C'est vraiment dommage.
+Mes textes peuvent parfois devenir immensément longs. Parce que du coup, en me documentant, j'apprends, j'ai envie de mettre encore plus de choses, je rajoute des illustrations, et puis encore des choses… Et là, j'explose, je dois atomiser mon brouillon d'article en plusieurs éléments d'un dossier.
 </p>
 
 <p>
-La plaque, les épaulettes et les écussons d'épaules sont <strong>montés sur scratch pour pouvoir passer la veste en machine</strong> sans bougner les décors, ou pour faire plus “discret” dans les transports en commun.
+<strong>J'aime bien aussi mettre plein de liens</strong>. Oui, je sais, vous ne les cliquez pratiquement jamais mes foutus liens que j'essaie à chaque fois  de choisir de façon pertinente.
+</p>
+<p>
+J'essaie de trouver des liens vers des articles de référence. Malheureusement, souvent <strong>ces articles sont longs, parfois beaucoup plus longs que les miens</strong>. Par exemple, <a href="http://www.whatwg.org/specs/web-apps/current-work/">certains documents dépassent les 100&nbsp;000 caractères</a>, à se demander si on a vraiment un document de specs ou juste un <em>burning performance test…</em>
+</p>
+
+<h3 id="voilapourquoi">Voilà pourquoi on met des ancres</h3>
+<p>
+Vous remarquerez qu'en règle général, chaque chapitre de mon blog a une ID, un index, une ancre. En général sur le titre, comme suit&nbsp;:
+</p>
+<p>
+<code>
+&lt;<strong>h3 <em>id</em>="<i>voilapourquoi</i>"</strong>&gt;Voilà pourquoi
+</code>…
+</p>
+<p>
+Le problème, c'est que souvent, on a pas de mini-sommaire de la page, donc il faut le trouver soit en lisant le code source du html (suuper), soit en inspectant la page (suuuper).
 <br />
-D'ailleurs, le fait d'avoir monter en scratch les épaulettes et écussons d'épaules permet d'envisager de les interchanger. Le fait de mettre aussi la plaque d'identité me permet de le louer à <a href="https://www.facebook.com/eugenelawn">des comparses psychopathes</a>.
+C'est si compliqué que ça de mettre un mini-sommaire&nbsp;?!??
 </p>
-<p>
-Je souhaitais mettre en fourragère des nappes SATA, ou sinon en surcouture, mais elles vraiment trop peu souples. Un défaut de conception du standard&nbsp;: l'usage vestimentaire n'a pas été expressément prévu par leurs constructeurs et <a href="http://www.sata-io.org/">l'organisme de standardisation</a>. Quel manque de clairvoyance…
-</p>
-<h3 id="badges">Les badges en détails</h3>
-<p>
-J'ai dû, et je le fait encore, choisir très soigneusement dans ma collec' les badges qui me serviront de décoration. Là aussi, j'en avais un énorme stock, donc je privilégie ceux à double sens.
-</p>
-
-
-<figure class="c cl">
-<a href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-netrunner-badges.jpg" rel="lightbox[badges]"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-netrunner-badges_m.jpg" alt="" /></a>
-
-
+<figure>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1406-AnchorsReveal-minisom.jpg" alt="Mini sommaire de cette page" />
 </figure>
 <p>
-Description des badges <strong>actuellement</strong> arborés, de gauche à droite, de haut en bas&nbsp;: 
+Donc, <strong>des fois, comme ça me les brise</strong>, ben j'ai écrit un petit <em>snippet</em> de code javascript. <a href="https://github.com/dascritch/anchors-reveal/blob/master/data/anchors-reveal.js">Ce petit bout de code</a> fonctionne sur n'importe quel navigateur, pour peu qu'on le lance en mode console dans l'interface de développement. En général, t'appuies sur la touche <kbd>F12</kbd> et tu colles mon code…
 </p>
-<ul>
-<li><a href="http://mozillalabs.com/testpilot">«&nbsp;<em>I'm a Firefox test pilot</em>&nbsp;»</a>&nbsp;: Je surfe souvent Firefox en Nightly, ainsi que d'autres applications. Et le renardeau en tenue d'aviateur très mignon est susceptible de faire craquer les filles&nbsp;;</li>
-<li><em>Watchmen</em>&nbsp;: Parce que la BD d'Alan Moore et de Dave Gibbons est un monument de la littérature moderne, que je ne peux que saluer en tant que critique BD, et aussi parce que la question de Juvénal, «&nbsp;<em>mais qui gardera ces gardiens&nbsp;?</em>&nbsp;» est malheureusement dans nos démocraties d'une actualité brûlante&nbsp;;</li>
-<li><a href="http://dotclear.org"><em>Dotclear</em></a> est un CMS open-source de très grande qualité de code et de sécurité. Et il se trouve que sa communauté et ses développeurs sont <a href="http://dascritch.net/post/2013/08/13/Ma-plus-belle-histoire-avec-Dotclear">des amis très chers depuis 10 ans</a>&nbsp;;</li>
-<li><a href="http://radio-fmr.net"><em>Radio &lt;FMR&gt;</em></a> est une radio associative indépendante d'esprit et de ton, ce qui est malheureusement devenu très rare. Et comme j'y officie depuis 20 ans, mon soutient est normal&nbsp;;</li>
-<li>«&nbsp;<em>Git poule</em>&nbsp;» car le jeu de mots me fait toujours rire, et qu'il est difficile de trouver un outil plus utile et léger, par opposition aux gros IDE/CVS monolithiques&nbsp;;</li>
-<li><em>Homo webus</em> car c'est ma réelle condition dans une imaginaire classification de Linné&nbsp;;</li>
-<li><a href="http://www.nekomix.com/"><em>Neko</em> ou plus exactement <em>Nekomix</em></a> qui est un fanzine délirant avec une équipe très vivace et qui vient de sortir son 9<sup>ème</sup> numéro, parce que j'aime la bd indépendante qui n'est pas bloqué dans une chapelle de genre. Hélas, c'est le marchand de fripes que la plupart des gens connaissent :(&nbsp;;</li>
-<li><a href="http://sudweb.fr"><em>Sud Web</em></a>, mon premier grand frisson dans la communauté du web. Que du bonheur&nbsp;;</li>
-<li><a href="http://mozilla.org/firefox"><em>Firefox</em></a> car pour la première fois, un logiciel open-source est devenu utilisable par n'importe qui, avec un bon esprit, et sans concessions <a href="http://dascritch.net/post/2006/10/13/562-la-seconde-guerre-du-web-n-aura-pas-lieu">après être revenu de très très loin</a>.</li>
-</ul>
-<h3 id="remerciements">Petit bristol et remerciements</h3>
+<figure>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1406-AnchorsReveal-panel-chrome.jpg" alt="Navigateur Chrome" />
+</figure>
 <p>
-<a class="l" rel="lightbox[badges]"  href="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/1405-Stickers-closeup-badges.jpg"><img src="http://dascritch.net/vrac/.blog2/gizmo/1405-Stickers/.1405-Stickers-closeup-badges_m.jpg" alt="" /></a>
-<strong>Treillis de Netrunner</strong>.<br />
-Par Xavier Mouton-Dubosc (2013)
+T'as vu&nbsp;? Je l'ai fait dans Chrome parce que mon code fonctionne sans problème quelque soit le navigateur, pour peu qu'il soit récent et décent. <small>Donc ça exclu… Non, pas Internet Explorer, mais Safari…. pfff… bande de trolleurs</small>.
+<br />
+Sur Firefox, tu peux le faire dans l'ardoise magique (<kbd>⇧Shift</kbd>+<kbd>F4</kbd>) et hop, tu exécutes.
 </p>
 <p>
-Treillis militaire allemand à motif urbain, composants informatiques et électroniques, badges, plaque de porte, scratch, colle néoprène, fil de couture, scotch.<br />
-Photographie d'exemple <a href="http://enflammee.net">par Enflammée</a>.
+Et ça donne ça&nbsp;:
+</p>
+<figure>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1406-AnchorsReveal-demo-chrome.jpg" alt="ancres révélées" />
+</figure>
+<p>
+<strong>Chaque ancre de la page est révélée, et donc je vois immédiatement les liens directs aux chapitres</strong> d'une page. Bonnard.
+</p>
+<h3 id="firefoxaddon">Quitte à le faire pour Firefox…</h3>
+<p>
+Et surtout comme <a href="https://github.com/dascritch/anchors-reveal">j'ai mis le code sur GitHub</a>, je me suis tenté la création d'un add-on pour Firefox. J'avais fait en 2000 des sidebars pour Mozilla, j'avais tenté des addons au moment où Firefox les proposaient, fallait que je me dérouille.<br />
+Donc, j'ai vite choppé <a href="https://developer.mozilla.org/en/Add-ons/SDK">l'add-on SDK</a> entre mes coups de fils, implanté après avoir lu en diagonale, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1029368">rédigé un rapport de bogue</a> sur la VF que je ne voulais pas, charogné une icône Oxygen de KDE, <a href="https://www.youtube.com/watch?v=N4bobZdFYrk">et <strong>roule ma poule&nbsp;!</strong></a>
 </p>
 <p>
-Réalisé en Septembre dernier afin d'être <a href="http://dascritch.net/post/2013/12/19/Vers-l-engagement-politique-%C3%A0-Paris-Web">porté sur la scène de Paris Web 2013</a>.<br />
-Inspiré et dédié à <a href="http://noco.tv/famille/76/nolife/costume-player"><em>Costume Player</em>, la seule émission de couture à la Télévision Française</a>.<br />
-Jérémie Nicolle m'a conseillé sur la colle néoprène, Dusport m'a fourni la plaque sérigraphiée et Megami Yume a designé l'ensemble, dans un but archi intéressé&nbsp;: Porter ledit <a href="http://dascritch.net/post/2014/05/11/Mariage-pirate">costume de pirate informatique à son mariage</a>.
+<strong>Ben c'est fait : <a href="https://addons.mozilla.org/fr/firefox/addon/anchors-reveal/">https://addons.mozilla.org/fr/firefox/addon/anchors-reveal/</a>&nbsp;*.</strong>
 </p>
 <p>
-Dont acte.
+<small>Yes ! Restartless, je ne me refuse rien…</small>
+<br />
+Cela rajoute un bouton on/off dans la barre d'adresse, comme ça&nbsp;:
 </p>
-<p class="cl">
-Alors, chers amis et surtout ceux que je verrais ce week-end à Sud Web, <strong>montrez vos couleurs&nbsp;!</strong>
+<figure>
+<img src="http://dascritch.net/vrac/.blog2/webdev/1406-AnchorsReveal-bouton-firefox.jpg" alt="bouton firefox" />
+</figure>
+<p>
+Et c'est tout.
+</p>
+<p>
+Mais vous pouvez pas savoir comme cela va me faciliter la rédaction. Rogntudju.
+</p>
+<h3 id="avenir">À venir</h3>
+<p>
+D'abord, <a href="https://github.com/dascritch/anchors-reveal/issues">quelques correction de bugs</a>, ensuite je passerais à un add-on adaptant le <a href="http://a.corbet.free.fr/zoodvinssen/"><em>fabulous</em> <strong>Zoodvinsen</strong></a> du <a href="http://hules.free.fr/wmcoincoin/"><em>mythique</em> Wmcoincoin</a> pour toutes les tribunes trollesque genre <a href="https://www.linkedin.com/profile/view?id=6224891&trk=nav_responsive_tab_profile">LinkedIn</a>, <a href="https://plus.google.com/104202051000932810138/posts">Google+</a> ou <a href="https://twitter.com/dascritch">Twitter</a> afin d'améliorer votre productivité. Et ensuite faire <strong>un <a href="http://dotclear.org">Dotclear</a> <em>companion</em></strong>, puisqu'on me demande souvent mes <em>snipets</em> d'édition.
+</p>
+<p>
+Et n'oubliez jamais&nbsp;: avoir des add-ons c'est sympa, mais en abuser ça craint. Désintallez ce que vous n'utilisez plus.
+</p>
+<hr />
+<p id="notabene">
+<a href="https://twitter.com/notabene">* NOTA BENE :</a> J'ai été un peu trop rapide, il faut compter 10 jours avant que l'add-on soit validée dans le “store proprio” de Mozilla.<br />
+Vous avez le droit de ne pas me faire confiance du tout.
 </p></div>
 
 	</article>
 
-	
-    
-		
-		
-	
-	<form action="Pourquoi-je-porte-un-treillis-customise#pr" method="post" id="comment-form">
+						<div id="comments">
+				<h3>5 réactions</h3>
+				<ul>
+											<li id="c10807" class="comment  odd first">
+														<p class="comment-info"><a href="#c10807" class="comment-number">1</a>
+							De <a href="http://borisschapira.com">Boris</a> - 24/06/2014, 16:11						</p>
+						<div class="comment-content">
 
-						
-		<h3>Ajouter un commentaire</h3>
+							
+							<p>Sinon, pour un petit bout de JS, tu peux aussi proposer un bookmarklet... un peu comme ça : <a href="https://gist.github.com/borisschapira/eaac6417a222057d40e9" title="https://gist.github.com/borisschapira/eaac6417a222057d40e9">https://gist.github.com/borisschapi...</a></p>
 
-		
-		<fieldset id="comment-1stline">
-			<p class="field">
-				<input name="c_name" id="c_name" maxlength="255" required="required" type="text" placeholder="Nom ou pseudo&nbsp;:" value="" />
-				<label for="c_name">Nom ou pseudo&nbsp;:</label>
-			</p>
+
+<p>😉</p>
+													</div>
+					</li>
+														<li id="c10808" class="comment me  ">
+														<p class="comment-info"><a href="#c10808" class="comment-number">2</a>
+							De <a href="http://dascritch.net">Da Scritch</a> - 24/06/2014, 16:17						</p>
+						<div class="comment-content">
+
+							
+							<p>Exact, Boris.</p>
+
+
+<p>Hélas, je remarque qu'avec les nouvelles interfaces simplifiées, on n'a plus de “barre de marque-page” visible par défaut, et du coup, il m'était difficile de partager et d'expliquer tous mes snipets dotclear.</p>
+
+
+<p>C'est pour ça qu'une fois que j'avais écris mon ptit code, je l'ai converti en add-on firefox.</p>
+
+
+<p>Add-ons navigateurs, catalogue constructeur proprios, interdiction des liens "javascript:" dans l'URL, moi j'vous dis qu'on est en train de fragmenter le web façon puzzle ...</p>
+													</div>
+					</li>
+														<li id="c10809" class="comment  odd ">
+														<p class="comment-info"><a href="#c10809" class="comment-number">3</a>
+							De <a href="http://nota-bene.org/">Stéphane Deschamps</a> - 24/06/2014, 16:33						</p>
+						<div class="comment-content">
+
+							
+							<p>&gt; Add-ons navigateurs, catalogue constructeur proprios, interdiction des liens "javascript:" dans l'URL, moi j'vous dis qu'on est en train de fragmenter le web façon puzzle ...</p>
+
+
+<p>Tout à fait, et ce n'est pas pour me rassurer.</p>
+													</div>
+					</li>
+														<li id="c10837" class="comment   ">
+														<p class="comment-info"><a href="#c10837" class="comment-number">4</a>
+							De <a href="http://enflammee.net">enflammee</a> - 03/07/2014, 16:38						</p>
+						<div class="comment-content">
+
+							
+							<p>Pas de photo de chaton, cette fois ?</p>
+													</div>
+					</li>
+														<li id="c10855" class="comment me odd ">
+														<p class="comment-info"><a href="#c10855" class="comment-number">5</a>
+							De <a href="http://dascritch.net">Da Scritch</a> - 03/07/2014, 22:08						</p>
+						<div class="comment-content">
+
+							
+							<p>
+Attends, <a href="http://newscatgif.tumblr.com/post/90685347492/when-there-are-new-reporters-in-the-newsroom-gif">je descends dans la newsroom</a> et 
+Cadeau !
+</p>
+<p class="c">
+<img src="http://dascritch.net/vrac/.blog2/webdev/newscatgif-y-en-a-encore.gif" alt="newscatgif-y-en-a-encore.gif" />
+</p>
+<p>
+Et quand y'en a plus, y'en a encore !
+</p>
+													</div>
+					</li>
+						</ul>
+			</div>
 			
-			<p class="field" id="g_site">
-				<input name="c_site" id="c_site" maxlength="255" type="url" placeholder="Site web (facultatif)&nbsp;:" value="" />
-				<label for="c_site">Site web (facultatif)&nbsp;:</label>
-			</p>
-		</fieldset>
+	
 
-		<fieldset id="comment-2ndline">
-			<p class="field">
-				<input name="c_mail" id="c_mail" maxlength="255" required="required" type="email" placeholder="Adresse email&nbsp;:" value=""  />
-				<label for="c_mail">Adresse email&nbsp;:</label>
-			</p>
-			
-			<p style="display:none">
-				<input name="f_mail" maxlength="255" type="text" placeholder="Adresse e-mail&nbsp;:" />
-			</p>
-		</fieldset>
 
-		<fieldset id="comment-3rdline">
-			<p class="field">
-				<textarea name="c_content" id="c_content" rows="7" required="required" placeholder="Commentaire&nbsp;:"></textarea>
-				<label for="c_content">Commentaire&nbsp;:</label>
-				<span class="form-help" id="form-help">Le code HTML est affiché comme du texte et les adresses web sont automatiquement transformées.</span>
-			</p>
-		</fieldset>
+<form action="http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre#pr" method="post" id="comment-form">
 
-				
-		<fieldset id="comment-4thline">
-			<p class="remember" data-remember="Se souvenir de moi sur ce blog">
+	
+	<h3 id="ajouter-un-commentaire">Ajouter un commentaire</h3>
 
-					<button class="preview" id="preview" type="submit" name="preview" value="prévisualiser" data-reel="envoyer">prévisualiser</button>
+	
+	<fieldset id="comment-1stline">
+		<p class="field">
+			<input name="c_name" id="c_name" maxlength="255" required="required" type="text" placeholder="Nom ou pseudo&nbsp;:" value="" />
+			<label for="c_name">Nom ou pseudo&nbsp;:</label>
+		</p>
 
-				<label class="form-help" for="preview">(votre texte sera publié après validation)</label>
-			</p>
-		</fieldset>
-	</form>
-  
-					
+		<p class="field" id="g_site">
+			<input name="c_site" id="c_site" maxlength="255" type="url" placeholder="http://Site web (facultatif)&nbsp;:" value="" />
+			<label for="c_site">http://Site web (facultatif)&nbsp;:</label>
+		</p>
+	</fieldset>
+
+	<fieldset id="comment-2ndline">
+		<p class="field">
+			<input name="c_mail" id="c_mail" maxlength="255" required="required" type="email" placeholder="Adresse email&nbsp;:" value=""  />
+			<label for="c_mail">Adresse email&nbsp;:</label>
+		</p>
+
+		<p style="display:none">
+			<input name="f_mail" maxlength="255" type="text" placeholder="Adresse e-mail&nbsp;:" />
+		</p>
+	</fieldset>
+
+	<fieldset id="comment-3rdline">
+		<p class="field">
+			<textarea name="c_content" id="c_content" rows="7" required="required" placeholder="Commentaire&nbsp;:"></textarea>
+			<label for="c_content">Commentaire&nbsp;:</label>
+			<span class="form-help" id="form-help">Le code HTML est affiché comme du texte et les adresses web sont automatiquement transformées.</span>
+		</p>
+	</fieldset>
+
+	
+	<fieldset id="comment-4thline">
+		<p class="remember" data-remember="Se souvenir de moi sur ce blog">
+
+				<button class="preview" id="preview" type="submit" name="preview" value="prévisualiser" data-reel="envoyer">prévisualiser</button>
+
+			<label class="form-help" for="preview">(votre texte sera publié après validation)</label>
+		</p>
+	</fieldset>
+</form>
+
 					<p class="navlinks">
-						<a href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables"
-						 title="Pourquoi nous collons des stickers sur nos portables" class="prev">← Pourquoi nous collons des stickers sur nos</a> 
-						
+						<a href="http://dascritch.net/post/2014/06/18/Proposals-about-img"
+						 title="Proposals about ‹img /›" class="prev">← Proposals about ‹img /›</a> 
+						 <span>|</span> <a href="http://dascritch.net/post/2014/06/26/%C3%80-l-heure-Californienne-IO14"
+						 title="À l'heure Californienne : Google I/O 14" class="next">À l'heure Californienne : Google I/O 14 →</a>
 					</p>
-					
+
 				</div>
-			</main> 
-			
+			</main>
+
 			<aside id="sidebar">
 	<nav id="blognav">
 
-		<div id="search"><h2><label for="q">Recherche</label></h2><form action="http://dascritch.net/" method="get"><fieldset><p><input type="text" size="10" maxlength="255" id="q" name="q" value="" /> <input type="submit" class="submit" value="ok" /></p></fieldset></form></div><div class="categories"><h2>Catégories</h2><ul><li><a href="http://dascritch.net/category/General">General</a></li><li><a href="http://dascritch.net/category/Vide-grenier">Vide-Grenier</a></li><li><a href="http://dascritch.net/category/Radio">Radio</a></li><li><a href="http://dascritch.net/category/Lu">Lu</a></li><li><a href="http://dascritch.net/category/Vu">Vu</a></li><li><a href="http://dascritch.net/category/Entendu">Entendu</a></li><li><a href="http://dascritch.net/category/Ma-vie-est-une-sitcom">Ma vie est une sitcom</a></li><li><a href="http://dascritch.net/category/Deuxcents-dhumour">2 ¢ d'humour</a></li><li class="category-current"><a href="http://dascritch.net/category/Gizmo">Gizmo</a></li><li><a href="http://dascritch.net/category/Webdev">Webdev</a></li><li><a href="http://dascritch.net/category/Sortons">Sortons</a></li></ul></div>	</nav> <!-- End #blognav -->
+		<div id="search"><h2><label for="q">Recherche</label></h2><form action="http://dascritch.net/" method="get"><fieldset><p><input type="text" size="10" maxlength="255" id="q" name="q" value="" /> <input type="submit" class="submit" value="ok" /></p></fieldset></form></div><div class="categories"><h2>Catégories</h2><ul><li><a href="http://dascritch.net/category/General">General</a></li><li><a href="http://dascritch.net/category/Vide-grenier">Vide-Grenier</a></li><li><a href="http://dascritch.net/category/Radio">Radio</a></li><li><a href="http://dascritch.net/category/Lu">Lu</a></li><li><a href="http://dascritch.net/category/Vu">Vu</a></li><li><a href="http://dascritch.net/category/Entendu">Entendu</a></li><li><a href="http://dascritch.net/category/Ma-vie-est-une-sitcom">Ma vie est une sitcom</a></li><li><a href="http://dascritch.net/category/Deuxcents-dhumour">2 ¢ d'humour</a></li><li><a href="http://dascritch.net/category/Gizmo">Gizmo</a></li><li class="category-current"><a href="http://dascritch.net/category/Webdev">Webdev</a></li><li><a href="http://dascritch.net/category/Sortons">Sortons</a></li></ul></div>	</nav>
 	
 	<div id="blogextra">
 		<div>
@@ -487,24 +399,22 @@ Alors, chers amis et surtout ceux que je verrais ce week-end à Sud Web, <strong
               <li><a href="https://twitter.com/dascritch">Twitter @dascritch</a></li>
               <li><a href="https://plus.google.com/104202051000932810138?rel=author">Google+</a></li>
               <li><a href="https://www.linkedin.com/in/dascritch">LinkedIn</a></li>
+              <li><a href="https://github.com/dascritch">Github</a></li>
 			</ul>
         </div>
 
-		<div class="lastposts"><h2>Derniers billets</h2><ul><li><a href="Pourquoi-je-porte-un-treillis-customise">Pourquoi je porte un treillis customisé</a></li><li><a href="http://dascritch.net/post/2014/05/13/Pourquoi-nous-collons-des-stickers-sur-nos-portables">Pourquoi nous collons des stickers sur nos portables</a></li><li><a href="http://dascritch.net/post/2014/05/12/Bricolages-en-img">Bricolages en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/05/11/Mariage-pirate">Mariage pirate !</a></li><li><a href="http://dascritch.net/post/2014/05/07/Je-suis-un-Bagger">Je suis un Bagger. M'inviteras-tu à Brown Bag Luncher ?</a></li><li><a href="http://dascritch.net/post/2014/05/06/Apr%C3%A8s-la-Crypto-Party-d-Avril">Après la Crypto Party d'Avril</a></li><li><a href="http://dascritch.net/post/2014/04/29/Ressources-en-img">Ressources en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/04/28/%C2%AB-Rock-Stone-1/2-%C2%BB">« Rock &amp; Stone #1/2 »</a></li><li><a href="http://dascritch.net/post/2014/04/26/Suppl%C3%A9ment-Week-End%2C-samedi-26-Avril-2014">Supplément Week-End, samedi 26 Avril 2014</a></li><li><a href="http://dascritch.net/post/2014/04/22/Pourquoi-la-Cryptoparty">Pourquoi la Cryptoparty</a></li></ul></div>		
+		<div class="lastposts"><h2>Derniers billets</h2><ul><li><a href="http://dascritch.net/post/2014/07/18/There-s-a-storm-coming">There's a storm coming</a></li><li><a href="http://dascritch.net/post/2014/07/14/Joyeuse-F%C3%AAte-Nat-%40Toulouse">Joyeuse Fête Nat', @Toulouse !</a></li><li><a href="http://dascritch.net/post/2014/07/08/Travaux-d-%C3%A9t%C3%A9">Travaux d'été</a></li><li><a href="http://dascritch.net/post/2014/06/26/%C3%80-l-heure-Californienne-IO14">À l'heure Californienne : Google I/O 14</a></li><li><a href="http://dascritch.net/post/2014/06/24/Sniffeur-d-ancre">Sniffeur d'ancre</a></li><li><a href="http://dascritch.net/post/2014/06/18/Proposals-about-img">Proposals about ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/06/17/Propositions-en-img">Propositions en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/06/12/Finesse-en-img">Finesse en ‹img /›</a></li><li><a href="http://dascritch.net/post/2014/06/11/Merci-%C3%A0-vous%2C-vils-Flattr-s">Merci à vous, vils Flattr-s !</a></li><li><a href="http://dascritch.net/post/2014/06/10/Progressivement-en-img">Progressivement en ‹img /›</a></li></ul></div>		
 		<div id="aussi">
 			<h2 id="feeds">Abonne-toi ! (c'est gratuit)</h2>
 			<ul>
 				<li><a href="http://dascritch.net/dotclear/rss.php" type="application/rss+xml" title="Fil RSS Podcast de ce site" class="feed line">Clique ici, et, magie du <b>RSS</b></a>, tu recevras automatiquement mes derniers billets, nos dernières émissions (en podcast et mp3&nbsp;!).</li>
 			</ul>
 		</div>
-		
-	</div> <!-- End #blogextra -->
-
-</aside>          
-			
+	</div>
+</aside>
 		</div> 
-		
-		<ul id="gotop" class="supranav nobig"><li><a href="Pourquoi-je-porte-un-treillis-customise#top">Haut de page</a></li></ul>
+
+		<ul id="gotop" class="supranav nobig"><li><a href="#top">Haut de page</a></li></ul>
 
 <ul id="sn-bottom" class="simple-menu supranav nobig">
 <li class="li1 li-first li-last"><a href="http://dascritch.net/archive">Archives</a></li>

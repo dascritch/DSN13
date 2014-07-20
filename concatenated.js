@@ -1744,26 +1744,37 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 
 		if ($('.post-content')) {
 			var titres = document.getElementsByTagName('h3');
+			var untags = /<[^<>]+>/g;
 			if (titres.length>3) {
 				liste = document.createElement('ul');
 				for (titre = 0 ; titre < titres.length ; titre++) {
-					var texte = titres[titre];
+					var cet_h3 = titres[titre];
+					// construction de l'id
 					var id = titres[titre].id;
 					if (chainevide(id)) {
 						id = titres[titre].id = 'chap-'+titre;
 					}
+					// ajout dans la liste
 					var li = document.createElement('li');
 					liste.appendChild(li);
 					var li_a = document.createElement('a');
-					var node= document.all ? texte.innerText : texte.textContent;
+					var node= document.all ? cet_h3.innerText : cet_h3.textContent;
 					if (!node) {
-						node = texte.innerHTML.replace(/<[^<>]+>/g,"");
+						node = cet_h3.innerHTML.replace(untags,'');
 					}
 					li_a.appendChild(document.createTextNode(node));
 					li.appendChild(li_a);
 					li_a.href = '#'+id;
+					// mise en place d'une ancre
+					var ancre = document.createElement('a');
+					ancre.href = li_a.href;
+					ancre.className = 'h3-ancre';
+					ancre.appendChild(document.createTextNode('#◂'));
+					cet_h3.insertBefore(ancre,cet_h3.firstChild);
+					//cet_h3.appendChild(ancre);
 				}
 
+				// maintenant, je construit le mini-sommaire
 				var $dd= $('<dd>',{
 							'id' : 'minisom_m',
 							'class' : 'masquee'

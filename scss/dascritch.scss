@@ -349,6 +349,14 @@ h1 { text-align: left;  }
 	text-decoration:none;
 }
 
+.h3-ancre {
+	visibility : hidden;
+	float : right;
+}
+
+h3:hover .h3-ancre , h3:focus .h3-ancre , h3:active .h3-ancre , h3:target .h3-ancre  {
+	visibility : visible;
+}
 
 /*** des billest de code ***/
 
