@@ -57,6 +57,27 @@ _gaq.push(['_trackPageview']);
 		$(this).blur();
 	};
 
+	function resize() {
+		if ($(window).width() < 1024) {
+
+			// Set toggle class to each #sidebar h2
+			$("#sidebar div div h2").addClass('toggle');
+
+			// Hide all h2.toggle siblings
+			$('#sidebar div div h2').nextAll().hide();
+
+			// Add a link to each h2.toggle element.
+			$('h2.toggle').each(add_link);
+
+			// Add a click event handler to all h2.toggle elements.
+			$('h2.toggle').click(toggle);
+
+			// Remove the focus from the link tag when accessed with a mouse.
+			$('h2.toggle a').mouseup(remove_focus);
+		}
+		lastsize = $(window).width();
+	}
+
 	function chainevide(chaine) {
 		// IE le plus con de tous les navigateurs
 		return (chaine==='') || (chaine=='null');
@@ -80,34 +101,17 @@ _gaq.push(['_trackPageview']);
 
 	var lastsize ;
 
-	function resize() {
-		if ($(window).width() < 1024) {
-
-			// Set toggle class to each #sidebar h2
-			$("#sidebar div div h2").addClass('toggle');
-
-			// Hide all h2.toggle siblings
-			$('#sidebar div div h2').nextAll().hide();
-
-			// Add a link to each h2.toggle element.
-			$('h2.toggle').each(add_link);
-
-			// Add a click event handler to all h2.toggle elements.
-			$('h2.toggle').click(toggle);
-
-			// Remove the focus from the link tag when accessed with a mouse.
-			$('h2.toggle a').mouseup(remove_focus);
-		}
-		lastsize = $(window).width();
-	}
-
-var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+	var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 
 	$(function() {
-		window.resize = resize;
+		//window.resize = resize;
+		if (window.addEventListener) {
+			window.addEventListener('resize', resize);
+		}
 		resize();
 
-		 var Fx = {
+		/*
+		var Fx = {
 			header    : document.getElementById('header'),
 			trLeft    : 0.45,
 			trRight    : 0.55,
@@ -130,20 +134,20 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			},
 			onGyro : function (handle) {
 				Fx.onMove( Math.abs( (event.beta %80 )/ 80));
-			}/*,
-			onTimer : function() {
-				Fx.onMove( e.clientX / this.innerWidth );
-			},
-			start    : null*/
+			} //,
+			//onTimer : function() {
+			//	Fx.onMove( e.clientX / this.innerWidth );
+			//},
+			//start    : null
 		};
 
-		//Fx.start = window.setTimeout(Fx.onTimer,100);
 		if (window.addEventListener) {
 			window.addEventListener('mousemove', Fx.onPointer,false);
 			if (window.DeviceOrientationEvent) {
 				window.addEventListener('deviceorientation', Fx.onGyro ,false);
 			}
 		}
+		*/
 
 		if ($('.post-content')) {
 			var titres = document.getElementsByTagName('h3');
@@ -174,7 +178,6 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 					ancre.className = 'h3-ancre';
 					ancre.appendChild(document.createTextNode('#◂'));
 					cet_h3.insertBefore(ancre,cet_h3.firstChild);
-					//cet_h3.appendChild(ancre);
 				}
 
 				// maintenant, je construit le mini-sommaire
@@ -203,6 +206,7 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			};
 		});
 
+		// insecticide
 		$('[href^="mailto:xav"]').each(function() {
 			this.href = this.href.replace(/^(\w+\:\w+)(\W+)(\w+)(\W+)(\w+)(\W+)(\w+)(\+.*)(\?.*)$/,'$1$7$8@$5.$3$9');
 		});
@@ -239,6 +243,7 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			var c_mail = document.getElementById('c_mail');
 			var c_site = document.getElementById('c_site');
 			var c_s = '#c_name, #c_mail, #c_site';
+			var has_storage = ("localStorage" in window);
 
 			function setCookie () {
 				var name = c_name.value;
@@ -247,13 +252,13 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 				var cpath = $('link[rel="top"]').attr('href');
 				cpath = (!cpath) ? '/' : cpath.replace(/.*:\/\/[^\/]*([^?]*).*/g,"$1");
 				var rec = name+'\n'+mail+'\n'+site;
-				("localStorage" in window)
+				has_storage
 					? localStorage.setItem('comment_info',rec)
 					: $.cookie('comment_info',rec , {expires:60,path:cpath});
 			}
 
 			function dropCookie(){
-				("localStorage" in window)
+				has_storage
 					? localStorage.removeItem('comment_info')
 					: $.cookie('comment_info','',{expires:-30,path:'/'});
 			}
@@ -273,8 +278,8 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			var $latestp = $('button[name="preview"]',$commentform).closest('p');
 	    	// c'est crade mais c'est contre le confiturage de commentaires
 	    	$('#preview').removeAttr('name').removeProp('name').
-	      	removeAttr('value').removeProp('value').
-	      	html($('#preview').data('reel'));
+	      		removeAttr('value').removeProp('value').
+	    	  	html($('#preview').data('reel'));
 
 			var post_remember_str = $latestp.data('remember');
 			$latestp.append('<input type="checkbox" id="c_remember" name="c_remember" /> '
@@ -284,7 +289,7 @@ var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 			var remember = document.getElementById('c_remember');
 
 			var cookie = readCookie(
-							("localStorage" in window)
+							has_storage
 							? localStorage.getItem('comment_info')
 							: $.cookie('comment_info')
 							);
