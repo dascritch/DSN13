@@ -600,7 +600,7 @@
 		{
 			// -------------------
 			// pas de lightbox ? inutile alors
-			if (!$('[rel^="lightbox"]')) {
+			if ($('[rel^="lightbox"]').length == 0) {
 				return false;
 			}
 
