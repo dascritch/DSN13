@@ -1694,7 +1694,7 @@ _gaq.push(['_trackPageview']);
 		top.location = self.location.href;
 	} //naaaaaaaaaaaaan mais !
 
-	insererlibjs('http://google-analytics.com/ga.js');
+	insererlibjs('//google-analytics.com/ga.js');
 
 	var lastsize ;
 
