@@ -140,11 +140,6 @@
 		// If need be: Instantiate $.LightboxClass to $.Lightbox
 		$.Lightbox = $.Lightbox || new $.LightboxClass();
 		
-		// Handle IE6 appropriatly
-		if ( $.Lightbox.ie6 && !$.Lightbox.ie6_support )
-		{	// We are IE6 and we want to ignore
-			return this; // chain
-		}
 		
 		// Establish options
 		options = $.extend({start:false,events:true} /* default options */, options);
@@ -536,8 +531,8 @@
 		
 		scroll:			'follow',	// should the lightbox scroll with the page?
 		
-		ie6:			null,		// are we ie6?
-		ie6_support:	true,		// have ie6 support
+		ie6:			false,		// are we ie6?
+		ie6_support:	false,		// have ie6 support
 /*		ie6_upgrade:	true,		// show ie6 upgrade message*/
 		
 		colorBlend:	null,			// null - auto-detect, true - force, false - no
@@ -563,67 +558,6 @@
 			
 			// Prepare options
 			options = $.extend({}, options);
-			
-			// -------------------
-			// Handle files
-			
-			// Add baseurl
-/*
-			if ( initial && (typeof options.files === 'undefined') )
-			{	// Load the files like default
-			
-
-				// Get the src of the first script tag that includes our js file (with or without an appendix)
-				this.src = $('script[src*='+this.files.js.lightbox+']:first').attr('src');
-				
-
-				// Make sure we found ourselves
-				if ( !this.src )
-				{	// We didn't
-					// $.log('WARNING', 'Lightbox was not able to find it\'s javascript script tag necessary for auto-inclusion.');
-					// We don't work with files anymore, so don't care for domReady
-					domReady = false;
-				}
-				else
-				{	// We found ourself
-				
-					// The baseurl is the src up until the start of our js file
-					this.baseurl = this.src.substring(0, this.src.indexOf(this.files.js.lightbox));
-					
-					// Apply baseurl to files
-					var me = this;
-					$.each(this.files, function(group, val){
-						$.each(this, function(file, val){
-							me.files[group][file] = me.baseurl+val;
-						});
-					});
-					delete me;
-					
-
-					// Now as we have source, we may have more params
-					options = $.extend(options, $.params_to_json(this.src));
-
-				}
-				
-			}
-			else
-			if ( typeof options.files === 'object' )
-			{	// We have custom files
-				var me = this;
-				$.each(options.files, function(group, val){
-					$.each(this, function(file, val){
-						this[file] = me.baseurl+val;
-					});
-				});
-				delete me;
-			}
-			else
-			{	// Don't have any files, so no need to perform domReady
-				domReady = false;
-			}
-*/
-
-			
 			// -------------------
 			// Apply options
 			
@@ -643,15 +577,6 @@
 			// -------------------
 			// Figure out what to do
 			
-			// Handle IE6
-			if ( initial && navigator.userAgent.indexOf('MSIE 6') >= 0 )
-			{	// Is IE6
-				this.ie6 = true;
-			}
-			else
-			{	// We are not IE6
-				this.ie6 = false;
-			}
 			
 			// -------------------
 			// Handle our DOM
@@ -674,70 +599,11 @@
 		domReady: function ( )
 		{
 			// -------------------
-			// Include resources
-			
-			// Grab resources
-//			var bodyEl = document.getElementsByTagName($.browser.safari ? 'head' : 'body')[0];
-			var bodyEl = document.getElementsByTagName('body')[0];
-/*			var stylesheets = this.files.css;*/
-/*			var scripts = this.files.js;*/
-			
-/*
-			// Handle IE6 appropriatly
-			if ( this.ie6 && this.ie6_upgrade )
-			{	// Add the upgrade message
-				scripts.ie6 = 'http://www.savethedevelopers.org/say.no.to.ie.6.js';
+			// pas de lightbox ? inutile alors
+			if (!$('[rel^="lightbox"]')) {
+				return false;
 			}
-*/
-			
-/*
-			// colorBlend
-			if ( this.colorBlend === true && typeof $.colorBlend === 'undefined' )
-			{	// Force colorBlend
-				this.colorBlend = true;
-				// Leave file in place to be loaded
-			}
-			else
 
-			{	// We either have colorBlend or we don't
-				this.colorBlend = typeof $.colorBlend !== 'undefined';
-				// Remove colorBlend file
-				delete scripts.colorBlend;
-			}
-			
-*/
-			// Include stylesheets
-/*
-			for ( stylesheet in stylesheets )
-			{
-				var linkEl = document.createElement('link');
-				linkEl.type = 'text/css';
-				linkEl.rel = 'stylesheet';
-				linkEl.media = 'screen';
-				linkEl.href = stylesheets[stylesheet];
-				linkEl.id = 'lightbox-stylesheet-'+stylesheet.replace(/[^a-zA-Z0-9]/g, '');
-				$('#'+linkEl.id).remove();
-				bodyEl.appendChild(linkEl);
-			}
-*/
-			
-			// Include javascripts
-/*
-			for ( script in scripts )
-			{
-				var scriptEl = document.createElement('script');
-				scriptEl.type = 'text/javascript';
-				scriptEl.src = scripts[script];
-				scriptEl.id = 'lightbox-script-'+script.replace(/[^a-zA-Z0-9]/g, '');
-				$('#'+scriptEl.id).remove();
-				bodyEl.appendChild(scriptEl);
-			}
-*/
-			
-			// Cleanup
-			delete scripts;
-			delete stylesheets;
-			delete bodyEl;
 			
 			// -------------------
 			// Append display
@@ -753,21 +619,7 @@
 			// Hide
 			$('#lightbox,#lightbox-overlay,#lightbox-overlay-text-interact').hide();
 			
-			// -------------------
-			// Browser specifics
-			
-			// Handle IE6
-			if ( this.ie6 && this.ie6_support )
-			{	// Support IE6
-				// IE6 does not support fixed positioning so absolute it
-				// ^ This is okay as we disable scrolling
-				$('#lightbox-overlay').css({
-					position:	'absolute',
-					top:		'0px',
-					left:		'0px'
-				});
-			}
-			
+
 			// -------------------
 			// Preload Images
 			
@@ -820,21 +672,7 @@
 				$.Lightbox.showImage($.Lightbox.images.next());
 				return false;
 			});
-			/*
-			// Help
-			if ( this.show_linkback )
-			{	// Linkback exists so add handler
-				$('#lightbox-overlay-text-about a').click(function(){window.open($.Lightbox.text.about.link); return false;});
-			}
-			$('#lightbox-overlay-text-close').unbind().hover(
-				function(){
-					$('#lightbox-overlay-text-interact').fadeIn();
-				},
-				function(){
-					$('#lightbox-overlay-text-interact').fadeOut();
-				}
-			);
-			*/
+
 			// Image link
 			$('#lightbox-caption-title').click(function(){window.open($(this).attr('href')); return false;});
 			
@@ -992,7 +830,7 @@
 			// Resize Overlay
 			if ( type !== 'transition' )
 			{	// We don't care for transition
-				var $body = $(this.ie6 ? document.body : document);
+				var $body = $(document);
 				$('#lightbox-overlay').css({
 					width:		$body.width(),
 					height:		$body.height()
