@@ -214,7 +214,10 @@ kbd {
 	font-family : serif;
 }
 
-code, tt, pre {overflow:auto;}
+code, tt, pre {
+	overflow:auto;
+	font-family: "Inconsolata", Courier, mono;
+}
 .cl	{
 	clear: both;
 }
@@ -363,13 +366,28 @@ h3:hover .h3-ancre , h3:focus .h3-ancre , h3:active .h3-ancre , h3:target .h3-an
 ol.listserif { list-style-type: upper-roman }
 ol.listserif li:before { font-family : serif }
 
-code { text-align : left !important; font-family : sans-serif ; word-break: break-all}
-code .element { }
-code .blsg , .article code strong { font-weight: bold;color: #000000; }
-code .var , .article code em { color: #800000; }
-code .url { color: #008000; }
-h1 a img { vertical-align : top }
-h1 a { display : block; }
+code {
+	text-align : left !important;
+	word-break: break-all
+}
+code .element {
+}
+code .blsg , .article code strong {
+	font-weight: bold;
+	color: #000000;
+}
+code .var , .article code em {
+	color: #800000;
+}
+code .url {
+	color: #008000;
+}
+h1 a img {
+	vertical-align : top
+}
+h1 a {
+ display : block;
+}
 figure {
 	display: block;
     margin: 0px auto;
