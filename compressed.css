@@ -123,7 +123,7 @@ del { color: #800000; }
 
 blockquote { border-left: 4px solid #ccc; padding: 1px 1em .5em; background: #f9f9f9; }
 
-code, pre { background: #efefef; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa; font-size: .81em; }
+code, pre, tt { background: #efefef; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa; font-size: .81em; }
 
 /*
 pre {
@@ -793,7 +793,7 @@ kbd { background: none repeat scroll 0 0 #EEEEEE; border-color: #CCCCCC #AAAAAA 
 
 .serif { font-family: serif; }
 
-code, tt, pre { overflow: auto; }
+code, tt, pre { overflow: auto; font-family: "Inconsolata", Courier, mono; }
 
 .cl { clear: both; }
 
@@ -853,7 +853,7 @@ ol.listserif { list-style-type: upper-roman; }
 
 ol.listserif li:before { font-family: serif; }
 
-code { text-align: left !important; font-family: sans-serif; word-break: break-all; }
+code { text-align: left !important; word-break: break-all; }
 
 code .blsg, .article code strong { font-weight: bold; color: #000000; }
 
