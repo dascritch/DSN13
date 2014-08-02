@@ -1,5 +1,5 @@
 #!/bin/bash
-scss -t compact scss/source.scss compressed.css
+scss -t compressed scss/source.scss compressed.css
 
 rm concatenated.js
 

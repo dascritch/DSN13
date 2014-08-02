@@ -4,20 +4,20 @@
 	left: 0px;
 	bottom:auto;
 	right:auto;
-	
+
 	z-index:100;
 	width:100%;
 	height:auto;
-	
+
 	text-align:center;
 	color:#333333;
-	
+
 	margin:0px;
 	padding:0px;
 	border:none;
 	outline:none;
 	line-height:0;
-	
+
 	text-decoration:none;
 	background:none;
 	word-spacing:normal;
@@ -186,28 +186,28 @@ q, cite, quote, blockquote {
 	quotes : "\201c" "\201d" "\00ab\00a0" "\00a0\00bb";
 	}
 
-abbr, accronym, .aide { 	
+abbr, accronym, .aide {
 	cursor : help;
 	border-bottom : thin dashed #333 ;	border-color : #ff0000;
 	}
 
 kbd {
-    background: none repeat scroll 0 0 #EEEEEE;
-    border-color: #CCCCCC #AAAAAA #888888 #BBBBBB;
-    border-style: solid;
-    border-width: 2px 3px 3px 2px;
-    padding : 0 2px;
-    color: #000000;
-    display: inline-block;
-    font-family: $police;
-    min-width: 15px;
-    position: relative;
-    text-align: center;
-    text-shadow: none;
-    white-space: nowrap;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	background: none repeat scroll 0 0 #EEEEEE;
+	border-color: #CCCCCC #AAAAAA #888888 #BBBBBB;
+	border-style: solid;
+	border-width: 2px 3px 3px 2px;
+	padding : 0 2px;
+	color: #000000;
+	display: inline-block;
+	font-family: $police;
+	min-width: 15px;
+	position: relative;
+	text-align: center;
+	text-shadow: none;
+	white-space: nowrap;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .serif {
@@ -216,7 +216,7 @@ kbd {
 
 code, tt, pre {
 	overflow:auto;
-	font-family: "Inconsolata", Courier, mono;
+	font-family: $policefixed;
 }
 .cl	{
 	clear: both;
@@ -245,10 +245,9 @@ code, tt, pre {
 }
 
 sup, .up	{
-vertical-align:80%;
-
+	vertical-align:80%;
 	font-size:xx-small;
-   }
+}
 
 .demi	{
 	width:48%
@@ -314,9 +313,9 @@ dl.mail dd{
 }
 
 .post-excerpt {
-    background:rgb(238, 238, 255);
-    padding : 4px 0;
-    border: 1px solid rgb(221, 221, 255);
+	background:rgb(238, 238, 255);
+	padding : 4px 0;
+	border: 1px solid rgb(221, 221, 255);
 }
 
 
@@ -327,8 +326,12 @@ dl.mail dd{
 	position:relative;
 }
 
-#top a:hover {background : none; }
-h1 { text-align: left;  }
+#top a:hover {
+	background : none;
+}
+h1 {
+	text-align: left;
+}
 
 .entete {
 	width : 120% ;
@@ -390,15 +393,15 @@ h1 a {
 }
 figure {
 	display: block;
-    margin: 0px auto;
-    text-align: center;
-    border : 1px solid #CCC;
+	margin: 0px auto;
+	text-align: center;
+	border : 1px solid #CCC;
 }
 .post-content figure img {
 	border : none;
 }
 figcaption {
-    padding : 0px 4px;
+	padding : 0px 4px;
 }
 
 #breadcrumb { display : none; }
@@ -416,7 +419,7 @@ figcaption {
   }
 
   iframe {
-        max-width : 90%
+		max-width : 90%
   }
 
   .post-info-co {
@@ -428,7 +431,7 @@ figcaption {
 		display : none !important;
 	}
 	h1 {
-	 	text-align : left;
+		text-align : left;
 	}
 }
 
@@ -508,15 +511,15 @@ figcaption {
 /** boutons "sociaux" **/
 
 .post-social {
-    font-size: 0.875em;
+	font-size: 0.875em;
 	margin : 0;
 	padding: 0;
 }
 
 
 .post-social li {
-    display : inline;
-    list-style-type : none;
+	display : inline;
+	list-style-type : none;
 }
 
 
