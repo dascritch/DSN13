@@ -50,6 +50,7 @@ _gaq.push(['_trackPageview']);
 		// to all siblings.
 		$(this).toggleClass('expanded').
 			nextAll().slideToggle('fast');
+		return false;
 	};
 
 	function remove_focus() {
@@ -70,10 +71,12 @@ _gaq.push(['_trackPageview']);
 			$('h2.toggle').each(add_link);
 
 			// Add a click event handler to all h2.toggle elements.
-			$('h2.toggle').click(toggle);
+			// N'AURAIT JAMAIS DU ETRE ICI
 
+			/*
 			// Remove the focus from the link tag when accessed with a mouse.
 			$('h2.toggle a').mouseup(remove_focus);
+			*/
 		}
 		lastsize = $(window).width();
 	}
@@ -333,6 +336,9 @@ _gaq.push(['_trackPageview']);
 				}
 			});
 		}
+
+		// déplacement du revezaler buggé
+		$(document).on('click','h2.toggle',toggle);
 
 	});
 
