@@ -22,6 +22,82 @@ $core->tpl->addBlock('EntryIfContentIsCut',array('tplDuctileTheme','EntryIfConte
 $core->tpl->addValue('ductileNbEntryPerPage',array('tplDuctileTheme','ductileNbEntryPerPage'));
 $core->tpl->addBlock('IfPreviewIsNotMandatory',array('tplDuctileTheme','IfPreviewIsNotMandatory'));
 
+# DaScritchNet micro adressage
+
+$core->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
+
+# DaScritchNet templates
+
+$core->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
+$core->tpl->addValue('TEMPEntryTitle',          ['DSN_tpl','TEMPEntryTitle']);
+
+$core->tpl->addValue('UrlDate',					['DSN_tpl','UrlDate']);
+$core->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']);
+$core->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
+$core->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
+$core->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
+$core->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
+
+
+function datehumaine($date,$format_norm='%l %j%S %F %Y',$format_ya7j='%l dernier',$format_hier='hier',$format_jour="aujourd'hui",$Initiale=false) {
+
+	// cette fonction permet d'afficher une date plus humaine dans un monde si informatisé
+	// a regler en fonction du creneau horaire de votre serveur
+
+	// à noter que dans dotclear2, la fonction à patcher est /clearbricks/common/lib.date.php :: str()
+
+	// NOTE IMPORTANTE : ce code a été totalement ré-écrit dans dAgence en 2007 puis ré-écrit encore en TDD en 2011
+	// donc avec moins de bugs (dates futures), internationalisation et meilleure lisibilité
+	// la version ci-dessous date de 2004, c'est NORMAL qu'il soit CRÂDE
+
+	// * l
+	$days = [ 0 => 'dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi' ];
+	// * D
+	$dayc = [ 0 => 'dim','lun','mar','mer','jeu','ven','sam' ];
+	// * F
+	$mois = [ 1 => 'janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre' ];
+	// * M
+	$moic = [ 1 => 'jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc' ];
+
+	/// Oui, je sais c'est CRADE
+	$decal_tz = 60 * 60 * 7;
+	$t_aujo = strtotime('now') - $decal_tz;
+	$t_hier = strtotime('-1 day', $t_aujo);
+	$t_ya7j = strtotime('-7 days', $t_aujo);
+
+	$format = '!!!erreur';
+	if ($date < $t_aujo) {
+		if ($date < $t_hier) {
+			if ($date < $t_ya7j) {
+				$format = $format_norm;
+			} else {
+				$format = $format_ya7j;
+			}
+		} else {
+			$format = $format_hier;
+		}
+	} else {
+		$format = $format_jour;
+	}
+
+	foreach(['d','j','N','w','z','W','m','n','t','L','o','Y','y','a','A','B','g','G','h','H','i','s','e','I','O','P','T','Z','c','r','U'] as $parsePHPdate)
+	{
+		if (strpos($format, '%'.$parsePHPdate)) {
+			$format = str_replace('%'.$parsePHPdate, date($parsePHPdate,$date), $format);
+		}
+	}
+
+	$format=str_replace('%l', $days[date('w', $date)], $format);
+	$format=str_replace('%D', $dayc[date('w', $date)], $format);
+	$format=str_replace('%S', date('j',$date)=='1'?'er':'', $format);
+	$format=str_replace('%F', $mois[date('n', $date)], $format);
+	$format=str_replace('%M', $moic[date('n', $date)], $format);
+	$sortie=$format;
+	if ($Initiale) $sortie=ucfirst($sortie);
+	return $sortie;
+}
+
+
 class tplDuctileTheme
 {
 	public static function ductileNbEntryPerPage($attr) {
@@ -247,65 +323,6 @@ class tplDuctileTheme
 
 /* Section héritée déplacée de l'antédiluvien extension "Infomania/DaScritchNet"  **/
 
-
-function datehumaine($date,$format_norm='%l %j%S %F %Y',$format_ya7j='%l dernier',$format_hier='hier',$format_jour="aujourd'hui",$Initiale=false) {
-
-	// cette fonction permet d'afficher une date plus humaine dans un monde si informatisé
-	// a regler en fonction du creneau horaire de votre serveur
-
-	// à noter que dans otclear2, la fonction à patcher est /clearbricks/common/lib.date.php :: str()
-
-	// * l 
-	$days=array(0 => 'dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi');
-	// * D 
-	$dayc=array(0 => 'dim','lun','mar','mer','jeu','ven','sam');
-	// * F 
-	$mois=array(1=>'janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
-	// * M 
-	$moic=array(1=>'jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc');
-	$decal_tz=60*60*7;
-	$t_aujo=strtotime('now')-$decal_tz;
-	$t_hier=strtotime('-1 day',$t_aujo);
-	$t_ya7j=strtotime('-7 days',$t_aujo);
-
-	$format='!!!erreur';
-	if ($date<$t_aujo)
-	{
-		if ($date<$t_hier)
-		{
-			if ($date<$t_ya7j)
-			{
-				$format=$format_norm;
-			} else {
-				$format=$format_ya7j;
-				}
-		} else {
-			$format=$format_hier;
-		}
-	} else {
-		$format=$format_jour;
-	}
-
-	foreach  (array('d','j','N','w','z','W','m','n','t','L','o','Y','y','a','A','B','g','G','h','H','i','s','e','I','O','P','T','Z','c','r','U') as $parsePHPdate)
-	{
-		if (strpos($format,'%'.$parsePHPdate)) {
-			$format=str_replace('%'.$parsePHPdate,date($parsePHPdate,$date),$format);
-		}
-	}
-
-	$format=str_replace('%l',$days[date('w',$date)],$format);
-	$format=str_replace('%D',$dayc[date('w',$date)],$format);
-	$format=str_replace('%S',date('j',$date)=='1'?'er':'',$format);
-	$format=str_replace('%F',$mois[date('n',$date)],$format);
-	$format=str_replace('%M',$moic[date('n',$date)],$format);
-	$sortie=$format;
-	if ($Initiale) $sortie=ucfirst($sortie);
-	return $sortie;
-}
-
-
-$core->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
-
 class urlDaScritch extends dcUrlHandlers
 {
 
@@ -337,15 +354,6 @@ class urlDaScritch extends dcUrlHandlers
 	}
 }
 
-$core->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
-$core->tpl->addValue('TEMPEntryTitle',          ['DSN_tpl','TEMPEntryTitle']);
-
-$core->tpl->addValue('UrlDate',					['DSN_tpl','UrlDate']);
-$core->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']);
-$core->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
-$core->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
-$core->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
-$core->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
 
 class DSN_tpl
 {
