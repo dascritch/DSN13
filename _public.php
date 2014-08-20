@@ -14,27 +14,23 @@ if (!defined('DC_RC_PATH')) { return; }
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
 
 # Behaviors
-$core->addBehavior('publicHeadContent',array('tplDuctileTheme','publicHeadContent'));
 $core->addBehavior('publicInsideFooter',array('tplDuctileTheme','publicInsideFooter'));
 
 # Templates
 $core->tpl->addValue('ductileEntriesList',array('tplDuctileTheme','ductileEntriesList'));
 $core->tpl->addBlock('EntryIfContentIsCut',array('tplDuctileTheme','EntryIfContentIsCut'));
 $core->tpl->addValue('ductileNbEntryPerPage',array('tplDuctileTheme','ductileNbEntryPerPage'));
-$core->tpl->addValue('ductileLogoSrc',array('tplDuctileTheme','ductileLogoSrc'));
 $core->tpl->addBlock('IfPreviewIsNotMandatory',array('tplDuctileTheme','IfPreviewIsNotMandatory'));
 
 class tplDuctileTheme
 {
-	public static function ductileNbEntryPerPage($attr)
-	{
+	public static function ductileNbEntryPerPage($attr) {
 		return '<?php tplDuctileTheme::ductileNbEntryPerPageHelper(); ?>';
 	}
-	
-	public static function ductileNbEntryPerPageHelper()
-	{
+
+	public static function ductileNbEntryPerPageHelper() {
 		global $_ctx;
-		
+
 		$nb = 0;
 		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_entries_counts');
 		if ($s !== null) {
@@ -62,15 +58,14 @@ class tplDuctileTheme
 		if ($nb > 0)
 			$_ctx->nb_entry_per_page = $nb;
 	}
-	
-	public static function EntryIfContentIsCut($attr,$content)
-	{
+
+	public static function EntryIfContentIsCut($attr,$content) {
 		global $core;
-		
+
 		if (empty($attr['cut_string']) || !empty($attr['full'])) {
 			return '';
 		}
-		
+
 		$urls = '0';
 		if (!empty($attr['absolute_urls'])) {
 			$urls = '1';
@@ -86,12 +81,11 @@ class tplDuctileTheme
 			'strlen('.sprintf($short,'$_ctx->posts->getContent('.$urls.')').')) : ?>'.
 			$content.
 			'<?php endif; ?>';
-	}	
-	
-	public static function ductileEntriesList($attr)
-	{
+	}
+
+	public static function ductileEntriesList($attr) {
 		global $core;
-		
+
 		$tpl_path = dirname(__FILE__).'/tpl/';
 		$list_types = array('title','short','full');
 
@@ -124,12 +118,11 @@ class tplDuctileTheme
 
 		$ret .= '}'."\n".
 			'?>';
-		
+
 		return $ret;
 	}
-	
-	public static function ductileEntriesListHelper($default)
-	{
+
+	public static function ductileEntriesListHelper($default) {
 		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_entries_lists');
 		if ($s !== null) {
 			$s = @unserialize($s);
@@ -143,42 +136,7 @@ class tplDuctileTheme
 		return $default;
 	}
 
-	public static function ductileLogoSrc($attr)
-	{
-		return '<?php echo tplDuctileTheme::ductileLogoSrcHelper(); ?>';
-	}
-
-	public static function ductileLogoSrcHelper()
-	{
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_style');
-		if ($s === null) {
-			return;
-		}
-		$s = @unserialize($s);
-		if (!is_array($s)) {
-			return;
-		}
-		
-		$img_url = $GLOBALS['core']->blog->settings->system->themes_url.'/'.$GLOBALS['core']->blog->settings->system->theme.'/img/logo.png';
-		if (isset($s['logo_src'])) {
-			if ($s['logo_src'] !== null) {
-				if ($s['logo_src'] != '') {
-					if ((substr($s['logo_src'],0,1) == '/') || (parse_url($s['logo_src'],PHP_URL_SCHEME) != '')) {
-						// absolute URL
-						$img_url = $s['logo_src'];
-					} else {
-						// relative URL (base = img folder of ductile theme)
-						$img_url = $GLOBALS['core']->blog->settings->system->themes_url.'/'.$GLOBALS['core']->blog->settings->system->theme.'/img/'.$s['logo_src'];
-					}
-				}
-			}
-		}
-		
-		return $img_url;
-	}
-
-	public static function IfPreviewIsNotMandatory($attr,$content)
-	{
+	public static function IfPreviewIsNotMandatory($attr,$content) {
 		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_style');
 		if ($s !== null) {
 			$s = @unserialize($s);
@@ -193,8 +151,7 @@ class tplDuctileTheme
 		return '';
 	}
 
-	public static function publicInsideFooter($core)
-	{
+	public static function publicInsideFooter($core) {
 		$res = '';
 		$default = false;
 		$img_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme.'/img/';
@@ -231,9 +188,8 @@ class tplDuctileTheme
 			echo $res;
 		}
 	}
-	
-	protected static function cleanStickers($s)
-	{
+
+	protected static function cleanStickers($s) {
 		if (is_array($s)) {
 			if (isset($s['label']) && isset($s['url']) && isset($s['image'])) {
 				if ($s['label'] != null && $s['url'] != null && $s['image'] != null) {
@@ -243,236 +199,14 @@ class tplDuctileTheme
 		}
 		return false;
 	}
-	
-	protected static function setSticker($position,$last,$label,$url,$image)
-	{
+
+	protected static function setSticker($position,$last,$label,$url,$image) {
 		return '<li id="sticker'.$position.'"'.($last ? ' class="last"' : '').'>'."\n".
 			'<a href="'.$url.'">'."\n".
 			'<img alt="" src="'.$image.'" />'."\n".
 			'<span>'.$label.'</span>'."\n".
 			'</a>'."\n".
 			'</li>'."\n";
-	}
-
-	public static function publicHeadContent($core)
-	{
-		echo 
-			'<style type="text/css">'."\n".
-			'/* '.__('Additionnal style directives').' */'."\n".
-			self::ductileStyleHelper().
-			"</style>\n";
-			
-		echo
-			'<script type="text/javascript" src="'.
-			$core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme.
-			'/ductile.js"></script>'."\n";
-
-		echo self::ductileWebfontHelper();
-	}
-
-	public static function ductileWebfontHelper()
-	{
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_style');
-
-		if ($s === null) {
-			return;
-		}
-
-		$s = @unserialize($s);
-		if (!is_array($s)) {
-			return;
-		}
-
-		$ret = '';
-		$css = array();
-		$uri = array();
-		if (!isset($s['body_font']) || ($s['body_font'] == '')) {
-			// See if webfont defined for main font
-			if (isset($s['body_webfont_api']) && isset($s['body_webfont_family']) && isset($s['body_webfont_url'])) {
-				$uri[] = $s['body_webfont_url'];
-				switch ($s['body_webfont_api']) {
-					case 'js':
-						$ret .= sprintf('<script type="text/javascript" src="%s"></script>',$s['body_webfont_url'])."\n";
-						break;
-					case 'css':
-						$ret .= sprintf('<link type="text/css" href="%s" rel="stylesheet" />',$s['body_webfont_url'])."\n";
-						break;
-				}
-				# Main font
-				$selectors = 'body, .supranav li a span, #comments.me, a.comment-number';
-				self::prop($css,$selectors,'font-family',$s['body_webfont_family']);
-			}
-		}
-		if (!isset($s['alternate_font']) || ($s['alternate_font'] == '')) {
-			// See if webfont defined for secondary font
-			if (isset($s['alternate_webfont_api']) && isset($s['alternate_webfont_family']) && isset($s['alternate_webfont_url'])) {
-				if (!in_array($s['alternate_webfont_url'], $uri)) {
-					switch ($s['alternate_webfont_api']) {
-						case 'js':
-							$ret .= sprintf('<script type="text/javascript" src="%s"></script>',$s['alternate_webfont_url'])."\n";
-							break;
-						case 'css':
-							$ret .= sprintf('<link type="text/css" href="%s" rel="stylesheet" />',$s['alternate_webfont_url'])."\n";
-							break;
-					}
-				}
-				# Secondary font
-				$selectors = '#blogdesc, .supranav, #content-info, #subcategories, #comments-feed, #sidebar h2, #sidebar h3, #footer';
-				self::prop($css,$selectors,'font-family',$s['alternate_webfont_family']);
-			}
-		}
-		# Style directives
-		$res = '';
-		foreach ($css as $selector => $values) {
-			$res .= $selector." {\n";
-			foreach ($values as $k => $v) {
-				$res .= $k.':'.$v.";\n";
-			}
-			$res .= "}\n";
-		}
-		if ($res != '') {
-			$ret .= '<style type="text/css">'."\n".$res.'</style>'."\n";
-		}
-
-		return $ret;
-	}
-	
-	public static function ductileStyleHelper()
-	{
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_style');
-
-		if ($s === null) {
-			return;
-		}
-
-		$s = @unserialize($s);
-		if (!is_array($s)) {
-			return;
-		}
-
-		$css = array();
-
-		# Properties
-		
-		# Blog description
-		$selectors = '#blogdesc';
-		if (isset($s['subtitle_hidden'])) self::prop($css,$selectors,'display',($s['subtitle_hidden'] ? 'none' : null));
-
-		# Main font
-		$selectors = 'body, .supranav li a span, #comments.me, a.comment-number';
-		if (isset($s['body_font'])) self::prop($css,$selectors,'font-family',self::fontDef($s['body_font']));
-
-		# Secondary font
-		$selectors = '#blogdesc, .supranav, #content-info, #subcategories, #comments-feed, #sidebar h2, #sidebar h3, #footer';
-		if (isset($s['alternate_font'])) self::prop($css,$selectors,'font-family',self::fontDef($s['alternate_font']));
-		
-		# Inside posts links font weight
-		$selectors = '.post-excerpt a, .post-content a';
-		if (isset($s['post_link_w'])) self::prop($css,$selectors,'font-weight',($s['post_link_w'] ? 'bold' : 'normal'));
-
-		# Inside posts links colors (normal, visited)
-		$selectors = '.post-excerpt a:link, .post-excerpt a:visited, .post-content a:link, .post-content a:visited';
-		if (isset($s['post_link_v_c'])) self::prop($css,$selectors,'color',$s['post_link_v_c']);
-
-		# Inside posts links colors (hover, active, focus)
-		$selectors = '.post-excerpt a:hover, .post-excerpt a:active, .post-excerpt a:focus, .post-content a:hover, .post-content a:active, .post-content a:focus';
-		if (isset($s['post_link_f_c'])) self::prop($css,$selectors,'color',$s['post_link_f_c']);
-
-		# Style directives
-		$res = '';
-		foreach ($css as $selector => $values) {
-			$res .= $selector." {\n";
-			foreach ($values as $k => $v) {
-				$res .= $k.':'.$v.";\n";
-			}
-			$res .= "}\n";
-		}
-
-		# Large screens
-		$css_large = array();
-
-		# Blog title font weight
-		$selectors = 'h1, h1 a:link, h1 a:visited, h1 a:hover, h1 a:visited, h1 a:focus';
-		if (isset($s['blog_title_w'])) self::prop($css_large,$selectors,'font-weight',($s['blog_title_w'] ? 'bold' : 'normal'));
-		
-		# Blog title font size
-		$selectors = 'h1';
-		if (isset($s['blog_title_s'])) self::prop($css_large,$selectors,'font-size',$s['blog_title_s']);
-		
-		# Blog title color
-		$selectors = 'h1 a:link, h1 a:visited, h1 a:hover, h1 a:visited, h1 a:focus';
-		if (isset($s['blog_title_c'])) self::prop($css_large,$selectors,'color',$s['blog_title_c']);
-
-		# Post title font weight
-		$selectors = 'h2.post-title, h2.post-title a:link, h2.post-title a:visited, h2.post-title a:hover, h2.post-title a:visited, h2.post-title a:focus';
-		if (isset($s['post_title_w'])) self::prop($css_large,$selectors,'font-weight',($s['post_title_w'] ? 'bold' : 'normal'));
-		
-		# Post title font size
-		$selectors = 'h2.post-title';
-		if (isset($s['post_title_s'])) self::prop($css_large,$selectors,'font-size',$s['post_title_s']);
-		
-		# Post title color
-		$selectors = 'h2.post-title a:link, h2.post-title a:visited, h2.post-title a:hover, h2.post-title a:visited, h2.post-title a:focus';
-		if (isset($s['post_title_c'])) self::prop($css_large,$selectors,'color',$s['post_title_c']);
-
-		# Simple title color (title without link)
-		$selectors = '#content-info h2, .post-title, .post h3, .post h4, .post h5, .post h6, .arch-block h3';
-		if (isset($s['post_simple_title_c'])) self::prop($css_large,$selectors,'color',$s['post_simple_title_c']);
-
-		# Style directives for large screens
-		if (count($css_large)) {
-			$res .= '@media only screen and (min-width: 481px) {'."\n";
-			foreach ($css_large as $selector => $values) {
-				$res .= $selector." {\n";
-				foreach ($values as $k => $v) {
-					$res .= $k.':'.$v.";\n";
-				}
-				$res .= "}\n";
-			}
-			$res .= "}\n";
-		}
-
-		# Small screens
-		$css_small = array();
-
-		# Blog title font weight
-		$selectors = 'h1, h1 a:link, h1 a:visited, h1 a:hover, h1 a:visited, h1 a:focus';
-		if (isset($s['blog_title_w_m'])) self::prop($css_small,$selectors,'font-weight',($s['blog_title_w_m'] ? 'bold' : 'normal'));
-		
-		# Blog title font size
-		$selectors = 'h1';
-		if (isset($s['blog_title_s_m'])) self::prop($css_small,$selectors,'font-size',$s['blog_title_s_m']);
-		
-		# Blog title color
-		$selectors = 'h1 a:link, h1 a:visited, h1 a:hover, h1 a:visited, h1 a:focus';
-		if (isset($s['blog_title_c_m'])) self::prop($css_small,$selectors,'color',$s['blog_title_c_m']);
-
-		# Post title font weight
-		$selectors = 'h2.post-title, h2.post-title a:link, h2.post-title a:visited, h2.post-title a:hover, h2.post-title a:visited, h2.post-title a:focus';
-		if (isset($s['post_title_w_m'])) self::prop($css_small,$selectors,'font-weight',($s['post_title_w_m'] ? 'bold' : 'normal'));
-		
-		# Post title font size
-		$selectors = 'h2.post-title';
-		if (isset($s['post_title_s_m'])) self::prop($css_small,$selectors,'font-size',$s['post_title_s_m']);
-		
-		# Post title color
-		$selectors = 'h2.post-title a:link, h2.post-title a:visited, h2.post-title a:hover, h2.post-title a:visited, h2.post-title a:focus';
-		if (isset($s['post_title_c_m'])) self::prop($css_small,$selectors,'color',$s['post_title_c_m']);
-
-		# Style directives for small screens
-		if (count($css_small)) {
-			$res .= '@media only screen and (max-width: 480px) {'."\n";
-			foreach ($css_small as $selector => $values) {
-				$res .= $selector." {\n";
-				foreach ($values as $k => $v) {
-					$res .= $k.':'.$v.";\n";
-				}
-				$res .= "}\n";
-			}
-			$res .= "}\n";
-		}
-		
-		return $res;
 	}
 
 	protected static $fonts = array(
@@ -509,4 +243,194 @@ class tplDuctileTheme
 		}
 	}
 }
+
+
+/* Section héritée déplacée de l'antédiluvien extension "Infomania/DaScritchNet"  **/
+
+
+function datehumaine($date,$format_norm='%l %j%S %F %Y',$format_ya7j='%l dernier',$format_hier='hier',$format_jour="aujourd'hui",$Initiale=false) {
+
+	// cette fonction permet d'afficher une date plus humaine dans un monde si informatisé
+	// a regler en fonction du creneau horaire de votre serveur
+
+	// à noter que dans otclear2, la fonction à patcher est /clearbricks/common/lib.date.php :: str()
+
+	// * l 
+	$days=array(0 => 'dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi');
+	// * D 
+	$dayc=array(0 => 'dim','lun','mar','mer','jeu','ven','sam');
+	// * F 
+	$mois=array(1=>'janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
+	// * M 
+	$moic=array(1=>'jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc');
+	$decal_tz=60*60*7;
+	$t_aujo=strtotime('now')-$decal_tz;
+	$t_hier=strtotime('-1 day',$t_aujo);
+	$t_ya7j=strtotime('-7 days',$t_aujo);
+
+	$format='!!!erreur';
+	if ($date<$t_aujo)
+	{
+		if ($date<$t_hier)
+		{
+			if ($date<$t_ya7j)
+			{
+				$format=$format_norm;
+			} else {
+				$format=$format_ya7j;
+				}
+		} else {
+			$format=$format_hier;
+		}
+	} else {
+		$format=$format_jour;
+	}
+
+	foreach  (array('d','j','N','w','z','W','m','n','t','L','o','Y','y','a','A','B','g','G','h','H','i','s','e','I','O','P','T','Z','c','r','U') as $parsePHPdate)
+	{
+		if (strpos($format,'%'.$parsePHPdate)) {
+			$format=str_replace('%'.$parsePHPdate,date($parsePHPdate,$date),$format);
+		}
+	}
+
+	$format=str_replace('%l',$days[date('w',$date)],$format);
+	$format=str_replace('%D',$dayc[date('w',$date)],$format);
+	$format=str_replace('%S',date('j',$date)=='1'?'er':'',$format);
+	$format=str_replace('%F',$mois[date('n',$date)],$format);
+	$format=str_replace('%M',$moic[date('n',$date)],$format);
+	$sortie=$format;
+	if ($Initiale) $sortie=ucfirst($sortie);
+	return $sortie;
+}
+
+
+$core->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
+
+class urlDaScritch extends dcUrlHandlers
+{
+
+	public static function shortlink($args) {
+
+		global $core, $_ctx;
+		$post = $core->blog->getPosts([
+										'post_id'		=> abs(intval(substr($_SERVER['QUERY_STRING'],2))),
+										'post_type'		=> ['post' , 'page' ],
+										]);
+
+		$type = $post->post_type === 'page' ? 'pages' : 'post';
+		$redirect = '/'. $type .'/'.$post->post_url;
+		header('HTTP/1.1 301 Moved Permanently');
+		header('Location: '.$redirect);
+		header('Content-Type: text/html; charset=UTF-8');
+		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+				<head>
+					<title>Ce document est à une autre adresse - This document is at another location</title>
+					<meta http-equiv="refresh" content="0;url='.$redirect.'" />
+					<link rel="top" href="/" />
+					<link rel="canonical" href="'.$redirect.'" />
+				</head><body>
+					<p lang="fr"><a href="'.$redirect.'">Ce document est en fait à une autre adresse, canonique&nbsp;: '.$redirect.'</a></p>
+					<p lang="en"><a href="'.$redirect.'">This document is actually at this canonical address&nbsp;: '.$redirect.'</a></p>
+				</body>
+				</html>';
+		exit;
+	}
+}
+
+$core->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
+$core->tpl->addValue('TEMPEntryTitle',          ['DSN_tpl','TEMPEntryTitle']);
+
+$core->tpl->addValue('UrlDate',					['DSN_tpl','UrlDate']);
+$core->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']);
+$core->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
+$core->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
+$core->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
+$core->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
+
+class DSN_tpl
+{
+	public static function TEMPEntryURL($attr) {
+		return '<?php echo urlencode($_ctx->posts->getURL()); ?>';
+	}
+
+	public static function TEMPEntryTitle($attr) {
+		if (isset($attr['spaces'])) {
+			return '<?php echo strtr( urlencode($_ctx->posts->post_title), ["+" => "'.$attr['spaces'].'"] ); ?>';
+		} else {
+			return '<?php echo urlencode($_ctx->posts->post_title); ?>';
+		}
+	}
+
+	public static function UrlDate($attr) {
+		return
+		'<?php
+			$void=$_SERVER["QUERY_STRING"];
+			$complementsok = preg_match(\'#post\/([[:digit:]]{4})\/([[:digit:]]{2})\/([[:digit:]]{2})\/#\',$void ,$recupdate );
+			echo "/blog/archive/$recupdate[1]/$recupdate[2]'.($attr['quand']==='jour'?'/$recupdate[3]':'').'";
+		?>';
+	}
+
+	public static function EntryDateHumaine($attr)
+	{
+		$f = $GLOBALS['core']->tpl->getFilters($attr);
+		return
+		'<?php
+			echo '.sprintf($f,'datehumaine(($_ctx->posts->getTS()),\'le %l %j%S %F %Y\',\'<abbr title="%j%S %F">%l dernier</abbr>\',\'<abbr title="%l %j%S %F">hier</abbr>\',\'<abbr title="%l %j %S">aujourd\\\'hui</abbr>\')').';
+		?>';
+	}
+
+	public static function CommentsTBCount($attr) {
+		return
+			'<?php if(($_ctx->posts->hasComments() || $_ctx->posts->commentsActive())) : ?>
+				<a href="<?php echo context::global_filter($_ctx->posts->getURL(),0,0,0,0,0,\'EntryURL\'); ?>#comments" class="comment_count">
+				<?php
+					$nb_t=(int) ($_ctx->posts->nb_trackback);
+					$nb_c=(int) ($_ctx->posts->nb_comment);
+					//if ((($nb_t!=0) || ($nb_c!=0))) { echo \'<img class="favicon" src="/nav/icons/16/action-comment.png"  alt="" />\'; }
+				?>
+				<?php if ($_ctx->posts->nb_comment == 0) {
+					// printf(__(\'no comment\'),$_ctx->posts->nb_comment);
+					} elseif ($_ctx->posts->nb_comment == 1) {
+					printf(__(\'one comment\'),$_ctx->posts->nb_comment);
+					} else {
+					printf(__(\'%d comments\'),$_ctx->posts->nb_comment);
+				} ?>
+				</a>
+				<?php if ($nb_t) { ?>
+					<?php if ($_ctx->posts->nb_comment > 0) { ?>
+						et
+					<?php } ?>
+					<a href="<?php echo context::global_filter($_ctx->posts->getURL(),0,0,0,0,0,\'EntryURL\'); ?>#pings" class="ping_count">
+						<?php if ($_ctx->posts->nb_trackback == 0) {
+						printf(__(\'no trackback\'),(integer) $_ctx->posts->nb_trackback);
+						} elseif ($_ctx->posts->nb_trackback == 1) {
+						printf(__(\'one trackback\'),(integer) $_ctx->posts->nb_trackback);
+						} else {
+						printf(__(\'%d trackbacks\'),(integer) $_ctx->posts->nb_trackback);
+						} ?></a><?php } ?>
+			<?php endif; ?>
+		';
+
+	}
+
+	public static function AuthorNotXavier($attr,$content) {
+		return '<?php if ((($_ctx->posts->getAuthorCN())!="admin") &&(($_ctx->posts->getAuthorCN())!="Da Scritch") && (($_ctx->posts->getAuthorCN())!="Xavier Mouton-Dubosc")) { ?>'.$content.'<?php } ?>';
+	}
+
+
+	public static function FrontPage($attr,$content)  {
+		return '<?php if ($_SERVER["QUERY_STRING"]'.(isset($attr['is'])?'!':'=').'="") { ?>'.$content.'<?php } ?>';
+	}
+
+
+	public static function OggFile($attr) {
+		return '<?php
+					$oggfile=$attach_f->file_url;
+					$oggpossible=preg_replace(array("/\.mp3/","/\/podcast\//"),array(".ogg","/"),$attach_f->file_url);
+					echo $oggpossible;
+				?>';
+	}
+}
+
+
 ?>
