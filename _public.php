@@ -372,8 +372,8 @@ class DSN_tpl
 		return
 		'<?php
 			$void=$_SERVER["QUERY_STRING"];
-			$complementsok = preg_match(\'#post\/([[:digit:]]{4})\/([[:digit:]]{2})\/([[:digit:]]{2})\/#\',$void ,$recupdate );
-			echo "/blog/archive/$recupdate[1]/$recupdate[2]'.($attr['quand']==='jour'?'/$recupdate[3]':'').'";
+			$complementsok = preg_match(\'#post\/(\\d{4})\/(\\d{2})\/(\\d{2})\/#\',$void ,$recupdate );
+			echo "/archive/$recupdate[1]/$recupdate[2]";
 		?>';
 	}
 
