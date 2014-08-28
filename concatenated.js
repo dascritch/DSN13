@@ -1359,8 +1359,6 @@
 // Finished definition
 
 })(jQuery); // We are done with our plugin, so lets call it with jQuery as the argument
-"use strict";
-
 /*
 	TimecodeHash , an extension to the hash system to address timecode into audio/video elements
     Copyright (C) 2014 Xavier "dascritch" Mouton-Dubosc
@@ -1387,8 +1385,19 @@
 
  */
 
+function TimecodeHash_onMenu() {
+	'use strict';
+
+	var self = new TimecodeHash();
+	var el = document.querySelector(self.selector);
+	var retour = document.location.href.split('#')[0];
+	retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
+	window.prompt(self.locale.label.fr,retour);
+}
 
 function TimecodeHash(hashcode) {
+	'use strict';
+
 	var funcs = {
 		_units : {
 				'd' : 86400,
@@ -1413,22 +1422,14 @@ function TimecodeHash(hashcode) {
 					'<menuitem label="'+this.locale.label.fr+'"></menuitem>'+
 				'</menu>'
 				);
-			document.getElementById(this.menuId).querySelector('menuitem').addEventListener('click',this.onMenu);
+			document.getElementById(this.menuId).querySelector('menuitem').addEventListener('click',TimecodeHash_onMenu);
 			var self = this;
 			[].forEach.call(	// explication de cette construction : https://coderwall.com/p/jcmzxw
 					document.querySelectorAll(self.selector),
-					function(el){
+					function(el) {
 				    	el.setAttribute('contextmenu',self.menuId);
 					}
 				);
-		},
-		onMenu : function(ev,ctx) {
-			var self = TimecodeHash();
-			var el = document.querySelector(self.selector);
-			var retour = document.location.href.split('#')[0];
-			retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
-			window.prompt(self.locale.label.fr,retour);
-
 		},
 		convertTimeInSeconds : function(givenTime) {
 			var seconds = 0;
@@ -1453,7 +1454,7 @@ function TimecodeHash(hashcode) {
 		convertColonTimeInSeconds : function(givenTime) {
 			var seconds = 0;
 			var atoms = givenTime.split(':');
-			var convert = [ 1 , 60 , 3600 , 86400 ]
+			var convert = [ 1 , 60 , 3600 , 86400 ];
 			for (var pos = 0 ; pos < atoms.length ; pos++ ) {
 				seconds += Number(atoms[pos]) * convert[((atoms.length-1) - pos)];
 			}
@@ -1477,6 +1478,20 @@ function TimecodeHash(hashcode) {
 			return converted;
 		},
 		jumpElementAt : function(hash,timecode,callback_fx) {
+
+			function do_element_play(e) {
+				var tag = e.target;
+				tag.play();
+				if (e.notRealEvent === undefined) {
+					tag.removeEventListener('canplay', do_element_play, true);
+					tag.removeEventListener('canplaythrough', do_element_play, true);
+				}
+
+				if (typeof callback_fx === 'function') {
+					// this is needed for testing, as we now run in async tests
+					callback_fx();
+				}
+			}
 			var el;
 
 			if (hash !== '') {
@@ -1496,23 +1511,13 @@ function TimecodeHash(hashcode) {
 				el.src = el.src.split('#')[0] + '#t=' + secs;
 			}
 
-			function do_element_play(e) {
-				var tag = e.target;
-				tag.play();
-				if (e.notRealEvent === undefined) {
-					tag.removeEventListener('canplay', do_element_play, true);
-				}
 
-				if (typeof callback_fx === 'function') {
-					// this is needed for testing, as we now run in async tests
-					callback_fx();
-				}
-			}
-
+console.log(el.readyState ,el );
 			if (el.readyState >= 2)  {
 				do_element_play({ target : el , notRealEvent : true });
 			} else {
 				el.addEventListener('canplay', do_element_play, true);
+				el.addEventListener('canplaythrough', do_element_play, true);
 			}
 
 		},
@@ -1542,14 +1547,16 @@ function TimecodeHash(hashcode) {
 	return funcs;
 }
 
-(function(window,TimecodeHash) {
-	if (window.addEventListener!== undefined) {
-		window.addEventListener( 'load', TimecodeHash ,false);
-		if ("onhashchange" in window) {
+(function(document,window,TimecodeHash) {
+	'use strict';
+
+	if (document.addEventListener !== undefined) {
+		document.addEventListener( 'DOMContentReady', TimecodeHash ,false);
+		if ('onhashchange' in window) {
 			window.addEventListener( 'hashchange', TimecodeHash , false);
 		}
 	}
-})(window,TimecodeHash);var _gaq = _gaq || [];
+})(document,window,TimecodeHash);var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-81365-1']);
 _gaq.push(['_trackPageview']);
 
