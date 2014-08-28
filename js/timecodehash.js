@@ -151,7 +151,6 @@ function TimecodeHash(hashcode) {
 			}
 
 
-console.log(el.readyState ,el );
 			if (el.readyState >= 2)  {
 				do_element_play({ target : el , notRealEvent : true });
 			} else {

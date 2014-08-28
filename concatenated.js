@@ -1512,7 +1512,6 @@ function TimecodeHash(hashcode) {
 			}
 
 
-console.log(el.readyState ,el );
 			if (el.readyState >= 2)  {
 				do_element_play({ target : el , notRealEvent : true });
 			} else {
@@ -1556,7 +1555,8 @@ console.log(el.readyState ,el );
 			window.addEventListener( 'hashchange', TimecodeHash , false);
 		}
 	}
-})(document,window,TimecodeHash);var _gaq = _gaq || [];
+})(document,window,TimecodeHash);
+var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-81365-1']);
 _gaq.push(['_trackPageview']);
 
