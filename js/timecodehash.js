@@ -24,20 +24,18 @@
 
  */
 
-function TimecodeHash_onMenu() {
+window.TimecodeHash = function() {
 	'use strict';
 
-	var self = new TimecodeHash();
-	var el = document.querySelector(self.selector);
-	var retour = document.location.href.split('#')[0];
-	retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
-	window.prompt(self.locale.label.fr,retour);
-}
+	function TimecodeHash_onMenu() {
+		var self = window.TimecodeHash;
+		var el = document.querySelector(self.selector);
+		var retour = document.location.href.split('#')[0];
+		retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
+		window.prompt(self.locale.label.fr,retour);
+	}
 
-function TimecodeHash(hashcode) {
-	'use strict';
-
-	var funcs = {
+	var self = {
 		_units : {
 				'd' : 86400,
 				'h' : 3600,
@@ -63,12 +61,13 @@ function TimecodeHash(hashcode) {
 				);
 			document.getElementById(this.menuId).querySelector('menuitem').addEventListener('click',TimecodeHash_onMenu);
 			var self = this;
-			[].forEach.call(	// explication de cette construction : https://coderwall.com/p/jcmzxw
-					document.querySelectorAll(self.selector),
-					function(el) {
-				    	el.setAttribute('contextmenu',self.menuId);
-					}
-				);
+			[].forEach.call(
+				// explication de cette construction : https://coderwall.com/p/jcmzxw
+				document.querySelectorAll(self.selector),
+				function(el) {
+					el.setAttribute('contextmenu',self.menuId);
+				}
+			);
 		},
 		convertTimeInSeconds : function(givenTime) {
 			var seconds = 0;
@@ -116,6 +115,12 @@ function TimecodeHash(hashcode) {
 			}
 			return converted;
 		},
+		onDebug : function(callback_fx) {
+			// this is needed for testing, as we now run in async tests
+			if (typeof callback_fx === 'function') {
+				callback_fx();
+			}
+		},
 		jumpElementAt : function(hash,timecode,callback_fx) {
 
 			function do_element_play(e) {
@@ -125,11 +130,7 @@ function TimecodeHash(hashcode) {
 					tag.removeEventListener('canplay', do_element_play, true);
 					tag.removeEventListener('canplaythrough', do_element_play, true);
 				}
-
-				if (typeof callback_fx === 'function') {
-					// this is needed for testing, as we now run in async tests
-					callback_fx();
-				}
+				self.onDebug(callback_fx);
 			}
 			var el;
 
@@ -143,13 +144,12 @@ function TimecodeHash(hashcode) {
 			}
 
 			var secs = this.convertTimeInSeconds(timecode);
-			// NOT GOOD, yes i know , but el.fastSeek(secs); is not available on chrome
+			// NOT GOOD, yes i know , but el.currentTime = secs; is not available on webkit
 			try {
 				el.currentTime = secs;
 			} catch(e) {
-				el.src = el.src.split('#')[0] + '#t=' + secs;
+				el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
 			}
-
 
 			if (el.readyState >= 2)  {
 				do_element_play({ target : el , notRealEvent : true });
@@ -165,10 +165,7 @@ function TimecodeHash(hashcode) {
 			}
 
 			if (hashcode.indexOf(this.separator) === -1) {
-				if (typeof callback_fx === 'function') {
-					// this is needed for testing, as we now run in async tests
-					callback_fx();
-				}
+				self.onDebug(callback_fx);
 				return ;
 			}
 
@@ -177,21 +174,13 @@ function TimecodeHash(hashcode) {
 		}
 	};
 
-	if (hashcode !== undefined) {
-		funcs.hashOrder(hashcode);
-	}
-	funcs._buildMenu();
-
-	return funcs;
-}
-
-(function(document,window,TimecodeHash) {
-	'use strict';
-
 	if (document.addEventListener !== undefined) {
-		document.addEventListener( 'DOMContentReady', TimecodeHash ,false);
+		document.addEventListener( 'DOMContentReady', self.hashOrder ,false);
+		document.addEventListener( 'DOMContentReady', self._buildMenu ,false);
 		if ('onhashchange' in window) {
-			window.addEventListener( 'hashchange', TimecodeHash , false);
+			window.addEventListener( 'hashchange', self.hashOrder , false);
 		}
 	}
-})(document,window,TimecodeHash);
+
+	return self;
+}();
