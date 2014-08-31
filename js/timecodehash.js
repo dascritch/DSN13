@@ -27,48 +27,22 @@
 window.TimecodeHash = function() {
 	'use strict';
 
-	function TimecodeHash_onMenu() {
-		var self = window.TimecodeHash;
-		var el = document.querySelector(self.selector);
-		var retour = document.location.href.split('#')[0];
-		retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
-		window.prompt(self.locale.label.fr,retour);
+	if ( (document.addEventListener === undefined) || (!('onhashchange' in window)) ) {
+		// not even think about it : probably MSIE < 8
+		return;
 	}
 
+	var _units = {
+		'd' : 86400,
+		'h' : 3600,
+		'm' : 60,
+		's' : 1
+	};
+
 	var self = {
-		_units : {
-				'd' : 86400,
-				'h' : 3600,
-				'm' : 60,
-				's' : 1
-		},
 		separator : '@',
 		selector : 'audio,video',
 		menuId : 'timecodehash-menu',
-		locale : {
-			label : {
-					'fr' : 'URL de cette position'
-				},
-		},
-		_buildMenu : function() {
-			if ( (document.getElementById(this.menuId) !== null) || (document.body.insertAdjacentHTML === undefined) || (document.querySelectorAll === undefined) ) {
-				return;
-			}
-			document.body.insertAdjacentHTML('beforeend',
-				'<menu type="context" id="'+this.menuId+'">'+
-					'<menuitem label="'+this.locale.label.fr+'"></menuitem>'+
-				'</menu>'
-				);
-			document.getElementById(this.menuId).querySelector('menuitem').addEventListener('click',TimecodeHash_onMenu);
-			var self = this;
-			[].forEach.call(
-				// explication de cette construction : https://coderwall.com/p/jcmzxw
-				document.querySelectorAll(self.selector),
-				function(el) {
-					el.setAttribute('contextmenu',self.menuId);
-				}
-			);
-		},
 		convertTimeInSeconds : function(givenTime) {
 			var seconds = 0;
 			if (/^\d+$/.test(givenTime)) {
@@ -80,10 +54,10 @@ window.TimecodeHash = function() {
 		},
 		convertSubunitTimeInSeconds : function(givenTime) {
 			var seconds = 0;
-			for(var key in this._units) {
-				if ( (this._units.hasOwnProperty(key)) && (givenTime.indexOf(key) !== -1) ) {
+			for(var key in _units) {
+				if ( (_units.hasOwnProperty(key)) && (givenTime.indexOf(key) !== -1) ) {
 					var atoms = givenTime.split(key);
-					seconds += Number(atoms[0].replace(/\D*/g,'' )) * this._units[key];
+					seconds += Number(atoms[0].replace(/\D*/g,'' )) * _units[key];
 					givenTime = atoms[1];
 				}
 			}
@@ -100,9 +74,9 @@ window.TimecodeHash = function() {
 		},
 		convertSecondsInTime : function(givenSeconds) {
 			var converted = '';
-			for(var key in this._units) {
-				if (this._units.hasOwnProperty(key)) {
-					var multiply = this._units[key];
+			for(var key in _units) {
+				if (_units.hasOwnProperty(key)) {
+					var multiply = _units[key];
 					if (givenSeconds >= multiply) {
 						var digits = Math.floor(givenSeconds / multiply);
 						converted += digits + key;
@@ -123,6 +97,8 @@ window.TimecodeHash = function() {
 		},
 		jumpElementAt : function(hash,timecode,callback_fx) {
 
+			var el;
+
 			function do_element_play(e) {
 				var tag = e.target;
 				tag.play();
@@ -132,7 +108,35 @@ window.TimecodeHash = function() {
 				}
 				self.onDebug(callback_fx);
 			}
-			var el;
+
+			function do_needle_move(e) {
+
+				if (e.notRealEvent === undefined) {
+					el.removeEventListener('loadedmetadata', do_needle_move, true);
+				}
+
+				var secs = self.convertTimeInSeconds(timecode);
+				// NOT GOOD, yes i know , but  el.currentTime = secs and fastSeek(secs) are NOT available on webkit
+				try {
+					el.fastSeek(secs);
+				} catch(e) {
+					if (el.currentSrc === '') {
+						/// TODO
+						/// se méfier si currentSrc est vide https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
+						el.load();
+					}
+console.log(el.currentSrc);
+
+					el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
+				}
+
+				if (el.readyState >= 2)  {
+					do_element_play({ target : el , notRealEvent : true });
+				} else {
+					el.addEventListener('canplay', do_element_play, true);
+					el.addEventListener('canplaythrough', do_element_play, true);
+				}
+			}
 
 			if (hash !== '') {
 				el = document.getElementById(hash);
@@ -143,19 +147,12 @@ window.TimecodeHash = function() {
 				return false;
 			}
 
-			var secs = this.convertTimeInSeconds(timecode);
-			// NOT GOOD, yes i know , but el.currentTime = secs; is not available on webkit
-			try {
-				el.currentTime = secs;
-			} catch(e) {
-				el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
-			}
-
-			if (el.readyState >= 2)  {
-				do_element_play({ target : el , notRealEvent : true });
+			if (el.readyState === 0 ) { // HAVE_NOTHING
+				el.addEventListener('loadedmetadata', do_needle_move , true);
+console.log('have nothing');
+				el.load();
 			} else {
-				el.addEventListener('canplay', do_element_play, true);
-				el.addEventListener('canplaythrough', do_element_play, true);
+				do_needle_move({notRealEvent : true });
 			}
 
 		},
@@ -174,13 +171,54 @@ window.TimecodeHash = function() {
 		}
 	};
 
-	if (document.addEventListener !== undefined) {
-		document.addEventListener( 'DOMContentReady', self.hashOrder ,false);
-		document.addEventListener( 'DOMContentReady', self._buildMenu ,false);
-		if ('onhashchange' in window) {
-			window.addEventListener( 'hashchange', self.hashOrder , false);
+	function _launch() {
+
+		function _buildMenu() {
+			var locale = {
+				'fr' : 'URL de cette position',
+				'en' : 'URL at this time'
+			};
+
+			function _getPreferedLocale() {
+				// we really need here a smart way to catch the Accept-Locale
+				return 'fr';
+			}
+
+			function _onMenu() {
+				var self = window.TimecodeHash;
+				var el = document.querySelector(self.selector);
+				var retour = document.location.href.split('#')[0];
+				retour += '#' + el.id + self.separator + self.convertSecondsInTime(el.currentTime);
+				window.prompt(locale.fr,retour);
+			}
+
+			document.body.insertAdjacentHTML('beforeend',
+				'<menu type="context" id="'+self.menuId+'">'+
+					'<menuitem label="'+locale[_getPreferedLocale()]+'"></menuitem>'+
+				'</menu>'
+				);
+			document.getElementById(self.menuId).querySelector('menuitem').addEventListener('click',_onMenu);
+			[].forEach.call(
+				// explication de cette construction : https://coderwall.com/p/jcmzxw
+				document.querySelectorAll(self.selector),
+				function(el) {
+					el.setAttribute('contextmenu',self.menuId);
+				}
+			);
+		}
+
+		if (document.getElementById(self.menuId) === null) {
+			_buildMenu();
+			self.hashOrder();
 		}
 	}
+
+	if (document.body !== null) {
+	     _launch();
+	} else {
+		document.addEventListener( 'readystatechange', _launch ,false);
+	}
+	window.addEventListener( 'hashchange', self.hashOrder , false);
 
 	return self;
 }();
