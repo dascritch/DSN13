@@ -27,8 +27,8 @@
 window.TimecodeHash = function() {
 	'use strict';
 
-	if ( (document.addEventListener === undefined) || (!('onhashchange' in window)) ) {
-		// not even think about it : probably MSIE < 8
+	if ( (document.querySelector === undefined) || (!('oncanplay' in window)) ) {
+		// don't even think about it : probably MSIE < 8
 		return;
 	}
 
@@ -38,6 +38,13 @@ window.TimecodeHash = function() {
 		'm' : 60,
 		's' : 1
 	};
+
+	function onDebug(callback_fx) {
+		// this is needed for testing, as we now run in async tests
+		if (typeof callback_fx === 'function') {
+			callback_fx();
+		}
+	}
 
 	var self = {
 		separator : '@',
@@ -89,29 +96,24 @@ window.TimecodeHash = function() {
 			}
 			return converted;
 		},
-		onDebug : function(callback_fx) {
-			// this is needed for testing, as we now run in async tests
-			if (typeof callback_fx === 'function') {
-				callback_fx();
-			}
-		},
 		jumpElementAt : function(hash,timecode,callback_fx) {
-
 			var el;
+			function _isEvent(e) {
+				return e.preventDefault !== undefined;
+			}
 
 			function do_element_play(e) {
 				var tag = e.target;
 				tag.play();
-				if (e.notRealEvent === undefined) {
+				if (_isEvent(e)) {
 					tag.removeEventListener('canplay', do_element_play, true);
-					tag.removeEventListener('canplaythrough', do_element_play, true);
 				}
-				self.onDebug(callback_fx);
+				onDebug(callback_fx);
 			}
 
 			function do_needle_move(e) {
 
-				if (e.notRealEvent === undefined) {
+				if (_isEvent(e)) {
 					el.removeEventListener('loadedmetadata', do_needle_move, true);
 				}
 
@@ -122,37 +124,29 @@ window.TimecodeHash = function() {
 				} catch(e) {
 					if (el.currentSrc === '') {
 						/// TODO
-						/// se méfier si currentSrc est vide https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
-						el.load();
+						/// beware if currentSrc has nothing https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
 					}
-console.log(el.currentSrc);
-
 					el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
 				}
 
-				if (el.readyState >= 2)  {
-					do_element_play({ target : el , notRealEvent : true });
+				if (el.readyState >= el.HAVE_FUTURE_DATA)  {
+					do_element_play({ target : el });
 				} else {
 					el.addEventListener('canplay', do_element_play, true);
-					el.addEventListener('canplaythrough', do_element_play, true);
 				}
 			}
 
-			if (hash !== '') {
-				el = document.getElementById(hash);
-			} else {
-				el = (document.querySelector !== undefined) ? document.querySelector(this.selector) : undefined;
-			}
+			el = (hash !== '') ? document.getElementById(hash) : document.querySelector(this.selector);
+
 			if ((el === undefined) || (el.currentTime === undefined)) {
 				return false;
 			}
 
-			if (el.readyState === 0 ) { // HAVE_NOTHING
+			if (el.readyState === el.HAVE_NOTHING ) {
 				el.addEventListener('loadedmetadata', do_needle_move , true);
-console.log('have nothing');
 				el.load();
 			} else {
-				do_needle_move({notRealEvent : true });
+				do_needle_move({});
 			}
 
 		},
@@ -161,13 +155,13 @@ console.log('have nothing');
 				hashcode = document.location.hash.substr(1);
 			}
 
-			if (hashcode.indexOf(this.separator) === -1) {
-				self.onDebug(callback_fx);
+			if (hashcode.indexOf(self.separator) === -1) {
+				onDebug(callback_fx);
 				return ;
 			}
 
-			var atoms = hashcode.split(this.separator);
-			this.jumpElementAt(atoms[0],atoms[1],callback_fx);
+			var atoms = hashcode.split(self.separator);
+			self.jumpElementAt(atoms[0],atoms[1],callback_fx);
 		}
 	};
 
@@ -197,7 +191,7 @@ console.log('have nothing');
 					'<menuitem label="'+locale[_getPreferedLocale()]+'"></menuitem>'+
 				'</menu>'
 				);
-			document.getElementById(self.menuId).querySelector('menuitem').addEventListener('click',_onMenu);
+			document.querySelector('#'+self.menuId+' menuitem').addEventListener('click',_onMenu);
 			[].forEach.call(
 				// explication de cette construction : https://coderwall.com/p/jcmzxw
 				document.querySelectorAll(self.selector),
