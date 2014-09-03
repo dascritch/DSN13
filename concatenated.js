@@ -1361,27 +1361,26 @@
 })(jQuery); // We are done with our plugin, so lets call it with jQuery as the argument
 /*
 	TimecodeHash , an extension to the hash system to address timecode into audio/video elements
-    Copyright (C) 2014 Xavier "dascritch" Mouton-Dubosc
+	Copyright (C) 2014 Xavier "dascritch" Mouton-Dubosc
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	--
 
 	project repository : https://github.com/dascritch/timecodehash
 	professional : http://dascritch.com
-    blog : http://dascritch.net
-
+	blog post : http://dascritch.net/post/2014/09/03/Timecodehash-%3A-Lier-vers-un-moment-d-un-sonore
 
  */
 
@@ -1408,7 +1407,7 @@ window.TimecodeHash = function() {
 	}
 
 	var self = {
-		separator : '@',
+		separator : '&t=',
 		selector : 'audio,video',
 		menuId : 'timecodehash-menu',
 		convertTimeInSeconds : function(givenTime) {
@@ -1473,21 +1472,22 @@ window.TimecodeHash = function() {
 			}
 
 			function do_needle_move(e) {
-
 				if (_isEvent(e)) {
 					el.removeEventListener('loadedmetadata', do_needle_move, true);
 				}
 
 				var secs = self.convertTimeInSeconds(timecode);
-				// NOT GOOD, yes i know , but  el.currentTime = secs and fastSeek(secs) are NOT available on webkit
-				try {
+				if (el.fastSeek !== undefined) {
 					el.fastSeek(secs);
-				} catch(e) {
-					if (el.currentSrc === '') {
-						/// TODO
-						/// beware if currentSrc has nothing https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
+					// Firefox doesn't see fastSeek
+				} else {
+					try {
+						// but can set currentTime
+						el.currentTime = secs;
+					} catch(e) {
+						// exept sometimes, so you must use standard media fragment
+						el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
 					}
-					el.src = el.currentSrc.split('#')[0] + '#t=' + secs;
 				}
 
 				if (el.readyState >= el.HAVE_FUTURE_DATA)  {
@@ -1569,7 +1569,7 @@ window.TimecodeHash = function() {
 	}
 
 	if (document.body !== null) {
-	     _launch();
+		 _launch();
 	} else {
 		document.addEventListener( 'readystatechange', _launch ,false);
 	}
