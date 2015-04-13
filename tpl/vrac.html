@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{tpl:BlogLanguage}}">
+<head>
+	<meta charset="utf-8" />
+	<meta name="ROBOTS" content="NOFOLLOW, NOINDEX" />
+
+	<title>vrac zone - {{tpl:BlogName encode_html="1"}}</title>
+
+	<link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
+
+	{{tpl:include src="_head.html"}}
+
+	<style>
+		#content ul { list-style : none }
+		.post-summary { line-height : 1.2; }
+		small {  font-size : x-small; }
+	</style>
+</head>
+<body class="dc-vrac">
+
+<ul id="breadcrumb">
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}" itemprop="url"><span itemprop="title">da scritch</span></a></li>
+	<li>›</li>
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{tpl:BlogURL}}vrac" itemprop="url"><span itemprop="title">vrac zone</span></a></li>
+
+</ul>
+
+	<div id="vrac">
+		
+		{{tpl:include src="_top.html"}}
+
+		<div id="wrapper">
+
+			<main id="main">
+				<div id="content">
+					<h2 class="post-title">
+						<tpl:VracPath> 
+							<img src="/nav/icons/16/folder.png" alt="/" />
+							<a href="{{tpl:VracEntryLink}}">{{tpl:VracEntryName}}</a>
+						</tpl:VracPath>
+					</h2>
+					
+					<ul>
+						<tpl:VracDirs>
+							<li class="cl">
+								<a class="post-summary" href="{{tpl:VracEntryLink}}">
+									<img class="l" src="/nav/icons/32/folder.png" alt="" />
+									<strong>{{tpl:VracEntryName}}</strong><br />
+									<small>répertoire</small>
+								</a>
+							</li>
+						</tpl:VracDirs>
+					</ul>
+					
+					<ul>
+						<tpl:VracFiles>
+							<li class="cl">
+								<a class="post-summary" href="{{tpl:VracEntryLink}}">
+									<img class="l" src="{{tpl:VracEntryIcon}}" alt="" />
+									<strong>{{tpl:VracEntryName}}</strong><br />
+									<small>{{tpl:VracEntryTMime}}, {{tpl:VracEntryDate}}, {{tpl:VracEntrySize}}</small>
+								</a>
+							</li>
+						</tpl:VracFiles>
+					</ul>
+				</div>
+			</main> <!-- End #main -->
+
+			{{tpl:include src="_sidebar.html"}}
+		</div> <!-- End #wrapper -->
+
+		{{tpl:include src="_footer.html"}}
+	</div> <!-- End #page -->
+</body>
+</html>

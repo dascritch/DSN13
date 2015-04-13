@@ -26,6 +26,9 @@ $core->tpl->addBlock('IfPreviewIsNotMandatory',array('tplDuctileTheme','IfPrevie
 
 $core->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
 
+# DaScritchNet vrac navigation
+$core->url->register('vracbrowser', 'm', '^vrac\.php(.+)$', ['urlDaScritch', 'vracbrowser']);
+
 # DaScritchNet templates
 
 $core->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
@@ -38,6 +41,15 @@ $core->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
 $core->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
 $core->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
 
+$core->tpl->addBlock('VracPath',				['DSN_tpl','VracPath']);
+$core->tpl->addBlock('VracDirs',				['DSN_tpl','VracDirs']);
+$core->tpl->addBlock('VracFiles',				['DSN_tpl','VracFiles']);
+$core->tpl->addValue('VracEntryLink',			['DSN_tpl','VracEntryLink']);
+$core->tpl->addValue('VracEntryName',			['DSN_tpl','VracEntryName']);
+$core->tpl->addValue('VracEntryTMime',			['DSN_tpl','VracEntryTMime']);
+$core->tpl->addValue('VracEntryIcon',			['DSN_tpl','VracEntryIcon']);
+$core->tpl->addValue('VracEntrySize',			['DSN_tpl','VracEntrySize']);
+$core->tpl->addValue('VracEntryDate',			['DSN_tpl','VracEntryDate']);
 
 class tplDuctileTheme
 {
@@ -326,7 +338,6 @@ class urlDaScritch extends dcUrlHandlers
 {
 
 	public static function shortlink($args) {
-
 		global $core, $_ctx;
 		$post = $core->blog->getPosts([
 										'post_id'		=> abs(intval(substr($_SERVER['QUERY_STRING'],2))),
@@ -351,6 +362,94 @@ class urlDaScritch extends dcUrlHandlers
 				</html>';
 		exit;
 	}
+	
+	public static function vracbrowser($args) {
+		global $core, $_ctx;
+		$base='vrac/';
+		
+		if ($_SERVER['QUERY_STRING'] === 'vrac.php'){
+			header('Location: /vrac.php/');
+			exit;
+		}
+		
+		$vrac_to = filter_var( substr($_SERVER['QUERY_STRING'],9), FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS );
+		
+		if ((!empty($vrac_to)) && ($vrac_to[strlen($vrac_to)-1] !== '/')) {
+			header('Location: /vrac.php/'.$vrac_to.'/');
+			exit;
+		}
+		
+		$_ctx->vrac_to = $base.$vrac_to;
+		$real = realpath('./'.$base.$vrac_to );
+		
+		if ( 
+			($real === false) 
+			|| (strpos($real,realpath('./'.$base)) !== 0 ) 
+			|| (is_file($real))
+			) {
+			// not good
+			header ('Location: /'.$_ctx->vrac_to);
+			header ('HTTP/1.0 301 Moved Permanently');
+			exit;  // Job terminé, c'est pas la peine d'en rajouter
+		}
+		
+		$vrac_dirs = [];
+		$vrac_files = [];
+		
+		$path = array( '/' => array( 'l' => '/vrac.php', 'n'  => 'vrac' ) );
+		$cumul = '';
+		foreach(explode('/', $vrac_to) as $entree) {
+			if (!empty($entree)) {
+				$path[$cumul] = array(
+							'l' => '/vrac.php/'.$cumul.$entree.'/',
+							'n' => $entree
+						);
+				$cumul .= $entree.'/';
+			}
+		}
+		$_ctx->vrac_path = $path;
+		
+		$iconerep = 'nav/icons/32/';
+		$repert = opendir($real);
+		while ($entree = readdir($repert)) {
+			if ($entree[0] !== '.') {
+				if (is_dir($real.'/'.$entree)) {
+					$vrac_dirs[$entree] = array(
+						'l' => '/vrac.php/'.$vrac_to.$entree.'/',
+						'n' => $entree
+					);
+				} else {
+					$to_entree = $base.$vrac_to.$entree;
+				
+					$tmime = substr(shell_exec('file -bi -- '.escapeshellarg($to_entree).''),0,-1);
+					$_i=preg_split('(\/|,|;| )',$tmime); // trop d'infos tue l'info
+					$icone=$_i[0].'-'.$_i[1];
+					if (!file_exists($iconerep.$icone.'.png')) {
+						$icone = file_exists($iconerep.$icone.'.png') ? $_i[0] : 'unknown';
+					}
+					
+					$taille = filesize($to_entree);
+					$date = filemtime($to_entree);
+					
+					$vrac_files[$entree] = array(
+						'l' => '/'.$to_entree,
+						'n' => $entree,
+						't' => $tmime,
+						'i' => '/'.$iconerep.$icone.'.png',
+						's' => number_format($taille,0,'·',' ').' octet'.(($taille>=1)?'s':''),
+						'd' => datehumaine($date)
+					);
+				}
+			}
+		}
+		ksort($vrac_dirs, SORT_STRING);
+		ksort($vrac_files, SORT_STRING);
+		$_ctx->vrac_dirs = $vrac_dirs;
+		$_ctx->vrac_files = $vrac_files;
+		
+		self::serveDocument('vrac.html');
+	}
+	
 }
 
 
@@ -417,18 +516,15 @@ class DSN_tpl
 						} ?></a><?php } ?>
 			<?php endif; ?>
 		';
-
 	}
 
 	public static function AuthorNotXavier($attr,$content) {
 		return '<?php if ((($_ctx->posts->getAuthorCN())!="admin") &&(($_ctx->posts->getAuthorCN())!="Da Scritch") && (($_ctx->posts->getAuthorCN())!="Xavier Mouton-Dubosc")) { ?>'.$content.'<?php } ?>';
 	}
 
-
 	public static function FrontPage($attr,$content)  {
 		return '<?php if ($_SERVER["QUERY_STRING"]'.(isset($attr['is'])?'!':'=').'="") { ?>'.$content.'<?php } ?>';
 	}
-
 
 	public static function OggFile($attr) {
 		return '<?php
@@ -436,6 +532,42 @@ class DSN_tpl
 					$oggpossible=preg_replace(array("/\.mp3/","/\/podcast\//"),array(".ogg","/"),$attach_f->file_url);
 					echo $oggpossible;
 				?>';
+	}
+	
+	public static function VracPath($attr,$content)  {
+		return '<?php foreach ($_ctx->vrac_path as $entry) { ?>'.$content.'<?php } ?>';
+	}
+	
+	public static function VracDirs($attr,$content)  {
+		return '<?php foreach ($_ctx->vrac_dirs as $entry) { ?>'.$content.'<?php } ?>';
+	}
+
+	public static function VracFiles($attr,$content)  {
+		return '<?php foreach ($_ctx->vrac_files as $entry) { ?>'.$content.'<?php } ?>';
+	}
+
+	public static function VracEntryLink($attr) {
+		return '<?php echo $entry["l"]; ?>';
+	}
+	
+	public static function VracEntryName($attr) {
+		return '<?php echo $entry["n"]; ?>';
+	}
+	
+	public static function VracEntryTMime($attr) {
+		return '<?php echo $entry["t"]; ?>';
+	}
+	
+	public static function VracEntryIcon($attr) {
+		return '<?php echo $entry["i"]; ?>';
+	}
+	
+	public static function VracEntrySize($attr) {
+		return '<?php echo $entry["s"]; ?>';
+	}
+	
+	public static function VracEntryDate($attr) {
+		return '<?php echo $entry["d"]; ?>';
 	}
 }
 
