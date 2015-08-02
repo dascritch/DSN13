@@ -488,7 +488,7 @@ class DSN_tpl
 	public static function CommentsTBCount($attr) {
 		return
 			'<?php if(($_ctx->posts->hasComments() || $_ctx->posts->commentsActive())) : ?>
-				<a href="<?php echo context::global_filter($_ctx->posts->getURL(),0,0,0,0,0,\'EntryURL\'); ?>#comments" class="comment_count">
+				<a href="<?php echo $_ctx->posts->getURL(); ?>#comments" class="comment_count">
 				<?php
 					$nb_t=(int) ($_ctx->posts->nb_trackback);
 					$nb_c=(int) ($_ctx->posts->nb_comment);
@@ -506,7 +506,7 @@ class DSN_tpl
 					<?php if ($_ctx->posts->nb_comment > 0) { ?>
 						et
 					<?php } ?>
-					<a href="<?php echo context::global_filter($_ctx->posts->getURL(),0,0,0,0,0,\'EntryURL\'); ?>#pings" class="ping_count">
+					<a href="<?php echo $_ctx->posts->getURL(); ?>#pings" class="ping_count">
 						<?php if ($_ctx->posts->nb_trackback == 0) {
 						printf(__(\'no trackback\'),(integer) $_ctx->posts->nb_trackback);
 						} elseif ($_ctx->posts->nb_trackback == 1) {
