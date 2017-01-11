@@ -1576,10 +1576,7 @@ window.TimecodeHash = function() {
 	window.addEventListener( 'hashchange', self.hashOrder , false);
 
 	return self;
-}();var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-81365-1']);
-_gaq.push(['_trackPageview']);
-
+}();
 (function($,document){
 	"use strict";
 	function create_name(text) {
@@ -1677,8 +1674,6 @@ _gaq.push(['_trackPageview']);
 	if (top.location != self.location) {
 		top.location = self.location.href;
 	} //naaaaaaaaaaaaan mais !
-
-	insererlibjs('//google-analytics.com/ga.js');
 
 	var lastsize ;
 
