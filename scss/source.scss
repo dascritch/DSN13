@@ -5,25 +5,25 @@ $police: Titillium Web, sans-serif;
 	font-family:'Titillium Web';
 	font-style:normal;
 	font-weight:400;
-	src:local('Titillium') , local('Titillium Web') , local('TitilliumWeb-Regular') , url(fonts/TitilliumWeb-Regular.woff) format('woff');
+	src:local('Titillium') , local('Titillium Web') , local('TitilliumWeb-Regular') , url(fonts/TitilliumWeb-Regular.woff) format('woff'), url(fonts/TitilliumWeb-Regular.woff2) format('woff2');
 }
 @font-face {
 	font-family:'Titillium Web';
 	font-style:normal;
 	font-weight:700;
-	src:local('Titillium Bold') , local('Titillium WebBold') , local('TitilliumWeb-Bold') , url(fonts/TitilliumWeb-Bold.woff) format('woff');
+	src:local('Titillium Bold') , local('Titillium WebBold') , local('TitilliumWeb-Bold') , url(fonts/TitilliumWeb-Bold.woff) format('woff'), url(fonts/TitilliumWeb-Bold.woff2) format('woff2');
 }
 @font-face {
 	font-family:'Titillium Web';
 	font-style:italic;
 	font-weight:400;
-	src:local('Titillium Italic') , local('Titillium WebItalic') , local('TitilliumWeb-Italic') , url(fonts/TitilliumWeb-Italic.woff) format('woff');
+	src:local('Titillium Italic') , local('Titillium WebItalic') , local('TitilliumWeb-Italic') , url(fonts/TitilliumWeb-Italic.woff) format('woff'), url(fonts/TitilliumWeb-Italic.woff2) format('woff2');
 }
 @font-face {
 	font-family:'Titillium Web';
 	font-style:italic;
 	font-weight:700;
-	src:local('Titillium BoldItalic') , local('Titillium WebBold Italic') , local('TitilliumWeb-BoldItalic') , url(fonts/TitilliumWeb-BoldItalic.woff) format('woff');
+	src:local('Titillium BoldItalic') , local('Titillium WebBold Italic') , local('TitilliumWeb-BoldItalic') , url(fonts/TitilliumWeb-BoldItalic.woff) format('woff'), url(fonts/TitilliumWeb-BoldItalic.woff2) format('woff2');
 }
 
 $policefixed: "Inconsolata", Courier, mono;

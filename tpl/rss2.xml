@@ -7,7 +7,7 @@
 	xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
 	<title>{{tpl:BlogName encode_xml="1"}}{{tpl:SysFeedSubtitle encode_xml="1"}}</title>
-	<link>http://dascritch.net/</link>
+	<link>https://dascritch.net/</link>
 	<description>{{tpl:BlogDescription encode_xml="1"}}</description>
 	<language>{{tpl:BlogLanguage}}</language>
 	<pubDate>{{tpl:BlogUpdateDate rfc822="1"}}</pubDate>
@@ -33,16 +33,15 @@
     </tpl:EntryIf>
     
     <description>{{tpl:EntryExcerpt absolute_urls="1" encode_xml="1"}}
-		&lt;span class="tags"&gt;&lt;br /&gt;<tpl:EntryIf has_category="1">&lt;a href="{{tpl:EntryCategoryURL}}"&gt;<!-- <?php echo '&lt;img alt="cat&amp;eacute;gorie" title="cat&amp;eacute;gorie"  src="http://dascritch.net'.blogcaturlicon(html::escapeHTML(context::global_filter($_ctx->posts->cat_title,1,0,0,0,0)),16).'" /&gt;';?>-->{{tpl:EntryCategory encode_html="1"}}&lt;/a&gt; </tpl:EntryIf><tpl:EntryMetaData><tpl:MetaDataHeader>&lt;img src="http://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>&lt;a href="{{tpl:MetaURL}}"&gt;{{tpl:MetaID}}&lt;/a&gt; </tpl:EntryMetaData>&lt;/span&gt;
+		&lt;span class="tags"&gt;&lt;br /&gt;<tpl:EntryIf has_category="1">&lt;a href="{{tpl:EntryCategoryURL}}"&gt;{{tpl:EntryCategory encode_html="1"}}&lt;/a&gt; </tpl:EntryIf><tpl:EntryMetaData><tpl:MetaDataHeader>&lt;img src="https://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>&lt;a href="{{tpl:MetaURL}}"&gt;{{tpl:MetaID}}&lt;/a&gt; </tpl:EntryMetaData>&lt;/span&gt;
 	</description>
     <content:encoded>
 		&lt;p&gt;{{tpl:EntryExcerpt absolute_urls="1" encode_xml="1"}}&lt;span class="tags"&gt;&lt;br /&gt;
 		<tpl:EntryIf has_category="1">&lt;a href="{{tpl:EntryCategoryURL}}"&gt;
-			<!-- # <?php echo '&lt;img alt="cat&amp;eacute;gorie" title="cat&amp;eacute;gorie"  src="http://dascritch.net'.blogcaturlicon(html::escapeHTML(context::global_filter($_ctx->posts->cat_title,1,0,0,0,0)),16).'" /&gt;';?>-->
 			{{tpl:EntryCategory encode_html="1"}}&lt;/a&gt;
 		</tpl:EntryIf>
 		<tpl:EntryMetaData>
-			<tpl:MetaDataHeader>&lt;img src="http://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>
+			<tpl:MetaDataHeader>&lt;img src="https://dascritch.net/nav/tag.png" alt="tag" title="tag"/&gt;</tpl:MetaDataHeader>
 			&lt;a href="{{tpl:MetaURL}}"&gt;{{tpl:MetaID}}&lt;/a&gt;
 		</tpl:EntryMetaData>&lt;/span&gt;
 		&lt;/p&gt;
