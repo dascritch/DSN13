@@ -877,7 +877,6 @@
 					width:		$body.width(),
 					height:		$body.height()
 				});
-				delete $body;
 			}
 			
 			// We no longer care if we are general
@@ -1385,7 +1384,7 @@
  */
 
 window.TimecodeHash = function() {
-	'use strict';
+//	'use strict';
 
 	if ( (document.querySelector === undefined) || (!('oncanplay' in window)) ) {
 		// don't even think about it : probably MSIE < 8
@@ -1578,7 +1577,7 @@ window.TimecodeHash = function() {
 	return self;
 }();
 (function($,document){
-	"use strict";
+//	"use strict";
 	function create_name(text) {
 		// Convert text to lower case.
 		var name = text.toLowerCase();
@@ -1668,6 +1667,36 @@ window.TimecodeHash = function() {
 		document.getElementsByTagName('head')[0].appendChild(script);
 	};
 
+	function setCookie () {
+		var name = c_name.value;
+		var mail = c_mail.value;
+		var site = c_site.value;
+		var cpath = $('link[rel="top"]').attr('href');
+		cpath = (!cpath) ? '/' : cpath.replace(/.*:\/\/[^\/]*([^?]*).*/g,"$1");
+		var rec = name+'\n'+mail+'\n'+site;
+		has_storage
+			? localStorage.setItem('comment_info',rec)
+			: $.cookie('comment_info',rec , {expires:60,path:cpath});
+	}
+
+	function dropCookie(){
+		has_storage
+			? localStorage.removeItem('comment_info')
+			: $.cookie('comment_info','',{expires:-30,path:'/'});
+	}
+
+	function readCookie(c){
+		if (!c) {
+			return false;
+		}
+		var s=c.split('\n');
+		if (s.length!==3) {
+			dropCookie();
+			return false;
+		}
+		return s;
+	}
+
 	// utile pour rebasculer rapidement en version draft
 	var baseurl = 'http://dascritch.net' ;
 	// tu t'es vu quand tu me frame ?
@@ -1680,56 +1709,34 @@ window.TimecodeHash = function() {
 	var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
 
 	$(function() {
-		//window.resize = resize;
+		function onFloatLabelChangeInput() {
+			var $p = $(this).closest(tagIfEmpty);
+			if (this.value!=='') {
+				// petite obligation car impossible de faire un sélecteur qui
+				// change dynamiquement si le champ n'est pas vide
+				// DOC http://stackoverflow.com/questions/8639282/notempty-css-selector-is-not-working
+
+				$p.addClass(markedNotEmpty);
+			} else {
+				$p.removeClass(markedNotEmpty);
+			}
+
+			$p.closest(tagIfModified).addClass(markedModified);
+		}
+
+
+
+
 		if (window.addEventListener) {
 			window.addEventListener('resize', resize);
 		}
 		resize();
 
-		/*
-		var Fx = {
-			header    : document.getElementById('header'),
-			trLeft    : 0.45,
-			trRight    : 0.55,
-			onLeft  : function() {
-						this.header.className = 'top0' ;
-						},
-			onRight : function() {
-						this.header.className = 'top1' ;
-						},
-			onMove  : function (relative) {
-							if (relative < this.trLeft) {
-								this.onLeft();
-							}
-							if (relative > this.trRight) {
-								this.onRight();
-							}
-						},
-			onPointer : function (e) {
-				Fx.onMove( e.clientX / e.view.innerWidth );
-			},
-			onGyro : function (handle) {
-				Fx.onMove( Math.abs( (event.beta %80 )/ 80));
-			} //,
-			//onTimer : function() {
-			//	Fx.onMove( e.clientX / this.innerWidth );
-			//},
-			//start    : null
-		};
-
-		if (window.addEventListener) {
-			window.addEventListener('mousemove', Fx.onPointer,false);
-			if (window.DeviceOrientationEvent) {
-				window.addEventListener('deviceorientation', Fx.onGyro ,false);
-			}
-		}
-		*/
-
 		if ($('.post-content')) {
 			var titres = document.getElementsByTagName('h3');
 			var untags = /<[^<>]+>/g;
 			if (titres.length>3) {
-				liste = document.createElement('ul');
+				var liste = document.createElement('ul');
 				for (titre = 0 ; titre < titres.length ; titre++) {
 					var cet_h3 = titres[titre];
 					// construction de l'id
@@ -1794,21 +1801,6 @@ window.TimecodeHash = function() {
 		var tagIfModified = 'form';
 		var markedModified = 'modified';
 
-		function onFloatLabelChangeInput() {
-			var $p = $(this).closest(tagIfEmpty);
-			if (this.value!=='') {
-				// petite obligation car impossible de faire un sélecteur qui
-				// change dynamiquement si le champ n'est pas vide
-				// DOC http://stackoverflow.com/questions/8639282/notempty-css-selector-is-not-working
-
-				$p.addClass(markedNotEmpty);
-			} else {
-				$p.removeClass(markedNotEmpty);
-			}
-
-			$p.closest(tagIfModified).addClass(markedModified);
-		}
-
 		$(tagIfModified).on('change input',tagIfEmpty+' :input',onFloatLabelChangeInput);
 
 		/*  ré-écriture du post.js système remember de dotclear */
@@ -1820,36 +1812,6 @@ window.TimecodeHash = function() {
 			var c_site = document.getElementById('c_site');
 			var c_s = '#c_name, #c_mail, #c_site';
 			var has_storage = ("localStorage" in window);
-
-			function setCookie () {
-				var name = c_name.value;
-				var mail = c_mail.value;
-				var site = c_site.value;
-				var cpath = $('link[rel="top"]').attr('href');
-				cpath = (!cpath) ? '/' : cpath.replace(/.*:\/\/[^\/]*([^?]*).*/g,"$1");
-				var rec = name+'\n'+mail+'\n'+site;
-				has_storage
-					? localStorage.setItem('comment_info',rec)
-					: $.cookie('comment_info',rec , {expires:60,path:cpath});
-			}
-
-			function dropCookie(){
-				has_storage
-					? localStorage.removeItem('comment_info')
-					: $.cookie('comment_info','',{expires:-30,path:'/'});
-			}
-
-			function readCookie(c){
-				if (!c) {
-					return false;
-				}
-				var s=c.split('\n');
-				if (s.length!==3) {
-					dropCookie();
-					return false;
-				}
-				return s;
-			}
 
 			var $latestp = $('button[name="preview"]',$commentform).closest('p');
 	    	// c'est crade mais c'est contre le confiturage de commentaires

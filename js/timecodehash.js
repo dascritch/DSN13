@@ -24,7 +24,7 @@
  */
 
 window.TimecodeHash = function() {
-	'use strict';
+//	'use strict';
 
 	if ( (document.querySelector === undefined) || (!('oncanplay' in window)) ) {
 		// don't even think about it : probably MSIE < 8

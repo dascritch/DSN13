@@ -835,7 +835,6 @@
 					width:		$body.width(),
 					height:		$body.height()
 				});
-				delete $body;
 			}
 			
 			// We no longer care if we are general
