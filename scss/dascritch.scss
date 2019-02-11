@@ -709,3 +709,5 @@ textarea:focus ~ #form-help {
 	background-image : -webkit-linear-gradient(	top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
 	background-image : -ms-linear-gradient(		top , rgb(119, 119, 119) 0px, rgb(85, 85, 85) 100%);
 }
+
+html{ scroll-behavior:smooth; }
