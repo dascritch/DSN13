@@ -11,45 +11,45 @@
 
 if (!defined('DC_RC_PATH')) { return; }
 
-l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
+l10n::set(dirname(__FILE__).'/locales/'.dcCore::app()->lang.'/main');
 
 # Behaviors
-$core->addBehavior('publicInsideFooter',array('tplDuctileTheme','publicInsideFooter'));
+dcCore::app()->addBehavior('publicInsideFooter',array('tplDuctileTheme','publicInsideFooter'));
 
 # Templates
-$core->tpl->addValue('ductileEntriesList',array('tplDuctileTheme','ductileEntriesList'));
-$core->tpl->addBlock('EntryIfContentIsCut',array('tplDuctileTheme','EntryIfContentIsCut'));
-$core->tpl->addValue('ductileNbEntryPerPage',array('tplDuctileTheme','ductileNbEntryPerPage'));
-$core->tpl->addBlock('IfPreviewIsNotMandatory',array('tplDuctileTheme','IfPreviewIsNotMandatory'));
+dcCore::app()->tpl->addValue('ductileEntriesList',array('tplDuctileTheme','ductileEntriesList'));
+dcCore::app()->tpl->addBlock('EntryIfContentIsCut',array('tplDuctileTheme','EntryIfContentIsCut'));
+dcCore::app()->tpl->addValue('ductileNbEntryPerPage',array('tplDuctileTheme','ductileNbEntryPerPage'));
+dcCore::app()->tpl->addBlock('IfPreviewIsNotMandatory',array('tplDuctileTheme','IfPreviewIsNotMandatory'));
 
 # DaScritchNet micro adressage
 
-$core->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
+dcCore::app()->url->register('shortlink', 'm', '^m(?:/(.+))?$', ['urlDaScritch', 'shortlink']);
 
 # DaScritchNet vrac navigation
-$core->url->register('vracbrowser', 'm', '^vrac\.php(.+)$', ['urlDaScritch', 'vracbrowser']);
+dcCore::app()->url->register('vracbrowser', 'm', '^vrac\.php(.+)$', ['urlDaScritch', 'vracbrowser']);
 
 # DaScritchNet templates
 
-$core->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
-$core->tpl->addValue('TEMPEntryTitle',          ['DSN_tpl','TEMPEntryTitle']);
+dcCore::app()->tpl->addValue('TEMPEntryURL',			['DSN_tpl','TEMPEntryURL']);
+dcCore::app()->tpl->addValue('TEMPEntryTitle',          ['DSN_tpl','TEMPEntryTitle']);
 
-$core->tpl->addValue('UrlDate',					['DSN_tpl','UrlDate']);
-$core->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']);
-$core->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
-$core->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
-$core->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
-$core->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
+dcCore::app()->tpl->addValue('UrlDate',					['DSN_tpl','UrlDate']);
+dcCore::app()->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']);
+dcCore::app()->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
+dcCore::app()->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
+dcCore::app()->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
+dcCore::app()->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
 
-$core->tpl->addBlock('VracPath',				['DSN_tpl','VracPath']);
-$core->tpl->addBlock('VracDirs',				['DSN_tpl','VracDirs']);
-$core->tpl->addBlock('VracFiles',				['DSN_tpl','VracFiles']);
-$core->tpl->addValue('VracEntryLink',			['DSN_tpl','VracEntryLink']);
-$core->tpl->addValue('VracEntryName',			['DSN_tpl','VracEntryName']);
-$core->tpl->addValue('VracEntryTMime',			['DSN_tpl','VracEntryTMime']);
-$core->tpl->addValue('VracEntryIcon',			['DSN_tpl','VracEntryIcon']);
-$core->tpl->addValue('VracEntrySize',			['DSN_tpl','VracEntrySize']);
-$core->tpl->addValue('VracEntryDate',			['DSN_tpl','VracEntryDate']);
+dcCore::app()->tpl->addBlock('VracPath',				['DSN_tpl','VracPath']);
+dcCore::app()->tpl->addBlock('VracDirs',				['DSN_tpl','VracDirs']);
+dcCore::app()->tpl->addBlock('VracFiles',				['DSN_tpl','VracFiles']);
+dcCore::app()->tpl->addValue('VracEntryLink',			['DSN_tpl','VracEntryLink']);
+dcCore::app()->tpl->addValue('VracEntryName',			['DSN_tpl','VracEntryName']);
+dcCore::app()->tpl->addValue('VracEntryTMime',			['DSN_tpl','VracEntryTMime']);
+dcCore::app()->tpl->addValue('VracEntryIcon',			['DSN_tpl','VracEntryIcon']);
+dcCore::app()->tpl->addValue('VracEntrySize',			['DSN_tpl','VracEntrySize']);
+dcCore::app()->tpl->addValue('VracEntryDate',			['DSN_tpl','VracEntryDate']);
 
 class tplDuctileTheme
 {
@@ -58,18 +58,16 @@ class tplDuctileTheme
 	}
 
 	public static function ductileNbEntryPerPageHelper() {
-		global $_ctx;
-
 		$nb = 0;
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_entries_counts');
+		$s = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme.'_entries_counts');
 		if ($s !== null) {
 			$s = @unserialize($s);
 			if (is_array($s)) {
-				if (isset($s[$GLOBALS['core']->url->type])) {
+				if (isset($s[dcCore::app()->url->type])) {
 					// Nb de billets par page défini par la config du thème
-					$nb = (integer) $s[$GLOBALS['core']->url->type];
+					$nb = (integer) $s[dcCore::app()->url->type];
 				} else {
-					if (($GLOBALS['core']->url->type == 'default-page') && (isset($s['default']))) {
+					if ((dcCore::app()->url->type == 'default-page') && (isset($s['default']))) {
 						// Les pages 2 et suivantes de la home ont le même nombre de billet que la première page
 						$nb = (integer) $s['default'];
 					}
@@ -85,12 +83,10 @@ class tplDuctileTheme
 		}
 
 		if ($nb > 0)
-			$_ctx->nb_entry_per_page = $nb;
+			dcCore::app()->ctx->nb_entry_per_page = $nb;
 	}
 
 	public static function EntryIfContentIsCut($attr,$content) {
-		global $core;
-
 		if (empty($attr['cut_string']) || !empty($attr['full'])) {
 			return '';
 		}
@@ -100,21 +96,19 @@ class tplDuctileTheme
 			$urls = '1';
 		}
 
-		$short = $core->tpl->getFilters($attr);
+		$short = dcCore::app()->tpl->getFilters($attr);
 		$cut = $attr['cut_string'];
 		$attr['cut_string'] = 0;
-		$full = $core->tpl->getFilters($attr);
+		$full = dcCore::app()->tpl->getFilters($attr);
 		$attr['cut_string'] = $cut;
 
-		return '<?php if (strlen('.sprintf($full,'$_ctx->posts->getContent('.$urls.')').') > '.
-			'strlen('.sprintf($short,'$_ctx->posts->getContent('.$urls.')').')) : ?>'.
+		return '<?php if (strlen('.sprintf($full,'dcCore::app()->ctx->posts->getContent('.$urls.')').') > '.
+			'strlen('.sprintf($short,'dcCore::app()->ctx->posts->getContent('.$urls.')').')) : ?>'.
 			$content.
 			'<?php endif; ?>';
 	}
 
 	public static function ductileEntriesList($attr) {
-		global $core;
-
 		$tpl_path = dirname(__FILE__).'/tpl/';
 		$list_types = array('title','short','full');
 
@@ -140,7 +134,7 @@ class tplDuctileTheme
 		foreach ($list_types as $v) {
 			$ret .= '	case \''.$v.'\':'."\n".
 				'?>'."\n".
-						$core->tpl->includeFile(array('src' => '_entry-'.$v.'.html'))."\n".
+						dcCore::app()->tpl->includeFile(array('src' => '_entry-'.$v.'.html'))."\n".
 				'<?php '."\n".
 				'		break;'."\n";
 		}
@@ -152,12 +146,12 @@ class tplDuctileTheme
 	}
 
 	public static function ductileEntriesListHelper($default) {
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_entries_lists');
+		$s = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme.'_entries_lists');
 		if ($s !== null) {
 			$s = @unserialize($s);
 			if (is_array($s)) {
-				if (isset($s[$GLOBALS['core']->url->type])) {
-					$model = $s[$GLOBALS['core']->url->type];
+				if (isset($s[dcCore::app()->url->type])) {
+					$model = $s[dcCore::app()->url->type];
 					return $model;
 				}
 			}
@@ -166,7 +160,7 @@ class tplDuctileTheme
 	}
 
 	public static function IfPreviewIsNotMandatory($attr,$content) {
-		$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme.'_style');
+		$s = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme.'_style');
 		if ($s !== null) {
 			$s = @unserialize($s);
 			if (is_array($s)) {
@@ -183,9 +177,9 @@ class tplDuctileTheme
 	public static function publicInsideFooter($core) {
 		$res = '';
 		$default = false;
-		$img_url = $core->blog->settings->system->themes_url.'/'.$core->blog->settings->system->theme.'/img/';
+		$img_url = dcCore::app()->blog->settings->system->themes_url.'/'.dcCore::app()->blog->settings->system->theme.'/img/';
 
-		$s = $core->blog->settings->themes->get($core->blog->settings->system->theme.'_stickers');
+		$s = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme.'_stickers');
 
 		if ($s === null) {
 			$default = true;
@@ -208,8 +202,8 @@ class tplDuctileTheme
 		}
 
 		if ($default || $res == '') {
-			$res = self::setSticker(1,true,__('Subscribe'),$core->blog->url.
-				$core->url->getURLFor('feed','atom'),$img_url.'sticker-feed.png');
+			$res = self::setSticker(1,true,__('Subscribe'),dcCore::app()->blog->url.
+				dcCore::app()->url->getURLFor('feed','atom'),$img_url.'sticker-feed.png');
 		}
 
 		if ($res != '') {
@@ -338,8 +332,7 @@ class urlDaScritch extends dcUrlHandlers
 {
 
 	public static function shortlink($args) {
-		global $core, $_ctx;
-		$post = $core->blog->getPosts([
+		$post = dcCore::app()->blog->getPosts([
 										'post_id'		=> abs(intval(substr($_SERVER['QUERY_STRING'],2))),
 										'post_type'		=> ['post' , 'page' ],
 										]);
@@ -364,7 +357,6 @@ class urlDaScritch extends dcUrlHandlers
 	}
 	
 	public static function vracbrowser($args) {
-		global $core, $_ctx;
 		$base='vrac/';
 		
 		if ($_SERVER['QUERY_STRING'] === 'vrac.php'){
@@ -379,7 +371,7 @@ class urlDaScritch extends dcUrlHandlers
 			exit;
 		}
 		
-		$_ctx->vrac_to = $base.$vrac_to;
+		dcCore::app()->ctx->vrac_to = $base.$vrac_to;
 		$real = realpath('./'.$base.$vrac_to );
 		
 		if ( 
@@ -388,7 +380,7 @@ class urlDaScritch extends dcUrlHandlers
 			|| (is_file($real))
 			) {
 			// not good
-			header ('Location: /'.$_ctx->vrac_to);
+			header ('Location: /'.dcCore::app()->ctx->vrac_to);
 			header ('HTTP/1.0 301 Moved Permanently');
 			exit;  // Job terminé, c'est pas la peine d'en rajouter
 		}
@@ -407,7 +399,7 @@ class urlDaScritch extends dcUrlHandlers
 				$cumul .= $entree.'/';
 			}
 		}
-		$_ctx->vrac_path = $path;
+		dcCore::app()->ctx->vrac_path = $path;
 		
 		$iconerep = 'nav/icons/32/';
 		$repert = opendir($real);
@@ -444,8 +436,8 @@ class urlDaScritch extends dcUrlHandlers
 		}
 		ksort($vrac_dirs, SORT_STRING);
 		ksort($vrac_files, SORT_STRING);
-		$_ctx->vrac_dirs = $vrac_dirs;
-		$_ctx->vrac_files = $vrac_files;
+		dcCore::app()->ctx->vrac_dirs = $vrac_dirs;
+		dcCore::app()->ctx->vrac_files = $vrac_files;
 		
 		self::serveDocument('vrac.html');
 	}
@@ -456,14 +448,14 @@ class urlDaScritch extends dcUrlHandlers
 class DSN_tpl
 {
 	public static function TEMPEntryURL($attr) {
-		return '<?php echo urlencode($_ctx->posts->getURL()); ?>';
+		return '<?php echo urlencode(dcCore::app()->ctx->posts->getURL()); ?>';
 	}
 
 	public static function TEMPEntryTitle($attr) {
 		if (isset($attr['spaces'])) {
-			return '<?php echo strtr( urlencode($_ctx->posts->post_title), ["+" => "'.$attr['spaces'].'"] ); ?>';
+			return '<?php echo strtr( urlencode(dcCore::app()->ctx->posts->post_title), ["+" => "'.$attr['spaces'].'"] ); ?>';
 		} else {
-			return '<?php echo urlencode($_ctx->posts->post_title); ?>';
+			return '<?php echo urlencode(dcCore::app()->ctx->posts->post_title); ?>';
 		}
 	}
 
@@ -478,48 +470,48 @@ class DSN_tpl
 
 	public static function EntryDateHumaine($attr)
 	{
-		$f = $GLOBALS['core']->tpl->getFilters($attr);
+		$f = dcCore::app()->tpl->getFilters($attr);
 		return
 		'<?php
-			echo '.sprintf($f,'datehumaine(($_ctx->posts->getTS()),\'le %l %j%S %F %Y\',\'<abbr title="%j%S %F">%l dernier</abbr>\',\'<abbr title="%l %j%S %F">hier</abbr>\',\'<abbr title="%l %j %S">aujourd\\\'hui</abbr>\')').';
+			echo '.sprintf($f,'datehumaine((dcCore::app()->ctx->posts->getTS()),\'le %l %j%S %F %Y\',\'<abbr title="%j%S %F">%l dernier</abbr>\',\'<abbr title="%l %j%S %F">hier</abbr>\',\'<abbr title="%l %j %S">aujourd\\\'hui</abbr>\')').';
 		?>';
 	}
 
 	public static function CommentsTBCount($attr) {
 		return
-			'<?php if(($_ctx->posts->hasComments() || $_ctx->posts->commentsActive())) : ?>
-				<a href="<?php echo $_ctx->posts->getURL(); ?>#comments" class="comment_count">
+			'<?php if((dcCore::app()->ctx->posts->hasComments() || dcCore::app()->ctx->posts->commentsActive())) : ?>
+				<a href="<?php echo dcCore::app()->ctx->posts->getURL(); ?>#comments" class="comment_count">
 				<?php
-					$nb_t=(int) ($_ctx->posts->nb_trackback);
-					$nb_c=(int) ($_ctx->posts->nb_comment);
+					$nb_t=(int) (dcCore::app()->ctx->posts->nb_trackback);
+					$nb_c=(int) (dcCore::app()->ctx->posts->nb_comment);
 					//if ((($nb_t!=0) || ($nb_c!=0))) { echo \'<img class="favicon" src="/nav/icons/16/action-comment.png"  alt="" />\'; }
 				?>
-				<?php if ($_ctx->posts->nb_comment == 0) {
-					// printf(__(\'no comment\'),$_ctx->posts->nb_comment);
-					} elseif ($_ctx->posts->nb_comment == 1) {
-					printf(__(\'one comment\'),$_ctx->posts->nb_comment);
+				<?php if (dcCore::app()->ctx->posts->nb_comment == 0) {
+					// printf(__(\'no comment\'),dcCore::app()->ctx->posts->nb_comment);
+					} elseif (dcCore::app()->ctx->posts->nb_comment == 1) {
+					printf(__(\'one comment\'),dcCore::app()->ctx->posts->nb_comment);
 					} else {
-					printf(__(\'%d comments\'),$_ctx->posts->nb_comment);
+					printf(__(\'%d comments\'),dcCore::app()->ctx->posts->nb_comment);
 				} ?>
 				</a>
 				<?php if ($nb_t) { ?>
-					<?php if ($_ctx->posts->nb_comment > 0) { ?>
+					<?php if (dcCore::app()->ctx->posts->nb_comment > 0) { ?>
 						et
 					<?php } ?>
-					<a href="<?php echo $_ctx->posts->getURL(); ?>#pings" class="ping_count">
-						<?php if ($_ctx->posts->nb_trackback == 0) {
-						printf(__(\'no trackback\'),(integer) $_ctx->posts->nb_trackback);
-						} elseif ($_ctx->posts->nb_trackback == 1) {
-						printf(__(\'one trackback\'),(integer) $_ctx->posts->nb_trackback);
+					<a href="<?php echo dcCore::app()->ctx->posts->getURL(); ?>#pings" class="ping_count">
+						<?php if (dcCore::app()->ctx->posts->nb_trackback == 0) {
+						printf(__(\'no trackback\'),(integer) dcCore::app()->ctx->posts->nb_trackback);
+						} elseif (dcCore::app()->ctx->posts->nb_trackback == 1) {
+						printf(__(\'one trackback\'),(integer) dcCore::app()->ctx->posts->nb_trackback);
 						} else {
-						printf(__(\'%d trackbacks\'),(integer) $_ctx->posts->nb_trackback);
+						printf(__(\'%d trackbacks\'),(integer) dcCore::app()->ctx->posts->nb_trackback);
 						} ?></a><?php } ?>
 			<?php endif; ?>
 		';
 	}
 
 	public static function AuthorNotXavier($attr,$content) {
-		return '<?php if ((($_ctx->posts->getAuthorCN())!="admin") &&(($_ctx->posts->getAuthorCN())!="Da Scritch") && (($_ctx->posts->getAuthorCN())!="Xavier Mouton-Dubosc")) { ?>'.$content.'<?php } ?>';
+		return '<?php if (((dcCore::app()->ctx->posts->getAuthorCN())!="admin") &&((dcCore::app()->ctx->posts->getAuthorCN())!="Da Scritch") && ((dcCore::app()->ctx->posts->getAuthorCN())!="Xavier Mouton-Dubosc")) { ?>'.$content.'<?php } ?>';
 	}
 
 	public static function FrontPage($attr,$content)  {
@@ -535,15 +527,15 @@ class DSN_tpl
 	}
 	
 	public static function VracPath($attr,$content)  {
-		return '<?php foreach ($_ctx->vrac_path as $entry) { ?>'.$content.'<?php } ?>';
+		return '<?php foreach (dcCore::app()->ctx->vrac_path as $entry) { ?>'.$content.'<?php } ?>';
 	}
 	
 	public static function VracDirs($attr,$content)  {
-		return '<?php foreach ($_ctx->vrac_dirs as $entry) { ?>'.$content.'<?php } ?>';
+		return '<?php foreach (dcCore::app()->ctx->vrac_dirs as $entry) { ?>'.$content.'<?php } ?>';
 	}
 
 	public static function VracFiles($attr,$content)  {
-		return '<?php foreach ($_ctx->vrac_files as $entry) { ?>'.$content.'<?php } ?>';
+		return '<?php foreach (dcCore::app()->ctx->vrac_files as $entry) { ?>'.$content.'<?php } ?>';
 	}
 
 	public static function VracEntryLink($attr) {

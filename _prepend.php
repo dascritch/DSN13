@@ -12,6 +12,6 @@
 if (!defined('DC_RC_PATH')) { return; }
 
 # Behaviors
-$GLOBALS['core']->addBehavior('adminPageHTMLHead',array('tplDuctileThemeAdmin','adminPageHTMLHead'));
+dcCore::app()->addBehavior('adminPageHTMLHead',['tplDuctileThemeAdmin','adminPageHTMLHead']);
 
 ?>

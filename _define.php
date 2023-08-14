@@ -14,9 +14,10 @@ $this->registerModule(
 	/* Name */				"Da Scritch 2013",
 	/* Description*/		"Da Scritch 2013 theme",
 	/* Author */			"dascritch.net d'après Ductile",
-	/* Version */			'3.0',
-	/* Properties */		array(
-								'standalone_config' => true
-							)
+	/* Version */			'4.0',
+	/* Properties */		[
+								'standalone_config' => true,
+								'requires' => [['core', '2.24']]
+							]
 );
 ?>

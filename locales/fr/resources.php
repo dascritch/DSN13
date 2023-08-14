@@ -10,9 +10,9 @@
 #
 # -- END LICENSE BLOCK -----------------------------------------
 
-if (!isset($__resources['help']['ductile']))
+if (!isset(dcCore::app()->resources['help']['ductile']))
 {
-	$__resources['help']['ductile'] = dirname(__FILE__).'/help/help.html';
+	dcCore::app()->resources['help']['ductile'] = dirname(__FILE__).'/help/help.html';
 }
 
 ?>
