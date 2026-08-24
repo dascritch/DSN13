@@ -39,7 +39,7 @@ dcCore::app()->tpl->addValue('EntryDateHumaine',		['DSN_tpl','EntryDateHumaine']
 dcCore::app()->tpl->addValue('CommentsTBCount',			['DSN_tpl','CommentsTBCount']);
 dcCore::app()->tpl->addBlock('AuthorNotXavier',			['DSN_tpl','AuthorNotXavier']);
 dcCore::app()->tpl->addBlock('FrontPage',				['DSN_tpl','FrontPage']);
-dcCore::app()->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
+# dcCore::app()->tpl->addValue('OggFile',					['DSN_tpl','OggFile']);
 
 dcCore::app()->tpl->addBlock('VracPath',				['DSN_tpl','VracPath']);
 dcCore::app()->tpl->addBlock('VracDirs',				['DSN_tpl','VracDirs']);
@@ -518,6 +518,7 @@ class DSN_tpl
 		return '<?php if ($_SERVER["QUERY_STRING"]'.(isset($attr['is'])?'!':'=').'="") { ?>'.$content.'<?php } ?>';
 	}
 
+	/**
 	public static function OggFile($attr) {
 		return '<?php
 					$oggfile=$attach_f->file_url;
@@ -525,7 +526,8 @@ class DSN_tpl
 					echo $oggpossible;
 				?>';
 	}
-	
+	*/
+
 	public static function VracPath($attr,$content)  {
 		return '<?php foreach (dcCore::app()->ctx->vrac_path as $entry) { ?>'.$content.'<?php } ?>';
 	}
